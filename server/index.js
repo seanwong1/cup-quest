@@ -4,6 +4,9 @@ import path from 'path';
 import * as https from 'node:https';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+import '../database/models.js';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();

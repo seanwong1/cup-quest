@@ -1,7 +1,16 @@
 import mongoose from 'mongoose';
-import process from 'dotenv';
+import 'dotenv/config'
 
-const con = mongoose.connect(process.env.DATABASE);
+// const con = mongoose.connect(process.env.DATABASE);
+
+(async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log('Database successfully connected');
+  } catch (err) {
+    console.log('error: ' + err)
+  }
+})()
 
 const shopSchema = new mongoose.Schema({
   id: Number,
