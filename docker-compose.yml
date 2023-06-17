@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_USER: root
+      MONGO_PASSWORD: password
+      MONGO_DATABASE: cupquest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URL: mongodb://database:27017/cupquest
+
+volumes:
+  mongodb_data:
+    driver: local
