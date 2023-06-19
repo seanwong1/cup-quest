@@ -1,29 +1,36 @@
 import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
+import { NewUser } from "./pages/NewUser"
 import { Home } from "./pages/Home"
-import { Login } from "./pages/Login"
+import { SplashPage } from "./pages/SplashPage"
 
 function App() {
 
   return (
     <>
-      <h2>George has cleaned the files</h2>
-      <Link to='/home'>
-        <button>Login</button>
+      {/* <h2>CupQuest</h2>
+      <Link to='/NewUser'>
+        <button>New User</button>
       </Link>
 
-      <nav>
+      <Link to='/home'>
+        <button>Login</button>
+      </Link> */}
+
+      {/* <nav>
         <ul>
           <li>
-            <Link to="/">Login</Link>
+            <Link to="/home">Login</Link>
           </li>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to="/newUser">New User</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
+
     <Routes>
-      <Route path="/" element={<Login />}/>
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/newUser" element={<NewUser />}/>
       <Route path="/home" element={<Home />}/>
     </Routes>
     </>
