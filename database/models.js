@@ -40,11 +40,12 @@ const reviewSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  createdAt: Date,
-  location: String,
-})
+  id: { type: Number, required: true },
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+  location: { type: String }
+}, { timestamps: true });
+
 
 const Shop = mongoose.model('Shop', shopSchema);
 const Review = mongoose.model('Review', reviewSchema);

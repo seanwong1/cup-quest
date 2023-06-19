@@ -64,7 +64,7 @@ export function NewUser() {
           <button>Cancel</button>
         </Link>
         <div style={{ margin: '0 10px' }}>|</div>
-        <Link to='/'>
+        <Link to='/home'>
           <button>Register!</button>
         </Link>
       </div>
