@@ -12,6 +12,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
 
+app.use(express.static(path.join(__dirname, '../dist')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,6 +32,7 @@ app.get("/", function(req, res){
 
 
 
+// eslint-disable-next-line no-undef
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log('listening on port', port);
