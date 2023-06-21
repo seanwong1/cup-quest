@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Review } from './reviews/Review.jsx';
 
 export const ShopOverview = () => {
   const [shop, setShop] = useState('');
@@ -10,6 +11,7 @@ export const ShopOverview = () => {
         <button>Logout</button>
       </Link>
       <h1>Jquery rulez</h1>
+      <Review />
     </div>
   )
 }
