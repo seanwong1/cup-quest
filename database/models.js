@@ -34,10 +34,11 @@ const reviewSchema = new mongoose.Schema({
     type: mongoose.ObjectId,
     ref: 'User',
   },
-  body: String,
-  createdAt: Date,
-
-})
+  rating: { type: Number, required: true },
+  drink: { type: String, required: true },
+  comments: { type: String },
+  reported: { type: Boolean, default: false }
+}, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
   id: { type: Number, required: true },
