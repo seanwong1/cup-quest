@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
-import { NewUser } from "./pages/NewUser"
-import { Home } from "./pages/Home"
-import { SplashPage } from "./pages/SplashPage"
+import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { NewUser } from "./pages/NewUser";
+import { Home } from "./pages/Home";
+import { SplashPage } from "./pages/SplashPage";
+import { ShopOverview } from "./pages/ShopOverview";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/" element={<SplashPage />} />
       <Route path="/newUser" element={<NewUser />}/>
       <Route path="/home" element={<Home />}/>
+      <Route path="/overview" element={<ShopOverview />}/>
     </Routes>
     </>
   )
