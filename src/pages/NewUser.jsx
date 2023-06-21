@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 export function NewUser() {
   const navigate = useNavigate();
@@ -9,16 +10,25 @@ export function NewUser() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/register', {
+        username,
+        password,
+        email,
+        phone
+      })
 
-    console.log('Form submitted');
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('Email:', email);
-    console.log('Phone:', phone);
-
-    navigate('/home');
+      console.log(response.status === 200)
+      if (response.status === 200) {
+        navigate('/home');
+      } else {
+        navigate('/')
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const newUsername = (e) => {

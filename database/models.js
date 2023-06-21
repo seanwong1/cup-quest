@@ -42,13 +42,12 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  phone: { type: String, required: true },
+  phone: { type: String },
   picture: { type: String },
-  // friends: [{ type: mongoose.ObjectId, ref: 'User' }],
+  friends: [{ type: mongoose.ObjectId, ref: 'User' }],
   // location: { type: String }
 }, { timestamps: true });
 

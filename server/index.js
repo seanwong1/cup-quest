@@ -7,6 +7,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import '../database/models.js';
+import { User } from '../database/models.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
@@ -27,8 +28,28 @@ app.get("/", function(req, res){
   res.end();
 })
 
-
 // routes go here
+
+app.post('/register', async function(req, res) {
+  const { username, password, email, phone } = req.body;
+
+  try {
+    const newUser = new User({
+      name: username,
+      password,
+      email,
+      phone,
+    });
+
+    await newUser.save();
+    console.log('New user created!')
+    res.status(200).send('User Created!')
+  } catch(err) {
+    console.log('Err creating new user', err);
+    res.status(500).send('Server Err');
+  }
+})
+
 
 
 
