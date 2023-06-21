@@ -1,11 +1,40 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { NewUser } from "./pages/NewUser";
+import { Home } from "./pages/Home";
+import { SplashPage } from "./pages/SplashPage";
+import { ShopOverview } from "./pages/ShopOverview";
 
 function App() {
 
   return (
     <>
-      <h2>Sean has cleaned the files</h2>
-      <h3>I left the index.css for black background and white text for now</h3>
+      {/* <h2>CupQuest</h2>
+      <Link to='/NewUser'>
+        <button>New User</button>
+      </Link>
+
+      <Link to='/home'>
+        <button>Login</button>
+      </Link> */}
+
+      {/* <nav>
+        <ul>
+          <li>
+            <Link to="/home">Login</Link>
+          </li>
+          <li>
+            <Link to="/newUser">New User</Link>
+          </li>
+        </ul>
+      </nav> */}
+
+    <Routes>
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/newUser" element={<NewUser />}/>
+      <Route path="/home" element={<Home />}/>
+      <Route path="/overview" element={<ShopOverview />}/>
+    </Routes>
     </>
   )
 }
