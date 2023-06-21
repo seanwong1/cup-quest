@@ -1,31 +1,41 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function NewUser() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log('Form submitted');
+    console.log('Username:', username);
+    console.log('Password:', password);
+    console.log('Email:', email);
+    console.log('Phone:', phone);
+
+    navigate('/home');
+  };
+
   const newUsername = (e) => {
-    console.log(e.target.value)
     setUsername(e.target.value);
   };
   const newPassword = (e) => {
-    console.log(e.target.value)
     setPassword(e.target.value);
   };
   const newEmail = (e) => {
-    console.log(e.target.value)
     setEmail(e.target.value);
   };
   const newPhone = (e) => {
-    console.log(e.target.value)
     setPhone(e.target.value);
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h1>Create Account</h1>
       <input
         type="text"
@@ -60,14 +70,12 @@ export function NewUser() {
       <br />
 
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link to='/'>
-          <button>Cancel</button>
+        <Link to="/">
+          <button type="button">Cancel</button>
         </Link>
         <div style={{ margin: '0 10px' }}>|</div>
-        <Link to='/home'>
-          <button>Register!</button>
-        </Link>
+        <button type="submit">Register!</button>
       </div>
-    </>
-  )
+    </form>
+  );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import express from 'express';
 import 'dotenv/config'
 import path from 'path';
@@ -23,6 +24,7 @@ app.get("/", function(req, res){
   </html>`)
   res.end();
 })
+
 
 // routes go here
 
