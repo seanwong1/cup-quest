@@ -13,15 +13,17 @@ import 'dotenv/config'
 })()
 
 const shopSchema = new mongoose.Schema({
-  id: Number,
   name: String,
   hours: String,
-  address: String,
-  menu: [String],
-  reviews: [{
-    type: mongoose.ObjectId,
-    ref: 'Review',
-  }],
+  address1: String,
+  address2: String,
+  address3: String,
+  city: String,
+  state: String,
+  zip: Number,
+  longitude: String,
+  latitude: String,
+  phone: String,
 });
 
 const reviewSchema = new mongoose.Schema({
