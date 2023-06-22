@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { ReviewPost } from './ReviewPost.jsx';
 
-export const ShopOverview = () => {
-  const [shop, setShop] = useState('');
+export const Review = () => {
+  const [reviewList, setReviewList] = useState([]);
   return (
     <div>
-      <h1>Shop Overview</h1>
-      <Link to='/'>
-        <button>Logout</button>
-      </Link>
-      <h1>Jquery rulez</h1>
+      <ReviewPost reviewList={reviewList} setReviewList={setReviewList}/>
     </div>
   )
 }

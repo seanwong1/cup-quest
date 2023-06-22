@@ -27,7 +27,6 @@ const shopSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  id: Number,
   shop: {
     type: mongoose.ObjectId,
     ref: 'Shop'
