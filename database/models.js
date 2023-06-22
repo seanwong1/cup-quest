@@ -28,7 +28,6 @@ const shopSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  id: Number,
   shop: {
     type: mongoose.ObjectId,
     ref: 'Shop'
@@ -46,7 +45,6 @@ const reviewSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
   phone: { type: String },
   picture: { type: String },
   friends: [{ type: mongoose.ObjectId, ref: 'User' }],

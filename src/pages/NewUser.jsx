@@ -1,34 +1,60 @@
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDX2-zHaA5vUz_dg6ft4bWsvMhWWOfQjm4",
+  authDomain: "team-chatterbox-boc.firebaseapp.com",
+  projectId: "team-chatterbox-boc",
+  storageBucket: "team-chatterbox-boc.appspot.com",
+  messagingSenderId: "769383883889",
+  appId: "1:769383883889:web:3cb7018be7bbb42f4da7d0",
+  measurementId: "G-QT1CQ6NSVQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export function NewUser() {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('/register', {
-        username,
-        password,
-        email,
-        phone
-      })
-
-      console.log(response.status === 200)
-      if (response.status === 200) {
-        navigate('/home');
-      } else {
-        navigate('/')
-      }
-    } catch (err) {
-      console.log(err);
+    if (password !== confirmedPassword) {
+      alert('Passwords do not match!');
+      e.preventDefault();
+      setPassword('');
+      setConfirmedPassword('');
+      return;
     }
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((data) => {
+        axios.post('/register', {
+          username,
+          email,
+          phone
+        }).then((response) => {
+          if (response.status === 200) {
+            navigate('/home');
+          } else {
+            navigate('/')
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const newUsername = (e) => {
@@ -36,6 +62,9 @@ export function NewUser() {
   };
   const newPassword = (e) => {
     setPassword(e.target.value);
+  };
+  const newConfirmedPassword = (e) => {
+    setConfirmedPassword(e.target.value);
   };
   const newEmail = (e) => {
     setEmail(e.target.value);
@@ -56,10 +85,18 @@ export function NewUser() {
       <br />
 
       <input
-        type="text"
+        type="password"
         value={password}
         onChange={newPassword}
         placeholder="Password"
+      />
+      <br />
+
+      <input
+        type="password"
+        value={confirmedPassword}
+        onChange={newConfirmedPassword}
+        placeholder="Confirm Password"
       />
       <br />
 

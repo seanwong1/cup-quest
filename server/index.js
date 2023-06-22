@@ -31,12 +31,11 @@ app.get("/", function(req, res){
 // routes go here
 
 app.post('/register', async function(req, res) {
-  const { username, password, email, phone } = req.body;
+  const { username, email, phone } = req.body;
 
   try {
     const newUser = new User({
       name: username,
-      password,
       email,
       phone,
     });
