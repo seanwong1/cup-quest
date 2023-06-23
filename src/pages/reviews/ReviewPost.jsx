@@ -43,7 +43,10 @@ export const ReviewPost = (props) => {
       })
       .then(() => {
         console.log('done submitting post!');
-        //will update review list on success
+        props.getReviews()
+      })
+      .catch((e) => {
+        console.log(e);
       })
     }
   }
@@ -164,11 +167,10 @@ export const ReviewPost = (props) => {
   }
   return (
     <div id='reviewForm'>
-      <h1>Post A Review!</h1>
       <div id='validation' style={styling}></div>
       <form className='postReview'>
         <label className='rate'>How would you rate
-        <select required onChange={(e) => setDrink(e.target.value)}>
+        <select id='postReviewDrinkOptions' required onChange={(e) => setDrink(e.target.value)}>
           <option className='drinkOptions' value='Drip Coffee'>Drip Coffee</option>
           <option className='drinkOptions' value='Pourover'>Pourover</option>
           <option className='drinkOptions' value='Cafe Au Lait'>Cafe Au Lait</option>

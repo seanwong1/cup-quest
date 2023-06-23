@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 /* eslint-disable react/prop-types */
 
 export const ReviewEntry = (props) => {
-  const drink = 'reviewed' + props.drink;
+  const drink = 'reviewed ' + props.drink;
   const rating = () => {
     console.log(props.rating);
     if (props.rating === 1) {
@@ -65,10 +65,12 @@ export const ReviewEntry = (props) => {
 
   return (
     <div className='reviewsEntry'>
-      <img className='reviewsPic' src={props.profilePic}></img>
-      <h3 className='reviewsUsername'>{props.username}</h3>
-      <h3 className='reviewsDrink'>{drink}</h3>
-      {rating()}
+      <div className='entryContainer'>
+        <img className='reviewsPic' src={props.profilePic}></img>
+        <h3 className='reviewsUsername'>{props.username}</h3>
+        <h3 className='reviewsDrink'>{drink}</h3>
+        {rating()}
+      </div>
       <h3 className='reviewsComment'>{props.comments}</h3>
     </div>
   )
