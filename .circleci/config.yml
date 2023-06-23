@@ -1,0 +1,32 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  run_tests:
+    docker:
+    # running in the docker pre-loaded circleCI node image
+      - image: circleci/node:16
+    steps:
+      - checkout
+      - run:
+          name: install node dependencies
+          command: |
+            npm install --save
+      - run:
+          name: Run unit tests
+          command: |
+            npm test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  testing-workflow:
+    jobs:
+      - run_tests

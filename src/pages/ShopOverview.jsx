@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Review } from './reviews/Review.jsx';
+import ShopInformation from './shopInfo/ShopInformation';
 
 export const ShopOverview = () => {
   const [shop, setShop] = useState('');
@@ -9,7 +11,9 @@ export const ShopOverview = () => {
       <Link to='/'>
         <button>Logout</button>
       </Link>
-      <h1>Jquery rulez</h1>
+      <Review />
+      <ShopInformation />
+      <h1>Jquery is my nemesis</h1>
     </div>
   )
 }

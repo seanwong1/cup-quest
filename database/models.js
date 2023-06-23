@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
@@ -13,19 +14,20 @@ import 'dotenv/config';
 })()
 
 const shopSchema = new mongoose.Schema({
-  id: Number,
   name: String,
   hours: String,
-  address: String,
-  menu: [String],
-  reviews: [{
-    type: mongoose.ObjectId,
-    ref: 'Review',
-  }],
+  address1: String,
+  address2: String,
+  address3: String,
+  city: String,
+  state: String,
+  zip: Number,
+  longitude: String,
+  latitude: String,
+  phone: String,
 });
 
 const reviewSchema = new mongoose.Schema({
-  id: Number,
   shop: {
     type: mongoose.ObjectId,
     ref: 'Shop'
@@ -41,10 +43,12 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
   name: { type: String, required: true },
-  password: { type: String, required: true },
-  location: { type: String }
+  email: { type: String, required: true },
+  phone: { type: String },
+  picture: { type: String },
+  friends: [{ type: mongoose.ObjectId, ref: 'User' }],
+  // location: { type: String }
 }, { timestamps: true });
 
 
