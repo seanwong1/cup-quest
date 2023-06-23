@@ -28,14 +28,9 @@ const shopSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  shop: {
-    type: mongoose.ObjectId,
-    ref: 'Shop'
-  },
-  userId: {
-    type: mongoose.ObjectId,
-    ref: 'User',
-  },
+  shop: { type: Number, required: true },
+  username: { type: String, required: true },
+  profilePic: { type: String, required: true },
   rating: { type: Number, required: true },
   drink: { type: String, required: true },
   comments: { type: String },

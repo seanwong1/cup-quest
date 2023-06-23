@@ -7,7 +7,7 @@ import { ShopOverview } from "./pages/ShopOverview";
 import UserProfile from "./lib/UserProfile.jsx";
 
 function App() {
-
+  const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
   return (
     <>
       {/* <h2>CupQuest</h2>
@@ -34,7 +34,7 @@ function App() {
       <Route path="/" element={<SplashPage />} />
       <Route path="/newUser" element={<NewUser />}/>
       <Route path="/home" element={<Home />}/>
-      <Route path="/overview" element={<ShopOverview />}/>
+      <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId}/>}/>
       <Route path="/user" element={<UserProfile isUser={true} />}/>
       {/* <Route path="/friends" element={<FriendsList />}/> */}
     </Routes>
