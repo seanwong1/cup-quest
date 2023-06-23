@@ -6,7 +6,7 @@ import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
 
 function App() {
-
+  const [userId, setUserId] = useState(0);
   return (
     <>
       {/* <h2>CupQuest</h2>
@@ -30,10 +30,10 @@ function App() {
       </nav> */}
 
     <Routes>
-      <Route path="/" element={<SplashPage />} />
-      <Route path="/newUser" element={<NewUser />}/>
-      <Route path="/home" element={<Home />}/>
-      <Route path="/overview" element={<ShopOverview />}/>
+      <Route path="/" element={<SplashPage userId={userId} setUserId={setUserId}/>} />
+      <Route path="/newUser" element={<NewUser userId={userId} setUserId={setUserId}/>}/>
+      <Route path="/home" element={<Home userId={userId} setUserId={setUserId}/>}/>
+      <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId}/>}/>
     </Routes>
     </>
   )
