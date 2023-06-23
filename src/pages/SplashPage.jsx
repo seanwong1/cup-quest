@@ -1,22 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDX2-zHaA5vUz_dg6ft4bWsvMhWWOfQjm4",
-  authDomain: "team-chatterbox-boc.firebaseapp.com",
-  projectId: "team-chatterbox-boc",
-  storageBucket: "team-chatterbox-boc.appspot.com",
-  messagingSenderId: "769383883889",
-  appId: "1:769383883889:web:3cb7018be7bbb42f4da7d0",
-  measurementId: "G-QT1CQ6NSVQ"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { signIn } from './firebase/firebaseAuth'
 
 export function SplashPage() {
   const navigate = useNavigate();
@@ -34,22 +20,18 @@ export function SplashPage() {
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+    signIn(email, password)
     .then((data) => {
-
-      const userInfo = { email, password };
-      console.log('userInfo: ', userInfo);
       navigate('/home');
     })
     .catch((err) => {
-      setPassword('')
+      setPassword('');
       console.log(err);
     });
   };
 
   const handleNewUserClick = (e) => {
     e.preventDefault()
-
     navigate('/newUser')
   }
 
