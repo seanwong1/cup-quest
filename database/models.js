@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import mongoose from 'mongoose';
-import 'dotenv/config'
+import 'dotenv/config';
 
 // const con = mongoose.connect(process.env.DATABASE);
 
