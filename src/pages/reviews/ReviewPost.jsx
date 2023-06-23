@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+/* eslint-disable react/prop-types */
 
 export const ReviewPost = (props) => {
   const [rating, setRating] = useState(0);
@@ -15,19 +17,16 @@ export const ReviewPost = (props) => {
     }
   }
   const styleSettings = {
-    'font-size': '300%'
+    'fontSize': '300%',
+    'color': 'yellow'
   }
 
   const styling = {
     'color': 'red',
-    'font-weight': 'bolder'
+    'fontWeight': 'bolder'
   }
   const submitPost = (e) => {
     //wil need to send shop, user, rating, drink, comments,
-    console.log('rating: ', rating);
-    console.log('drink: ', drink);
-    console.log('comments: ', comments);
-    console.log('Submitted');
     turnOff('star1');
     turnOff('star2');
     turnOff('star3');
@@ -35,8 +34,17 @@ export const ReviewPost = (props) => {
     turnOff('star5');
     var valid = isValid();
     if (valid) {
-      //do axios stuff
-      console.log('valid form submition')
+      axios.post('/reviews', {
+        shop: props.shop,
+        userId: props.userId,
+        rating: rating,
+        drink: drink,
+        comments: comments
+      })
+      .then(() => {
+        console.log('done submitting post!');
+        //will update review list on success
+      })
     }
   }
 
@@ -185,7 +193,7 @@ export const ReviewPost = (props) => {
           <span id='star4' style={styleSettings} className='star4 off' onClick={() => star4()}>&#9734;</span>
           <span id='star5' style={styleSettings} className='star5 off' onClick={() => star5()}>&#9734;</span>
          </div>
-         <input id='comments' type='text' placeholder='Any additional thoughts?' onChange={() => setComments(document.getElementById('comments').value)}></input>
+         <input id='comments' type='text' placeholder='Any additional thoughts?' onChange={() => setComments(document.getElementById('comments').value.replace(/[^\w\s!?.,']/gi, ''))}></input>
          <input type="reset" value="Post" onClick={(e) => submitPost(e)}/>
       </form>
     </div>
