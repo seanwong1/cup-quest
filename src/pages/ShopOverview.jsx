@@ -8,9 +8,8 @@ export const ShopOverview = (props) => {
   const [shop, setShop] = useState(0);
   return (
     <div>
-      <h1>Shop Overview</h1>
       <Link to='/'>
-        <button>Logout</button>
+        <button className='button_logout'>Logout</button>
       </Link>
       <ShopInformation />
       <h1>Jquery is my nemesis</h1>
