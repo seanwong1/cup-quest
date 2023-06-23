@@ -15,11 +15,13 @@ export const Review = (props) => {
   }, [])
 
   const getReviews = () => {
-    axios.get('http://localhost:3030/reviews', {
+    console.log('1');
+    axios.get('/reviews', {
         shop: props.shop
       })
       .then((results) => {
-        return results.map((review) => {
+        console.log('2: ', results.data);
+        return results.data.map((review) => {
           return (
             // eslint-disable-next-line react/jsx-key
             <ReviewEntry drink={review.drink} comments={review.comments} rating={review.rating} profilePic={review.profilePic} username={review.username}/>
@@ -27,6 +29,7 @@ export const Review = (props) => {
         })
       })
       .then((results) => {
+        console.log('3: ', results);
         setReviewList(results);
       })
       .catch((err) => {

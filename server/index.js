@@ -59,25 +59,28 @@ app.post('/register', async function(req, res) {
 
 app.get('/reviews', (req, res) => {
   const shop = req.body.shop;
-  Review.find({shop: shop}).sort({createdAt: 'desc'})
+  Review.find({shop: 0}).sort({createdAt: 'desc'})
   .then((results) => {
+    console.log('results: ', results);
     res.status(200).send(results);
   })
 })
 
 app.post('/reviews', (req, res) => {
   const shop = req.body.shop;
-  const userId = mongoose.Types.ObjectId(req.body.userId);
+  const userId = new mongoose.Types.ObjectId(req.body.userId);
   const rating = req.body.rating;
   const drink = req.body.drink;
   const comments = req.body.comments.length === 0 ? 'n/a' : req.body.comments;
   User.find({_id: userId})
   .then((results) => {
-    Review.create({shop: shop, username: results[0].name, profilePic: results[0].picture, rating: rating, drink: drink, comments: comments})
+    console.log('inside: ', results);
+    const picture = results[0].picture || 'https://images.unsplash.com/photo-1494368308039-ed3393a402a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1543&q=80';
+    Review.create({shop: shop, username: results[0].name, profilePic: picture, rating: rating, drink: drink, comments: comments})
   })
   .then((results) => {
-    console.log(results);
-    res.status(201).send(results);
+    console.log('finished posting: ', results);
+    res.sendStatus(201);
   })
   .catch((err) => {
     console.log(err);

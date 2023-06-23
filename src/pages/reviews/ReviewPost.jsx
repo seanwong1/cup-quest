@@ -34,7 +34,7 @@ export const ReviewPost = (props) => {
     turnOff('star5');
     var valid = isValid();
     if (valid) {
-      axios.post('http://localhost:3030/reviews', {
+      axios.post('/reviews', {
         shop: props.shop,
         userId: props.userId,
         rating: rating,

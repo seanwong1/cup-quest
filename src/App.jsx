@@ -6,7 +6,7 @@ import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
 
 function App() {
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
   return (
     <>
       {/* <h2>CupQuest</h2>

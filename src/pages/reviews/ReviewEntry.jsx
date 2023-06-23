@@ -2,18 +2,9 @@ import React, { useState } from 'react';
 /* eslint-disable react/prop-types */
 
 export const ReviewEntry = (props) => {
-  const comment = () => {
-    if (props.comments === 'n/a') {
-      return (
-        <h3 className='reviewsComment'></h3>
-      )
-    }
-  }
-  const drink = () => {
-    return 'reviewed' + props.drink;
-  }
-
+  const drink = 'reviewed' + props.drink;
   const rating = () => {
+    console.log(props.rating);
     if (props.rating === 1) {
       return (
         <div className='reviewsRatingContainer'>
@@ -77,8 +68,8 @@ export const ReviewEntry = (props) => {
       <img className='reviewsPic' src={props.profilePic}></img>
       <h3 className='reviewsUsername'>{props.username}</h3>
       <h3 className='reviewsDrink'>{drink}</h3>
-      {rating}
-      {comment}
+      {rating()}
+      <h3 className='reviewsComment'>{props.comments}</h3>
     </div>
   )
 }
