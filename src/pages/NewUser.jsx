@@ -53,7 +53,7 @@ export function NewUser() {
             });
         } else {
 
-          // If there is no profile picture, simply make the POST request without the profilePictureUrl
+          // If there is no profile picture
           axios.post('/register', {
             username,
             email,
@@ -98,62 +98,70 @@ export function NewUser() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Create Account</h1>
-      <input
-        type="text"
-        value={username}
-        onChange={newUsername}
-        placeholder="Name"
-      />
-      <br />
+    <>
+      <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
+      <div className="newUser-input-fields">
+        <h1 className="createAccount-heading">Create Account</h1>
+        <form onSubmit={handleSubmit} className="newUser-form">
+          <input
+            type="text"
+            value={username}
+            onChange={newUsername}
+            placeholder="Name"
+          />
 
-      <input
-        type="password"
-        value={password}
-        onChange={newPassword}
-        placeholder="Password"
-      />
-      <br />
+          <input
+            type="password"
+            value={password}
+            onChange={newPassword}
+            placeholder="Password"
+          />
 
-      <input
-        type="password"
-        value={confirmedPassword}
-        onChange={newConfirmedPassword}
-        placeholder="Confirm Password"
-      />
-      <br />
+          <input
+            type="password"
+            value={confirmedPassword}
+            onChange={newConfirmedPassword}
+            placeholder="Confirm Password"
+          />
 
-      <input
-        type="text"
-        value={email}
-        onChange={newEmail}
-        placeholder="Email"
-      />
-      <br />
+          <input
+            type="text"
+            value={email}
+            onChange={newEmail}
+            placeholder="Email"
+          />
 
-      <input
-        type="text"
-        value={phone}
-        onChange={newPhone}
-        placeholder="Phone Number"
-      />
-      <br />
+          <input
+            type="text"
+            value={phone}
+            onChange={newPhone}
+            placeholder="Phone Number"
+          />
 
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleProfilePictureChange}
-      />
-      <br />
+          <div className="profilePicture-container">
+            <label htmlFor="profilePictureInput" className="profilePicture-label">
+              Profile Picture:
+            </label>
+            <input
+              type="file"
+              id="profilePictureInput"
+              accept="image/*"
+              onChange={handleProfilePictureChange}
+              className="profilePicture-input"
+            />
+          </div>
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link to="/">
-          <button type="button">Cancel</button>
-        </Link>
-        <div style={{ margin: '0 10px' }}>|</div>
-        <button type="submit">Register!</button>
+          <div className="newUser-buttons-container">
+            <Link to="/">
+              <button type="button" className="newUser-button">Cancel</button>
+            </Link>
+            <div style={{ margin: '0 10px' }}>|</div>
+
+            <button type="submit" className="newUser-button">Register!</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </>
   );
+
 }

@@ -10,10 +10,101 @@
 
 .logo {
   max-width: 100%;
+  margin-top: 5%;
 }
 
-.container-splash {
+.splash-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10%;
+}
+
+.splash-input-fields {
+  width: 90%;
+  height: 30px;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.splash-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.newUser-input-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.newUser-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+
+}
+
+.newUser-input-fields input {
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.createAccount-heading {
+  text-align: center;
+  margin: 10px 0;
+  margin-top: -10px;
+}
+
+.newUser-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 5px; */
+}
+
+.newUser-button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.profilePicture-container {
+  border: 1px solid #ccc;
+  /* padding: 10px; */
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.profilePicture-label {
+  margin-right: 10px;
+}
+
+.profilePicture-input {
+  margin-top: 5px;
 }

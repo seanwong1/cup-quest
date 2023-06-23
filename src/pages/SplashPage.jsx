@@ -38,9 +38,9 @@ export function SplashPage() {
   return (
     <>
       <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
-      <div className="container-splash">
+      <div className="splash-container">
         <form onSubmit={handleLoginFormSubmit}>
-          <input
+          <input className="splash-input-fields"
             type="text"
             value={email}
             onChange={loginEmail}
@@ -48,7 +48,7 @@ export function SplashPage() {
           />
           <br />
 
-          <input
+          <input className="splash-input-fields"
             type="password"
             value={password}
             onChange={loginPassword}
@@ -56,32 +56,32 @@ export function SplashPage() {
           />
           <br />
 
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <input type="submit" value="Login" />
+          <div className="splash-buttons-container">
+            <input type="submit" value="Login" className="splash-button" />
             <div style={{ margin: '0 10px' }}>|</div>
 
             <Link to={{
               pathname: '/newUser',
               state: { userId: userId, setUserId: setUserId }
             }}>
-              <button onClick={handleNewUserClick}>New User</button>
+              <button onClick={handleNewUserClick} className="splash-button" >New User</button>
             </Link>
           </div>
         </form>
       </div>
-        <br />
-        <Link to={{
-          pathname: '/overview',
-          state: { userId: userId, setUserId: setUserId }
-        }}>
-          <button>Shop Overview</button>
-        </Link>
-        <Link to={{
-          pathname: '/user',
-          state: {userId: userId, setUserId: setUserId}
-        }}>
-          <button>User</button>
-        </Link>
+      <br />
+      <Link to={{
+        pathname: '/overview',
+        state: { userId: userId, setUserId: setUserId }
+      }}>
+        <button>Shop Overview</button>
+      </Link>
+      <Link to={{
+        pathname: '/user',
+        state: { userId: userId, setUserId: setUserId }
+      }}>
+        <button>User</button>
+      </Link>
     </>
   )
 }
