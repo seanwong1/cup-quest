@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 const MenuItem = ({ item }) => {
 
+  // grab info for average rating for that specific drink of the shop in database
+
   let [isClicked, setClicked] = useState(false)
   const handleClick = (e) => {
     if (isClicked) {

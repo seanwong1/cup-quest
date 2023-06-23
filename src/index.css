@@ -12,6 +12,10 @@
   float: right;
 }
 
+.overview_address {
+  padding: 10px;
+}
+
 .overview_menu {
   float: center;
   max-height: 25vh;
