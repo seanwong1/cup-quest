@@ -4,6 +4,7 @@ import { NewUser } from "./pages/NewUser";
 import { Home } from "./pages/Home";
 import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
+import UserProfile from "./lib/UserProfile.jsx";
 
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
@@ -30,13 +31,15 @@ function App() {
       </nav> */}
 
     <Routes>
-      <Route path="/" element={<SplashPage userId={userId} setUserId={setUserId}/>} />
-      <Route path="/newUser" element={<NewUser userId={userId} setUserId={setUserId}/>}/>
-      <Route path="/home" element={<Home userId={userId} setUserId={setUserId}/>}/>
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/newUser" element={<NewUser />}/>
+      <Route path="/home" element={<Home />}/>
       <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId}/>}/>
+      <Route path="/user" element={<UserProfile isUser={true} />}/>
+      {/* <Route path="/friends" element={<FriendsList />}/> */}
     </Routes>
     </>
   )
 }
 
-export default App
+export default App;

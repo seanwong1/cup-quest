@@ -38,13 +38,14 @@ app.get("/", function(req, res){
 // routes go here
 
 app.post('/register', async function(req, res) {
-  const { username, email, phone } = req.body;
+  const { username, email, phone, picture } = req.body;
 
   try {
     const newUser = new User({
       name: username,
       email,
       phone,
+      picture,
     });
 
     await newUser.save();
