@@ -57,6 +57,7 @@
 .overview_pictures--container {
   overflow-x: auto;
   padding: 0;
+  margin: 0;
 }
 
 /* .overview_pictures {
