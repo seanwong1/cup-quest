@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import mongoose from 'mongoose';
 import 'dotenv/config'
 
@@ -42,10 +43,12 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
   name: { type: String, required: true },
-  password: { type: String, required: true },
-  location: { type: String }
+  email: { type: String, required: true },
+  phone: { type: String },
+  picture: { type: String },
+  friends: [{ type: mongoose.ObjectId, ref: 'User' }],
+  // location: { type: String }
 }, { timestamps: true });
 
 
