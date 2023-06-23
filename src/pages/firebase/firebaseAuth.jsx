@@ -26,11 +26,11 @@ export async function logout() {
 }
 
 export async function signIn(email, password) {
-  signInWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(auth, email, password);
   console.log('Logged in: ', email)
 }
 
 export async function createUser(email, password) {
-  createUserWithEmailAndPassword(auth, email, password)
+  await createUserWithEmailAndPassword(auth, email, password)
   console.log('User created: ', email)
 }
