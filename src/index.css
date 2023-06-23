@@ -7,3 +7,13 @@
   color: #99592a;
   background-color: #f1e6d0;
 }
+
+.logo {
+  max-width: 100%;
+}
+
+.container-splash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
