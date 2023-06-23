@@ -4,6 +4,7 @@ import { NewUser } from "./pages/NewUser";
 import { Home } from "./pages/Home";
 import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
+import UserProfile from "./lib/UserProfile.jsx";
 
 function App() {
 
@@ -34,9 +35,11 @@ function App() {
       <Route path="/newUser" element={<NewUser />}/>
       <Route path="/home" element={<Home />}/>
       <Route path="/overview" element={<ShopOverview />}/>
+      <Route path="/user" element={<UserProfile isUser={true} />}/>
+      {/* <Route path="/friends" element={<FriendsList />}/> */}
     </Routes>
     </>
   )
 }
 
-export default App
+export default App;
