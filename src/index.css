@@ -7,3 +7,7 @@
   color: #99592a;
   background-color: #f1e6d0;
 }
+
+.button_logout {
+  float: right;
+}
