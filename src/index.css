@@ -11,3 +11,17 @@
 .button_logout {
   float: right;
 }
+
+.overview_menu {
+  float: center;
+  max-height: 25vh;
+  overflow-y: scroll;
+}
+
+.overview_menu--title {
+  float: center;
+}
+
+.overview_menuItem--rating {
+  float: right;
+}

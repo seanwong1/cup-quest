@@ -47,6 +47,7 @@ const ShopInformation = (/*{ shop  }*/) => {
           </div>)
         })}
       </span>
+      <h3 className="overview_menu--title">Menu Items & Ratings</h3>
       <ShopMenu menu={menu} />
     </div>
   )

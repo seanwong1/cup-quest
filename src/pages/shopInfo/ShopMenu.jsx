@@ -7,7 +7,6 @@ const ShopMenu = ({ menu }) => {
   return (
     <div className="overview_menu">
       {menu.map((item) => {
-        console.log('inside the menu map function');
         key++;
         return <MenuItem item={item} key={key}/>
       })}
