@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config'
@@ -35,6 +36,26 @@ app.get("/", function(req, res){
 })
 
 // routes go here
+
+app.post('/register', async function(req, res) {
+  const { username, email, phone } = req.body;
+
+  try {
+    const newUser = new User({
+      name: username,
+      email,
+      phone,
+    });
+
+    await newUser.save();
+    console.log('New user created!')
+    res.status(200).send('User Created!')
+  } catch(err) {
+    console.log('Err creating new user', err);
+    res.status(500).send('Server Err');
+  }
+})
+
 
 app.get('/reviews', (req, res) => {
   const shop = req.body.shop;
