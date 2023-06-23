@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import ShopMenu from './ShopMenu.jsx';
 import { shop } from './overview_mock';
 import { menu } from '../../menu';
+import latte1 from '../../assets/latte1.jpg';
+import latte2 from '../../assets/latte2.jpg';
+import latte3 from '../../assets/latte3.jpg';
+import latte4 from '../../assets/latte4.jpg';
 
 const ShopInformation = (/*{ shop  }*/) => {
 
@@ -30,7 +34,22 @@ const ShopInformation = (/*{ shop  }*/) => {
 
   return (
     <div className="overview_info">
-      <div className="overview_pictures"></div>
+      <div className="overview_pictures--container">
+        <ol className="overview_picturesCarousel">
+          <li>
+            <img className="overview_pictures--pic" src={latte1}/>
+          </li>
+          <li>
+          <img className="overview_pictures--pic" src={latte2}/>
+          </li>
+          <li>
+            <img className="overview_pictures--pic" src={latte3}/>
+          </li>
+          <li>
+          <img className="overview_pictures--pic" src={latte4}/>
+          </li>
+        </ol>
+      </div>
       <h1 className="overview_title overview_title--scroll">{shop.name}</h1>
       <span className="overview_address">
         <div>

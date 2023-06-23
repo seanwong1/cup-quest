@@ -12,6 +12,10 @@
   float: right;
 }
 
+.overview_info {
+  margin: 20px;
+}
+
 .overview_address {
   padding: 10px;
 }
@@ -29,3 +33,34 @@
 .overview_menuItem--rating {
   float: right;
 }
+
+.overview_pictures--pic {
+  height: 200px;
+  flex-shrink: 0;
+  padding-right: 10px;
+}
+
+.overview_pictures--pic :is(picture, figure, img) {
+  height: 100%;
+}
+
+.overview_pictures-pic img {
+  display: block;
+  width: auto;
+}
+
+.overview_picturesCarousel {
+  display: flex;
+  list-style: none;
+}
+
+.overview_pictures--container {
+  overflow-x: auto;
+  padding: 0;
+}
+
+/* .overview_pictures {
+  float: left;
+  max-height: 25%;
+  overflow-x: scroll;
+} */
