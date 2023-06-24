@@ -156,7 +156,7 @@
     float: left;
     left: 85%;
   }
-  
+
     #reviewForm {
     border: 1px solid black;
     margin: 0 39% 30px 0;
@@ -164,7 +164,7 @@
     position: relative;
     width: 328px;
   }
-  
+
 }
 .button_logout {
   float: right;
