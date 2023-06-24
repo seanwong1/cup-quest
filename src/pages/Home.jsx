@@ -23,6 +23,7 @@ export function Home() {
       <Link to='/user'>
         <button>User Profile</button>
       </Link>
+      <Map />
     </>
   )
 }

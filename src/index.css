@@ -125,6 +125,47 @@
   width: 328px;
 }
 
+@media only screen and (min-width: 500px) {
+  .reviewsEntry {
+    display: inline-block;
+    border: 1px solid black;
+    min-width: 85%;
+    max-width: 85%;
+    min-height: 184px;
+    margin: 1% 0% 0% 0%;
+  }
+
+  #reviewList {
+    left: 7.5%;
+    position: relative;
+  }
+
+  .reviewsComment {
+    position: relative;
+    left: 1%;
+    margin: 45px 2% 20px 1px;
+  }
+
+  .reviewsRatingContainer {
+    float: right;
+    margin: -90px 1% 0% 0%;
+  }
+
+  #filterReviews {
+    margin: 136px 8% 0 0;
+    float: left;
+    left: 85%;
+  }
+
+    #reviewForm {
+    border: 1px solid black;
+    margin: 0 39% 30px 0;
+    float: right;
+    position: relative;
+    width: 328px;
+  }
+
+}
 .button_logout {
   float: right;
 }
@@ -216,4 +257,85 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.splash-button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.newUser-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.newUser-input-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 5%;
+}
+
+.newUser-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+
+}
+
+.newUser-input-fields input {
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.createAccount-heading {
+  text-align: center;
+  margin: 10px 0;
+  margin-top: -10px;
+}
+
+.newUser-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 5px; */
+}
+
+.newUser-button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.profilePicture-container {
+  border: 1px solid #ccc;
+  /* padding: 10px; */
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.profilePicture-label {
+  margin-right: 10px;
+}
+
+.profilePicture-input {
+  margin-top: 5px;
 }
