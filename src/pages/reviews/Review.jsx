@@ -8,6 +8,9 @@ import { ReviewEntry } from './ReviewEntry.jsx';
 
 export const Review = (props) => {
   const [reviewList, setReviewList] = useState([]);
+  const [reviewContent, setReviewContent] = useState([]);
+  const [filtered, setFiltered] = useState(false);
+  const [starting, setStarting] = useState(0);
 
   useEffect(() => {
     getReviews();
@@ -15,12 +18,11 @@ export const Review = (props) => {
   }, [])
 
   const getReviews = () => {
-    console.log('1');
     axios.get('/reviews', {
         shop: props.shop
       })
       .then((results) => {
-        console.log('2: ', results.data);
+        setReviewContent(results.data);
         return results.data.map((review) => {
           return (
             // eslint-disable-next-line react/jsx-key
@@ -29,7 +31,8 @@ export const Review = (props) => {
         })
       })
       .then((results) => {
-        console.log('3: ', results);
+        setFiltered(false);
+        setStarting(0);
         setReviewList(results);
       })
       .catch((err) => {
@@ -37,9 +40,9 @@ export const Review = (props) => {
       })
   }
   return (
-    <div>
-      <ReviewPost shop={props.shop} reviewList={reviewList} setReviewList={setReviewList} userId={props.userId}/>
-      <ReviewList reviewList={reviewList} setReviewList={setReviewList} />
+    <div id='reviewsSection'>
+      <ReviewPost getReviews={getReviews} filtered={filtered} setFiltered={setFiltered} shop={props.shop} reviewList={reviewList} setReviewList={setReviewList} userId={props.userId}/>
+      <ReviewList reviewList={reviewList}  filtered={filtered} setFiltered={setFiltered} setReviewList={setReviewList} reviewContent={reviewContent} setReviewContent={setReviewContent} starting={starting} setStarting={setStarting}/>
     </div>
   )
 }

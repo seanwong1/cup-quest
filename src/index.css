@@ -8,6 +8,130 @@
   background-color: #f1e6d0;
 }
 
+.reviewsEntry {
+  display: inline-block;
+  border: 1px solid black;
+  min-width: 85%;
+  max-width: 85%;
+  min-height: 184px;
+  margin: 1% 0% 0% 0%;
+}
+
+.reviewsPic {
+  float: left;
+  width: 80px;
+  margin: -10px 0 0 13px;
+}
+
+.reviewsUsername {
+  margin: 23px 0% 0% 106px;
+}
+
+.reviewsDrink {
+  float: left;
+  margin: 0% 0% 0% 14px;
+}
+
+.reviewsRatingContainer {
+  float: right;
+  margin: -62px 1% 0% 0%;
+}
+
+.reviewsComment {
+  position: relative;
+  left: 1%;
+  margin: 45px 2% 20px 1px;
+}
+
+#entryContainer {
+  min-height: 55px;
+}
+
+#reviewListNext {
+  height: 43px;
+  width: 43px;
+  border-radius: 50px;
+  position: relative;
+  float: right;
+  font-size: 30px;
+}
+
+#reviewListBack {
+  height: 43px;
+  width: 43px;
+  border-radius: 50px;
+  position: relative;
+  float: left;
+  font-size: 30px;
+}
+
+.arrowButtons {
+  position: relative;
+  margin: 15px 40% 0 40%;
+  min-width: 100px;
+  width: 20%;
+}
+
+#reviewList {
+  left: 7.5%;
+  position: relative;
+}
+
+#filterReviews {
+  margin: 136px 8% 0 0;
+  float: left;
+  left: 85%;
+  height: 20px;
+  min-width: 75px;
+  max-width: 6%;
+  position: relative;
+}
+
+#postReviewDrinkOptions {
+  margin: 0 5px 0 5px;
+}
+
+#reviewForm {
+  border: 1px solid black;
+  margin: 0 39% 30px 0;
+  float: right;
+  position: relative;
+  width: 328px;
+}
+
+.rate {
+  margin: 0 0 0 25px;
+}
+
+.starRating {
+  margin: -8px 0 0 58px;
+}
+
+#comments {
+  margin: 0 0 15px 52px;
+}
+
+#validation {
+  margin: 0 0 0 74px;
+}
+
+@media only screen and (max-width: 350px) {
+  #filterReviews {
+    margin: 0 8% 0 0;
+    height: 20px;
+    min-width: 75px;
+    max-width: 6%;
+    position: relative;
+  }
+
+  #reviewForm {
+    border: 1px solid black;
+    margin: 0 8% 30px 0;
+    float: right;
+    position: relative;
+    width: 328px;
+  }
+}
 .button_logout {
   float: right;
 }
