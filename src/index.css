@@ -8,7 +8,7 @@
 
   color-scheme: light dark;
   color: #99592a;
-  background-color: #f1e6d0;
+  background-color: var(--white);
 }
 
 .button_logout {

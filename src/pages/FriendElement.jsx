@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 const FriendElement = ({ friend }) => {
   // const [friend, setFriend] = useState([]);
 
-  console.log(friend);
   return (
     // TODO: onClick function to send user to friends profile
 

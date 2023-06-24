@@ -11,6 +11,11 @@
     --brown: #99592a;
     --dark-brown: #542a1b;
   }
-  /* :root.dark {
-
-  } */
+  :root.dark {
+    --gray: #95a2a5;
+    --white: #0a0907;
+    --tan: #e6b17e;
+    --orange: #c97107;
+    --brown: #99592a;
+    --dark-brown: #542a1b;
+  }
