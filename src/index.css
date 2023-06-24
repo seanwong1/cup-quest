@@ -61,8 +61,17 @@
 }
 
 .logo {
-  max-width: 100%;
+  width: 90%;
+  max-width: 800px;
   margin-top: 5%;
+}
+
+.splash-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .splash-container {
@@ -70,6 +79,10 @@
   justify-content: center;
   align-items: center;
   margin-top: 10%;
+}
+
+.splash-form {
+  min-width: 70%;
 }
 
 .splash-input-fields {
@@ -98,12 +111,20 @@
   border-radius: 5px;
 }
 
+.newUser-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
 .newUser-input-fields {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 5%;
 }
 
 .newUser-form {

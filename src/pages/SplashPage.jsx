@@ -37,51 +37,53 @@ export function SplashPage() {
 
   return (
     <>
-      <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
-      <div className="splash-container">
-        <form onSubmit={handleLoginFormSubmit}>
-          <input className="splash-input-fields"
-            type="text"
-            value={email}
-            onChange={loginEmail}
-            placeholder="Email"
-          />
-          <br />
+      <div className="splash-center">
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
+        <div className="splash-container">
+          <form onSubmit={handleLoginFormSubmit} className="splash-form">
+            <input className="splash-input-fields"
+              type="text"
+              value={email}
+              onChange={loginEmail}
+              placeholder="Email"
+            />
+            <br />
 
-          <input className="splash-input-fields"
-            type="password"
-            value={password}
-            onChange={loginPassword}
-            placeholder="Password"
-          />
-          <br />
+            <input className="splash-input-fields"
+              type="password"
+              value={password}
+              onChange={loginPassword}
+              placeholder="Password"
+            />
+            <br />
 
-          <div className="splash-buttons-container">
-            <input type="submit" value="Login" className="splash-button" />
-            <div style={{ margin: '0 10px' }}>|</div>
+            <div className="splash-buttons-container">
+              <input type="submit" value="Login" className="splash-button" />
+              <div style={{ margin: '0 10px' }}>|</div>
 
-            <Link to={{
-              pathname: '/newUser',
-              state: { userId: userId, setUserId: setUserId }
-            }}>
-              <button onClick={handleNewUserClick} className="splash-button" >New User</button>
-            </Link>
-          </div>
-        </form>
+              <Link to={{
+                pathname: '/newUser',
+                state: { userId: userId, setUserId: setUserId }
+              }}>
+                <button onClick={handleNewUserClick} className="splash-button" >New User</button>
+              </Link>
+            </div>
+          </form>
+        </div>
+        <br />
+        <Link to={{
+          pathname: '/overview',
+          state: { userId: userId, setUserId: setUserId }
+        }}>
+          <button>Shop Overview</button>
+        </Link>
+        <Link to={{
+          pathname: '/user',
+          state: { userId: userId, setUserId: setUserId }
+        }}>
+          <button>User</button>
+        </Link>
       </div>
-      <br />
-      <Link to={{
-        pathname: '/overview',
-        state: { userId: userId, setUserId: setUserId }
-      }}>
-        <button>Shop Overview</button>
-      </Link>
-      <Link to={{
-        pathname: '/user',
-        state: { userId: userId, setUserId: setUserId }
-      }}>
-        <button>User</button>
-      </Link>
     </>
   )
 }

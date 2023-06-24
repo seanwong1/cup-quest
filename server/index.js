@@ -7,6 +7,7 @@ import * as https from 'node:https';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import compression from 'compression';
 
 import '../database/models.js';
 import { Review, User, Shop} from '../database/models.js';
@@ -15,6 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
 
+app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(express.json());
