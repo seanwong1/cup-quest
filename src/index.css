@@ -1,3 +1,6 @@
+@import url('./css/colors.css');
+@import url('./css/friends.css');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +8,121 @@
 
   color-scheme: light dark;
   color: #99592a;
-  background-color: #f1e6d0;
+  background-color: var(--white);
+}
+
+.reviewsEntry {
+  display: inline-block;
+  border: 1px solid black;
+  min-width: 101%;
+  max-width: 101%;
+  min-height: 184px;
+  margin: 1% 0% 0% 0%;
+}
+
+.reviewsPic {
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin: -10px 0 0 13px;
+}
+
+.reviewsUsername {
+  margin: 23px 0% 0% 106px;
+}
+
+.reviewsDrink {
+  float: left;
+  margin: 0% 0% 0% 14px;
+}
+
+.star1Entry .star2Entry .star3Entry .star4Entry .star5Entry {
+  font-size: 20px;
+  color: #c97107;
+}
+
+.reviewsRatingContainer {
+  float: right;
+  top: -23px;
+  right: 3px;
+  position: relative;
+}
+
+.reviewsComment {
+  position: relative;
+  left: 1%;
+  margin: 67px 0% 15px 19px;
+}
+
+#entryContainer {
+  min-height: 55px;
+}
+
+#reviewListNext {
+  height: 43px;
+  width: 43px;
+  border-radius: 50px;
+  position: relative;
+  float: right;
+  font-size: 30px;
+}
+
+#reviewListBack {
+  height: 43px;
+  width: 43px;
+  border-radius: 50px;
+  position: relative;
+  float: left;
+  font-size: 30px;
+}
+
+.arrowButtons {
+  position: relative;
+  margin: 14px 35% 0 40%;
+  min-width: 100px;
+  width: 20%;
+}
+
+#reviewList {
+  margin: 0 4px 0 0;
+  left: 7.5%;
+  position: relative;
+}
+
+#postReviewDrinkOptions {
+  margin: 0 5px 0 5px;
+}
+
+.rate {
+  margin: 0 0 0 25px;
+}
+
+.starRating {
+  margin: -8px 0 0 58px;
+}
+
+#comments {
+  margin: 0 0 15px 52px;
+}
+
+#validation {
+  margin: 0 0 0 74px;
+}
+
+#filterReviews {
+  margin: 0 8% 0 259px;
+  height: 20px;
+  min-width: 75px;
+  max-width: 6%;
+  position: relative;
+}
+
+#reviewForm {
+  border: 1px solid black;
+  margin: 16px 4% 30px 0;
+  float: right;
+  position: relative;
+  width: 328px;
 }
 
 .button_logout {
@@ -61,111 +178,42 @@
 }
 
 .logo {
-  max-width: 100%;
+  width: 90%;
+  max-width: 800px;
+  margin-top: 5%;
 }
 
-.container-splash {
+.splash-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.splash-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10%;
 }
 
-
-
-
-
-
-.profile {
-  display: block;
-
+.splash-form {
+  min-width: 70%;
 }
 
-.profile-info {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 5px;
-}
-
-.profile-logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  width: 40%;
-  height: 80px;
-
-}
-
-.profile-picture {
-  width: 40%;
-}
-
-.profile-pic {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  border: #99592a solid 2px;
-  border-radius: 10%;
-  width: 80px;
-  height: 80px;
-}
-
-.profile-text {
-  width: 60%;
-  position: relative;
-  bottom: 20px;
-}
-
-.profile-username {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 40px;
-}
-
-.friends-button {
-  border: #c97107 solid 2px;
-  border-radius: 10%;
-  background-color: transparent;
-  color: #99592a;
-  font-size: medium;
-  text-align: center;
-  width: 110%;
-  height: 100%;
-}
-
-.edit-button {
-  border: #c97107 solid 2px;
-  border-radius: 10%;
-  background-color: transparent;
-  color: #99592a;
-  font-size: medium;
-  text-align: center;
-  width: 15%;
-  height: 20%;
-}
-
-.profile-history {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
+.splash-input-fields {
   width: 90%;
-  height: 400px;
-  text-align: center;
+  height: 30px;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.history-list {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  width: 100%;
-  height: 100%;
-  border: #99592a solid 3px;
+.splash-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

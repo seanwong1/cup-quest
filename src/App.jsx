@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
 import UserProfile from "./lib/UserProfile.jsx";
+import FriendsList from "./pages/FriendsList.jsx";
 import FriendsList from "./pages/FriendsList.jsx"
 
 function App() {

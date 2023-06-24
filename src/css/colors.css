@@ -1,0 +1,21 @@
+:root,
+  :root.light {
+    /* could probably use better variable names
+       so that switching between dark and light
+       modes is consistent
+    */
+    --gray: #95a2a5;
+    --white: #f1e6d0;
+    --tan: #e6b17e;
+    --orange: #c97107;
+    --brown: #99592a;
+    --dark-brown: #542a1b;
+  }
+  :root.dark {
+    --gray: #95a2a5;
+    --white: #0a0907;
+    --tan: #e6b17e;
+    --orange: #c97107;
+    --brown: #99592a;
+    --dark-brown: #542a1b;
+  }
