@@ -23,10 +23,6 @@ export function Home() {
       <Link to='/user'>
         <button>User Profile</button>
       </Link>
-      {/* <Routes>
-        <Route path="/user" element={<UserProfile isUser={true} />}/>
-        <Route path="/friends" element={<FriendsList />}/>
-      </Routes> */}
     </>
   )
 }
