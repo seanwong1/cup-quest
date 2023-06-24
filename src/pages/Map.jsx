@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import 'dotenv/config';
 
-const API = process.env.MAP_API_KEY;
+const API = import.meta.env.MAP_API_KEY;
 
 
-export const Map = () => {
-  
+export function Map() {
+    console.log('this is getting rendered');
   
   return (
     <div style={{ height: '50vh', width: '100%' }}>
@@ -19,9 +18,7 @@ export const Map = () => {
       }}
       defaultZoom={15}
     >
-    
     </GoogleMapReact>
   </div>
   )
 }
-
