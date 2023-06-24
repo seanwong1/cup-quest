@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
 import UserProfile from "./lib/UserProfile.jsx";
+import FriendsList from "./pages/FriendsList.jsx";
 
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
@@ -36,7 +37,7 @@ function App() {
       <Route path="/home" element={<Home />}/>
       <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId}/>}/>
       <Route path="/user" element={<UserProfile isUser={true} />}/>
-      {/* <Route path="/friends" element={<FriendsList />}/> */}
+      <Route path="/friends" element={<FriendsList />}/>
     </Routes>
     </>
   )
