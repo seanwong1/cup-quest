@@ -12,7 +12,6 @@ export const ShopOverview = (props) => {
         <button className='button_logout'>Logout</button>
       </Link>
       <ShopInformation />
-      <h1>Jquery is my nemesis</h1>
       <Review shop={shop} userId={props.userId}/>
     </div>
   )

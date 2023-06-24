@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 
 // const con = mongoose.connect(process.env.DATABASE);
+// for local connect host
+
+// const con = mongoose.connect(process.env.MONGO_URL);
+// for running entire docker stack
 
 (async () => {
   try {
