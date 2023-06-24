@@ -1,22 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDX2-zHaA5vUz_dg6ft4bWsvMhWWOfQjm4",
-  authDomain: "team-chatterbox-boc.firebaseapp.com",
-  projectId: "team-chatterbox-boc",
-  storageBucket: "team-chatterbox-boc.appspot.com",
-  messagingSenderId: "769383883889",
-  appId: "1:769383883889:web:3cb7018be7bbb42f4da7d0",
-  measurementId: "G-QT1CQ6NSVQ"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { signIn } from './firebase/firebaseAuth'
 
 export function SplashPage() {
   const navigate = useNavigate();
@@ -34,64 +20,70 @@ export function SplashPage() {
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-    .then((data) => {
-
-      const userInfo = { email, password };
-      console.log('userInfo: ', userInfo);
-      navigate('/home');
-    })
-    .catch((err) => {
-      setPassword('')
-      console.log(err);
-    });
+    signIn(email, password)
+      .then((data) => {
+        navigate('/home');
+      })
+      .catch((err) => {
+        setPassword('');
+        console.log(err);
+      });
   };
 
   const handleNewUserClick = (e) => {
     e.preventDefault()
-
     navigate('/newUser')
   }
 
   return (
     <>
-      <h1>Splash Page</h1>
-      <form onSubmit={handleLoginFormSubmit}>
-        <input
-          type="text"
-          value={email}
-          onChange={loginEmail}
-          placeholder="Email"
-        />
-        <br />
+      <div className="splash-center">
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
+        <div className="splash-container">
+          <form onSubmit={handleLoginFormSubmit} className="splash-form">
+            <input className="splash-input-fields"
+              type="text"
+              value={email}
+              onChange={loginEmail}
+              placeholder="Email"
+            />
+            <br />
 
-        <input
-          type="password"
-          value={password}
-          onChange={loginPassword}
-          placeholder="Password"
-        />
-        <br />
+            <input className="splash-input-fields"
+              type="password"
+              value={password}
+              onChange={loginPassword}
+              placeholder="Password"
+            />
+            <br />
 
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <input type="submit" value="Login" />
-          <div style={{ margin: '0 10px' }}>|</div>
+            <div className="splash-buttons-container">
+              <input type="submit" value="Login" className="splash-button" />
+              <div style={{ margin: '0 10px' }}>|</div>
 
-          <Link to={{
-            pathname: '/newUser',
-            state: { userId: userId, setUserId: setUserId }
-          }}>
-            <button onClick={handleNewUserClick}>New User</button>
-          </Link>
+              <Link to={{
+                pathname: '/newUser',
+                state: { userId: userId, setUserId: setUserId }
+              }}>
+                <button onClick={handleNewUserClick} className="splash-button" >New User</button>
+              </Link>
+            </div>
+          </form>
         </div>
-      </form>
-
+        <br />
         <Link to={{
           pathname: '/overview',
           state: { userId: userId, setUserId: setUserId }
         }}>
           <button>Shop Overview</button>
         </Link>
+        <Link to={{
+          pathname: '/user',
+          state: { userId: userId, setUserId: setUserId }
+        }}>
+          <button>User</button>
+        </Link>
+      </div>
     </>
   )
 }
