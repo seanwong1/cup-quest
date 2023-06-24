@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { logout } from './firebase/firebaseAuth';
-
+import {Map} from './Map'
 export function Home() {
 
   const handleLogoutClick = (e) => {
@@ -14,6 +14,7 @@ export function Home() {
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
+      <Map />
     </>
   )
 }
