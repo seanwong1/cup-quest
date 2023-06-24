@@ -1,4 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link, Routes, Route } from 'react-router-dom'
+
+import UserProfile from "../lib/UserProfile.jsx";
+import FriendsList from "./FriendsList.jsx";
 
 import { logout } from './firebase/firebaseAuth';
 
@@ -14,6 +17,16 @@ export function Home() {
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
+      <Link to='/friends'>
+        <button>Friends</button>
+      </Link>
+      <Link to='/user'>
+        <button>User Profile</button>
+      </Link>
+      {/* <Routes>
+        <Route path="/user" element={<UserProfile isUser={true} />}/>
+        <Route path="/friends" element={<FriendsList />}/>
+      </Routes> */}
     </>
   )
 }

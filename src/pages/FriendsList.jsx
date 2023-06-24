@@ -15,6 +15,7 @@ const FriendsList = (props) => {
 
   return (
     <div className="friends">
+      <h1>Friends</h1>
        {friends.map((friend) => {
           <FriendElement friend={friend} />
         })}
