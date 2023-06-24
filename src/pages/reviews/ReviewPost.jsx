@@ -18,7 +18,7 @@ export const ReviewPost = (props) => {
   }
   const styleSettings = {
     'fontSize': '300%',
-    'color': 'yellow'
+    'color': '#c97107'
   }
 
   const styling = {
@@ -42,7 +42,6 @@ export const ReviewPost = (props) => {
         comments: comments
       })
       .then(() => {
-        console.log('done submitting post!');
         props.getReviews()
       })
       .catch((e) => {

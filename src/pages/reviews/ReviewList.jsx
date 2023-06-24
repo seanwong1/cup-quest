@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 /* eslint-disable react/prop-types */
 
 export const ReviewList = (props) => {
-  console.log('current reviews: ', props.reviewContent);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const back = () => {
-    console.log('inside');
     if (props.starting !== 0) {
       return (
         <button id='reviewListBack' onClick={() => props.setStarting(props.starting - 2)}>&#8249;</button>
@@ -14,7 +12,6 @@ export const ReviewList = (props) => {
   }
 
   const next = () => {
-    console.log('woohoo');
     if (props.filtered) {
       if (props.starting + 2 < filteredReviews.length) {
         return (

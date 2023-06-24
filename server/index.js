@@ -64,7 +64,6 @@ app.get('/reviews', (req, res) => {
   const shop = req.body.shop;
   Review.find({shop: 0}).sort({createdAt: 'desc'})
   .then((results) => {
-    console.log('results: ', results);
     res.status(200).send(results);
   })
 })
@@ -77,16 +76,13 @@ app.post('/reviews', (req, res) => {
   const comments = req.body.comments.length === 0 ? 'n/a' : req.body.comments;
   User.find({_id: userId})
   .then((results) => {
-    console.log('inside: ', results);
     const picture = results[0].picture || 'https://cdn-icons-png.flaticon.com/512/847/847970.png?w=900&t=st=1687562010~exp=1687562610~hmac=e4506659b2805b2d2a3fce519290a0bd1ce6987de3562502be555b4b619c0d29';
     Review.create({shop: shop, username: results[0].name, profilePic: picture, rating: rating, drink: drink, comments: comments})
   })
   .then((results) => {
-    console.log('finished posting: ', results);
     res.sendStatus(201);
   })
   .catch((err) => {
-    console.log(err);
     res.status(500).send(err);
   })
   // Review.create({})
