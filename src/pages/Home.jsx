@@ -4,7 +4,7 @@ import UserProfile from "../lib/UserProfile.jsx";
 import FriendsList from "./FriendsList.jsx";
 
 import { logout } from './firebase/firebaseAuth';
-
+import {Map} from './Map'
 export function Home() {
 
   const handleLogoutClick = (e) => {
