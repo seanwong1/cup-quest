@@ -5,7 +5,19 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   phone: { type: String },
   picture: { type: String },
-  friends: [{ type: mongoose.ObjectId, ref: 'User' }],
+  friends: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    status: {
+      type: Number,
+      enums: [
+        0,
+        1
+      ]
+    }
+  }],
   // location: { type: String }
 }, { timestamps: true });
 
