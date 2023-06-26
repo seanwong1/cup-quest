@@ -11,6 +11,7 @@ import compression from 'compression';
 
 import '../database/models.js';
 import { Review, User, Shop} from '../database/models.js';
+import { getShopPictures, getDrinkRatings, getShopData } from './overview_helpers.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
@@ -86,6 +87,14 @@ app.post('/reviews', (req, res) => {
     res.status(500).send(err);
   })
   // Review.create({})
+})
+
+app.get('/ratings', (req, res) => {
+  getDrinkRatings(req, res);
+});
+
+app.get('/shops/pictures/:id', (req, res) => {
+  getShopPictures(req, res);
 })
 
 // eslint-disable-next-line no-undef

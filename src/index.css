@@ -1,5 +1,6 @@
 @import url('./css/colors.css');
 @import url('./css/friends.css');
+@import url('./css/overview.css');
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -156,7 +157,7 @@
     float: left;
     left: 85%;
   }
-  
+
     #reviewForm {
     border: 1px solid black;
     margin: 0 39% 30px 0;
@@ -164,58 +165,10 @@
     position: relative;
     width: 328px;
   }
-  
+
 }
 .button_logout {
   float: right;
-}
-
-.overview_info {
-  margin: 20px;
-}
-
-.overview_address {
-  padding: 10px;
-}
-
-.overview_menu {
-  float: center;
-  max-height: 25vh;
-  overflow-y: scroll;
-}
-
-.overview_menu--title {
-  float: center;
-}
-
-.overview_menuItem--rating {
-  float: right;
-}
-
-.overview_pictures--pic {
-  height: 200px;
-  flex-shrink: 0;
-  padding-right: 10px;
-}
-
-.overview_pictures--pic :is(picture, figure, img) {
-  height: 100%;
-}
-
-.overview_pictures-pic img {
-  display: block;
-  width: auto;
-}
-
-.overview_picturesCarousel {
-  display: flex;
-  list-style: none;
-}
-
-.overview_pictures--container {
-  overflow-x: auto;
-  padding: 0;
-  margin: 0;
 }
 
 .logo {
