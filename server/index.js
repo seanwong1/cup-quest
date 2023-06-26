@@ -12,6 +12,9 @@ import compression from 'compression';
 import '../database/models.js';
 import { Review, User, Shop} from '../database/models.js';
 
+// EXPRESS ROUTES
+import users from './routes/users.js';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
@@ -38,6 +41,8 @@ app.get("/", function(req, res){
 })
 
 // routes go here
+
+app.use('/users', users);
 
 app.post('/register', async function(req, res) {
   const { username, email, phone, picture } = req.body;
