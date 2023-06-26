@@ -13,7 +13,7 @@ import compression from 'compression';
 // import { Review, User, Shop} from '../database/models.js';
 
 // EXPRESS ROUTES
-import users from './routes/users.js';
+import user from './routes/user.js';
 
 // DATABASE
 import '../database/index.js';
@@ -45,7 +45,7 @@ app.get("/", function(req, res){
 
 // routes go here
 
-app.use('/users', users);
+app.use('/user', user);
 
 app.post('/register', async function(req, res) {
   const { username, email, phone, picture } = req.body;
