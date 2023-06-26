@@ -6,7 +6,6 @@ import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
 import UserProfile from "./lib/UserProfile.jsx";
 import FriendsList from "./pages/FriendsList.jsx";
-import FriendsList from "./pages/FriendsList.jsx"
 
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
