@@ -39,40 +39,118 @@
   "email":"David@123.com",
   "phone":"7139418226",
   "picture":"yep",
-  "friends": ["Sean", "Addie", "Sarah"]
+  "friends": [
+    {
+      "user":"Sean",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    },
+    {
+      "user":"Sarah",
+      "status": 1
+    }
+  ]
 },
 {
   "name":"Sean",
   "email":"Sean@123.com",
   "phone":"1238124182",
   "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
+  "friends": [
+    {
+      "user":"David",
+      "status": 1
+    },
+    {
+      "user":"Matt",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    }
+  ]
 },
 {
   "name":"Matt",
   "email":"Matt@123.com",
   "phone":"1238124183",
   "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
+  "friends": [
+    {
+      "user":"David",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    },
+    {
+      "user":"Sarah",
+      "status": 1
+    }
+  ]
 },
 {
   "name":"Addie",
   "email":"Addie@123.com",
   "phone":"1238124184",
   "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
+  "friends": [
+    {
+      "user":"David",
+      "status": 1
+    },
+    {
+      "user":"Matt",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    }
+  ]
 },
 {
   "name":"George",
   "email":"George@123.com",
   "phone":"1238124184",
   "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
+  "friends": [
+    {
+      "user":"Sean",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    },
+    {
+      "user":"Sarah",
+      "status": 1
+    }
+  ]
 },
 {
   "name":"Sarah",
   "email":"Sarah@123.com",
   "phone":"1238124185",
   "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
+  "friends": [
+    {
+      "user":"Sean",
+      "status": 1
+    },
+    {
+      "user":"Addie",
+      "status": 1
+    },
+    {
+      "user":"Sarah",
+      "status": 1
+    }
+  ]
 }]
