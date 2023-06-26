@@ -42,7 +42,7 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, unique: true, required: true, index: true },
+  username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   phone: { type: String },
   picture: { type: String },
