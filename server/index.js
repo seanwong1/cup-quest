@@ -9,11 +9,14 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import compression from 'compression';
 
-import '../database/models.js';
-import { Review, User, Shop} from '../database/models.js';
+// import '../database/models.js';
+// import { Review, User, Shop} from '../database/models.js';
 
 // EXPRESS ROUTES
 import users from './routes/users.js';
+
+// DATABASE
+import '../database/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
