@@ -11,7 +11,7 @@ const UserProfile = (props) => {
   const { name } = useParams();
 
   useEffect(() => {
-    getHandler(`/users/${name}`, null, (response) => {
+    getHandler(`/user/${name}`, null, (response) => {
       setProfile(response.data);
     });
   }, [name]);
@@ -35,7 +35,7 @@ const UserProfile = (props) => {
       </div>
       <div className="buttons">
         <Link to={{
-          pathname: '/friends',
+          pathname: `/user/${profile.name}/friends`,
         }}>
           <button className="friends-button" >Friends</button>
         </Link>
