@@ -4,7 +4,7 @@ import FriendElement from './FriendElement.jsx';
 import getHandler from '../lib/getHandler.js';
 
 const FriendsList = (props) => {
-  const [friends, setFriends] = useState([{'name': 'John Doe'}, {'name': 'James Doe'}, {'name': 'Jane Doe'}]);
+  const [friends, setFriends] = useState([{'name': 'Sean'}, {'name': 'David'}, {'name': 'Addie'}]);
 
   // useEffect(() => {
   //   // use getHandler to get user friends
