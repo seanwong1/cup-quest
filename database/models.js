@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 
 // const con = mongoose.connect(process.env.DATABASE);
+// for local connect host
+
+// const con = mongoose.connect(process.env.MONGO_URL);
+// for running entire docker stack
 
 (async () => {
   try {
@@ -38,8 +42,8 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
+  name: { type: String, unique: true, required: true, index: true },
+  email: { type: String, unique: true, required: true },
   phone: { type: String },
   picture: { type: String },
   friends: [{ type: mongoose.ObjectId, ref: 'User' }],

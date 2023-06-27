@@ -14,6 +14,7 @@ const UserHistoryList = (props) => {
 
   return (
     <div className='history-list'>
+            <h3>No History Yet...</h3>
       {userHistory.map((historyElement) => {
         <UserHistoryElement historyElement={historyElement} />
       })}

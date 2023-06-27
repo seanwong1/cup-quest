@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { signIn } from './firebase/firebaseAuth'
+import lightDarkToggle from '../lib/lightDarkToggle.js';
+
+import { signIn } from './firebase/firebaseAuth';
 
 export function SplashPage() {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ export function SplashPage() {
   const [userId, setUserId] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [theme, setTheme] = useState(false);
 
   const loginEmail = (e) => {
     setEmail(e.target.value);
@@ -35,10 +38,14 @@ export function SplashPage() {
     navigate('/newUser')
   }
 
+  useEffect(() => {
+    lightDarkToggle(theme);
+  }, [theme]);
+
   return (
     <>
       <div className="splash-center">
-        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" />
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => {setTheme(!theme)}} />
         <div className="splash-container">
           <form onSubmit={handleLoginFormSubmit} className="splash-form">
             <input className="splash-input-fields"
