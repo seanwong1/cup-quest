@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import UserHistoryList from './UserHistoryList.jsx';
+import FriendToggle from './FriendToggle.jsx';
 
-import getHandler from './getHandler.js';
+import requestHandler from './requestHandler.js';
 
 const UserProfile = (props) => {
   const [isUser, setIsUser] = useState(false);
@@ -11,7 +12,7 @@ const UserProfile = (props) => {
   const { name } = useParams();
 
   useEffect(() => {
-    getHandler(`/user/${name}`, null, (response) => {
+    requestHandler(`/user/${name}`, null, 'get', (response) => {
       setProfile(response.data);
     });
   }, [name]);
@@ -39,7 +40,9 @@ const UserProfile = (props) => {
         }}>
           <button className="friends-button" >Friends</button>
         </Link>
-        <div className='edit-button' onClick={() => {console.log('hi')}}>Edit User</div>
+        {isUser ? <div className='edit-button' onClick={() => {console.log('hi')}}>Edit User</div> :
+          <FriendToggle id={profile._id} />
+        }
       </div>
       <div className='profile-history'>
       <div><h4>User History</h4></div>
