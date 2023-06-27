@@ -8,18 +8,30 @@ export const getAllUsers = async () => {
   return await User.find().exec();
 };
 
-export const addFriend = async (user, friend) => {
+export const addFriend = async (user, friend_id) => {
   return await User.updateOne(
     {
       name: user.name
     },
     {
-      $addToSet: {friends: {user: friend._id, status: 1}}
+      $addToSet: {friends: {user: friend_id, status: 1}}
     },
     {
       upsert: true
     }
   );
+}
+
+export const removeFriend = async (user, friend_id) => {
+  return await User.updateOne(
+    {
+      name: user.name,
+      friends: {$elemMatch: {user: friend_id}}
+    },
+    {
+      $pull: {friends: {user: friend_id, status: 1}}
+    }
+  ).exec();
 }
 
 // {'name': user.name, 'friends._id': friend._id},
