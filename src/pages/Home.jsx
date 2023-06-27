@@ -4,16 +4,16 @@ import UserProfile from "../lib/UserProfile.jsx";
 import FriendsList from "./FriendsList.jsx";
 
 import { logout } from './firebase/firebaseAuth';
-import {Map} from './Map'
-export function Home() {
+import {Map} from './Map/Map'
 
+export function Home() {
   const handleLogoutClick = (e) => {
     logout();
   }
 
   return (
     <>
-      <h1>Home!</h1>
+      <h1>Home</h1>
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
