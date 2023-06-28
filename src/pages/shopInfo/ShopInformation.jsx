@@ -21,7 +21,6 @@ const ShopInformation = ({ shopID }) => {
     }
     axios(options)
       .then((info) => {
-        console.log(info);
         setPhotos(info.data.photos);
       })
       .catch((err) => {
@@ -72,22 +71,10 @@ const ShopInformation = ({ shopID }) => {
             dayKey++;
             return (
             <li key={dayKey}>
-              <img src='https://s3-media2.fl.yelpcdn.com/bphoto/D66AbwzO4bJnkYiZCZQZEQ/o.jpg' className="overview_pictures--pic"/>
+              <img src={photoUrl} className="overview_pictures--pic"/>
             </li>
             )
           })}
-          {/* <li>
-            <img className="overview_pictures--pic" src={latte1}/>
-          </li>
-          <li>
-          <img className="overview_pictures--pic" src={latte2}/>
-          </li>
-          <li>
-            <img className="overview_pictures--pic" src={latte3}/>
-          </li>
-          <li>
-          <img className="overview_pictures--pic" src={latte4}/>
-          </li> */}
         </ol>
       </div>
       <h1 className="overview_title overview_title--scroll">{shop.name}</h1>

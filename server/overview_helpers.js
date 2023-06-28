@@ -33,14 +33,13 @@ export const getShopPictures = (req, res) => {
   // send request to yelp
   const options = {
     headers: {
-      Authorization: process.env.YELP_API_KEY
+      Authorization: process.env.VITE_YELP_API_KEY
     },
     url: `https://api.yelp.com/v3/businesses/${req.params.id}`,
     method: 'GET',
   }
   axios(options)
     .then((shopData) => {
-      console.log('shopData', shopData);
       res.status(200).send(shopData.data);
     })
     .catch((err) => {

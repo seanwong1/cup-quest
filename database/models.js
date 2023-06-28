@@ -19,16 +19,21 @@ import 'dotenv/config';
 
 const shopSchema = new mongoose.Schema({
   name: String,
-  hours: String,
-  address1: String,
-  address2: String,
-  address3: String,
+  address: String,
   city: String,
   state: String,
-  zip: Number,
-  longitude: String,
-  latitude: String,
-  phone: String,
+  zip: String,
+  longitude: Number,
+  latitude: Number,
+  hours: {
+    Monday: String,
+    Tuesday: String,
+    Wednesday: String,
+    Thursday: String,
+    Friday: String,
+    Saturday: String,
+    Sunday: String,
+  },
 });
 
 const reviewSchema = new mongoose.Schema({
