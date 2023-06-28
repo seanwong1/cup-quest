@@ -11,7 +11,7 @@ import compression from 'compression';
 
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
-
+import { User } from '../database/models/user.js'
 // EXPRESS ROUTES
 import user from './routes/user.js';
 
@@ -21,6 +21,7 @@ import '../database/index.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
+
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -33,7 +34,7 @@ app.use((req, res, next) => {
   next();
 })
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
   const url = "https://media.tenor.com/4iqJFHzJIDsAAAAC/cat-scream.gif";
   res.write(`
   <!DOCTYPE html>
@@ -52,7 +53,7 @@ app.post('/register', async function(req, res) {
 
   try {
     const newUser = new User({
-      name: username,
+      user: username,
       email,
       phone,
       picture,
@@ -60,18 +61,36 @@ app.post('/register', async function(req, res) {
 
     await newUser.save();
     res.status(200).send('User Created!')
-  } catch(err) {
+  } catch (err) {
+    console.log(err)
     res.status(500).send('Server Err');
   }
 })
 
+app.post('/validate', async function (req, res) {
+  const { username, email } = req.body;
+  const existingUsername = await User.findOne({ user: username });
+
+  if (existingUsername) {
+    return res.status(400).json({ message: 'Username already exists' });
+  }
+
+  // Check if the email is already in use
+  const existingEmail = await User.findOne({ email });
+
+  if (existingEmail) {
+    return res.status(400).json({ message: 'Email already exists' });
+  }
+
+  res.status(200).send();
+});
 
 app.get('/reviews', (req, res) => {
   const shop = req.body.shop;
-  Review.find({shop: 0}).sort({createdAt: 'desc'})
-  .then((results) => {
-    res.status(200).send(results);
-  })
+  Review.find({ shop: 0 }).sort({ createdAt: 'desc' })
+    .then((results) => {
+      res.status(200).send(results);
+    })
 })
 
 app.post('/reviews', (req, res) => {
@@ -80,17 +99,17 @@ app.post('/reviews', (req, res) => {
   const rating = req.body.rating;
   const drink = req.body.drink;
   const comments = req.body.comments.length === 0 ? 'n/a' : req.body.comments;
-  User.find({_id: userId})
-  .then((results) => {
-    const picture = results[0].picture || 'https://cdn-icons-png.flaticon.com/512/847/847970.png?w=900&t=st=1687562010~exp=1687562610~hmac=e4506659b2805b2d2a3fce519290a0bd1ce6987de3562502be555b4b619c0d29';
-    Review.create({shop: shop, username: results[0].name, profilePic: picture, rating: rating, drink: drink, comments: comments})
-  })
-  .then((results) => {
-    res.sendStatus(201);
-  })
-  .catch((err) => {
-    res.status(500).send(err);
-  })
+  User.find({ _id: userId })
+    .then((results) => {
+      const picture = results[0].picture || 'https://cdn-icons-png.flaticon.com/512/847/847970.png?w=900&t=st=1687562010~exp=1687562610~hmac=e4506659b2805b2d2a3fce519290a0bd1ce6987de3562502be555b4b619c0d29';
+      Review.create({ shop: shop, username: results[0].name, profilePic: picture, rating: rating, drink: drink, comments: comments })
+    })
+    .then((results) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    })
   // Review.create({})
 })
 
