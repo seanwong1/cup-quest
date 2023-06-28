@@ -1,5 +1,7 @@
 import { User } from '../models/user.js';
 
+import mongoose from 'mongoose';
+
 export const getUser = async (user_name) => {
   return await User.findOne(user_name).exec();
 };
@@ -7,6 +9,28 @@ export const getUser = async (user_name) => {
 export const getAllUsers = async () => {
   return await User.find().exec();
 };
+
+export const getFriends = async (user) => {
+  return await User.aggregate([
+    { "$match": { "name": user.name } },
+    { "$lookup": {
+      "from": User.collection.name,
+      "let": { "friends": "$friends" },
+      "pipeline": [
+        { "$match": {
+          "friends.status": 1,
+        }},
+        { "$project": {
+            "name": 1,
+            "email": 1,
+            "avatar": 1
+          }
+        }
+      ],
+      "as": "friends"
+    }},
+  ])
+}
 
 export const addFriend = async (user, friend_id) => {
   return await User.updateOne(

@@ -5,16 +5,16 @@ import FriendElement from './FriendElement.jsx';
 import requestHandler from '../lib/requestHandler.js';
 
 const FriendsList = (props) => {
-  const [friends, setFriends] = useState([{'name': 'Sean'}, {'name': 'David'}, {'name': 'Addie'}]);
+  const [friends, setFriends] = useState([]);
   // TESTING
   const [users, setUsers] = useState([]);
   const { name } = useParams();
 
-  // useEffect(() => {
-  //   requestHandler(`/user/${name}`, null, (response) => {
-  //     console.log(response);
-  //   });
-  // }, []);
+  useEffect(() => {
+    requestHandler(`/user/${name}/friends`, null, 'get', (response) => {
+      setFriends(response.data[0].friends);
+    });
+  }, []);
 
   useEffect(() => {
     requestHandler('/user/all', null, 'get', (response) => {

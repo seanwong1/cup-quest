@@ -12,10 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     status: {
       type: Number,
-      enums: [
-        0,
-        1
-      ]
+      enums: [0, 1]
     }
   }],
   // location: { type: String }
