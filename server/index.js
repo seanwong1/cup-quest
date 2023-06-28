@@ -9,8 +9,14 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import compression from 'compression';
 
-import '../database/models.js';
-import { Review, User, Shop } from '../database/models.js';
+// import '../database/models.js';
+// import { Review, User, Shop} from '../database/models.js';
+
+// EXPRESS ROUTES
+import user from './routes/user.js';
+
+// DATABASE
+import '../database/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
@@ -39,7 +45,9 @@ app.get("/", function (req, res) {
 
 // routes go here
 
-app.post('/register', async function (req, res) {
+app.use('/user', user);
+
+app.post('/register', async function(req, res) {
   const { username, email, phone, picture } = req.body;
 
   try {

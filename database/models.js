@@ -54,9 +54,3 @@ const userSchema = new mongoose.Schema({
 const Shop = mongoose.model('Shop', shopSchema);
 const Review = mongoose.model('Review', reviewSchema);
 const User = mongoose.model('User', userSchema);
-
-export {
-  Shop,
-  Review,
-  User,
-}
