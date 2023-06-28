@@ -8,11 +8,11 @@ import { saveProfilePicture } from './firebase/firebaseStorage';
 export function NewUser() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirmedPassword, setConfirmedPassword] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [phone, setPhone] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -80,11 +80,11 @@ export function NewUser() {
           })
           .catch((err) => {
             console.error(err);
-            alert('There was an issue with user creation.');
+            alert('CreateUser rejected');
           });
       })
       .catch((err) => {
-        console.error(err.response);
+        console.error('axios catch: ', err.response);
         if (err.response.data.message) {
           alert(err.response.data.message);
         }

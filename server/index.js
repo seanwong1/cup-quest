@@ -53,6 +53,7 @@ app.post('/register', async function (req, res) {
     await newUser.save();
     res.status(200).send('User Created!')
   } catch (err) {
+    console.log(err)
     res.status(500).send('Server Err');
   }
 })

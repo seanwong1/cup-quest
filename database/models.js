@@ -42,8 +42,8 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
-  email: { type: String, unique: true, required: true },
+  username: { type: String, required: true },
+  email: { type: String, required: true },
   phone: { type: String },
   picture: { type: String },
   friends: [{ type: mongoose.ObjectId, ref: 'User' }],
