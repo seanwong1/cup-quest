@@ -11,7 +11,7 @@ import compression from 'compression';
 
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
-
+import { User } from '../database/models/user.js'
 // EXPRESS ROUTES
 import user from './routes/user.js';
 
@@ -21,6 +21,7 @@ import '../database/index.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
+
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -52,7 +53,7 @@ app.post('/register', async function(req, res) {
 
   try {
     const newUser = new User({
-      username,
+      user: username,
       email,
       phone,
       picture,
@@ -68,8 +69,7 @@ app.post('/register', async function(req, res) {
 
 app.post('/validate', async function (req, res) {
   const { username, email } = req.body;
-
-  const existingUsername = await User.findOne({ username });
+  const existingUsername = await User.findOne({ user: username });
 
   if (existingUsername) {
     return res.status(400).json({ message: 'Username already exists' });
@@ -82,7 +82,7 @@ app.post('/validate', async function (req, res) {
     return res.status(400).json({ message: 'Email already exists' });
   }
 
-  res.status(200).send()
+  res.status(200).send();
 });
 
 app.get('/reviews', (req, res) => {
