@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import React, { useMemo, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-
+import React, { useMemo, useState, useEffect } from 'react';
+import { GoogleMap, Marker, useLoadScript, OverlayView, InfoWindow, LoadScript } from '@react-google-maps/api'; 
 
 const API = import.meta.env.VITE_MAP_API_KEY;
 
@@ -10,39 +9,38 @@ const containerStyle = {
   width: '100%'
 };
 
-const center = {
-  lat: 33.81204097948217,
-  lng: -117.91901038460358
+const onClick = () => {
+  console.info('I have been clicked!')
 };
 
-
-
-// export function Map() {
-  
-//   // console.log(API);
-//   return (
-//     <div style={{ height: '50vh', width: '100%' }}>
-      
-//     <GoogleMapReact
-//       bootstrapURLKeys={{ key: API }}
-//       // mapId="b1fa4e9516a5650d"
-//       defaultCenter={{
-//         lat: 33.81204097948217,
-//         lng: -117.91901038460358
-//       }}
-//       defaultZoom={15}
-//       mapId= "b1fa4e9516a5650d" 
-//     >
-//     </GoogleMapReact>
-//   </div>
-//   )
-// }
+const divStyle = {
+  background: 'white',
+  border: '1px solid #ccc',
+  padding: 15
+};
 
 export function Map() {
-  const { isLoaded } = useJsApiLoader({
-//  mapId="b1fa4e9516a5650d"
+  
+  ////YELP API///////////////////////////////////////////////////////////////////////////////
+  // const [businesses, setBusinesses] = useState([]);
+  // useEffect(() => {
+  //   // Fetch Yelp API data and update the state
+  //   const fetchBusinesses = async () => {
+  //     try {
+  //       const response = await fetch('https://api.yelp.com/v3/businesses/search');
+  //       const data = await response.json();
+  //       setBusinesses(data.businesses);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    mapId: "google-map-script",
+  //   fetchBusinesses();
+  // }, []);
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  
+  const { isLoaded } = useLoadScript({
+    // mapId: "google-map-script",
     googleMapsApiKey: API
   })
 
@@ -60,17 +58,23 @@ export function Map() {
     setMap(null)
   }, [])
 
-  return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={15}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-  ) : <></>
+
+const center =  useMemo(() => ({
+  lat: 33.81204097948217,
+  lng: -117.91901038460358
+}), []);
+
+  return (isLoaded) ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={15}
+      // onUnmount={onUnmount}
+    >
+      
+    
+    </GoogleMap>
+  ) : <>Map Loading...</>
 }
 
 export default Map
