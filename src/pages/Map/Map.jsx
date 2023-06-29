@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 import React, { useMemo, useState, useEffect } from 'react';
-import { GoogleMap, Marker, useLoadScript, OverlayView, InfoWindow, LoadScript } from '@react-google-maps/api'; 
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'; 
+import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption
+} from '@reach/combobox';
+
+
 
 const API = import.meta.env.VITE_MAP_API_KEY;
 
@@ -19,62 +29,56 @@ const divStyle = {
   padding: 15
 };
 
-export function Map() {
-  
-  ////YELP API///////////////////////////////////////////////////////////////////////////////
-  // const [businesses, setBusinesses] = useState([]);
-  // useEffect(() => {
-  //   // Fetch Yelp API data and update the state
-  //   const fetchBusinesses = async () => {
-  //     try {
-  //       const response = await fetch('https://api.yelp.com/v3/businesses/search');
-  //       const data = await response.json();
-  //       setBusinesses(data.businesses);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchBusinesses();
-  // }, []);
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  
+export function Map() {  
   const { isLoaded } = useLoadScript({
     // mapId: "google-map-script",
-    googleMapsApiKey: API
+    googleMapsApiKey: API,
+    libraries: ["places"]//pass in "places" library
   })
-
   const [map, setMap] = React.useState(null)
 
-  //new map instance
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
 
-    setMap(map)
-  }, [])
+  const center =  useMemo(() => ({
+    lat: 33.81204097948217,
+    lng: -117.91901038460358
+  }), []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  const [selected, setSelected] = useState(null);
 
 
-const center =  useMemo(() => ({
-  lat: 33.81204097948217,
-  lng: -117.91901038460358
-}), []);
+  const usePlacesAutocomplete = ({ setSelected }) => {
+    const {
+      ready,
+      value,
+      setValue,
+      suggestions: { status, data },
+      clearSuggestions,
+    } = usePlacesAutocomplete();
+    
+    return (
+      <Combobox>
+        <ComboboxInput value={value} onChange={e => setValue()} />
+      </Combobox>
+    )
+    
+  }
 
   return (isLoaded) ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={15}
-      // onUnmount={onUnmount}
-    >
-      
-    
-    </GoogleMap>
+    <>
+      <div className="places-container">
+        <usePlacesAutocomplete setSelected={setSelected} />
+      </div>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={15}
+      >
+        {selected && <Marker position={selected} />}
+      </GoogleMap>
+    </>
   ) : <>Map Loading...</>
 }
+
+
 
 export default Map
