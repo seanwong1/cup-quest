@@ -33,17 +33,11 @@ export const getFriends = async (user) => {
 }
 
 export const addFriend = async (user, friend_id) => {
-  return await User.updateOne(
-    {
-      name: user.name
-    },
-    {
-      $addToSet: {friends: {user: friend_id, status: 1}}
-    },
-    {
-      upsert: true
-    }
-  );
+  return await User.findOneAndUpdate(
+    {name: user.name},
+    {$addToSet: {friends: [friend_id]}},
+    {safe: true, upsert: true}
+  ).exec();
 }
 
 export const removeFriend = async (user, friend_id) => {
