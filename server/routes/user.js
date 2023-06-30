@@ -30,7 +30,7 @@ router.get('/:name', async (req, res) => {
 });
 
 router.get('/:name/friends', async (req, res) => {
-  return await getFriends(req.params)
+  getFriends(req.params)
     .then((result) => {
       if (result) {
         res.send(result);

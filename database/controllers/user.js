@@ -11,25 +11,11 @@ export const getAllUsers = async () => {
 };
 
 export const getFriends = async (user) => {
-  return await User.aggregate([
-    { "$match": { "name": user.name } },
-    { "$lookup": {
-      "from": User.collection.name,
-      "let": { "friends": "$friends" },
-      "pipeline": [
-        { "$match": {
-          "friends.status": 1,
-        }},
-        { "$project": {
-            "name": 1,
-            "email": 1,
-            "avatar": 1
-          }
-        }
-      ],
-      "as": "friends"
-    }},
-  ])
+  var userObj = await User.findOne(user);
+  var friends = await Promise.all(userObj.friends.map(async (friend_id) => {
+    return await User.findOne({ _id: friend_id, friends: userObj._id });
+  }));
+  return friends.filter(x => x);
 }
 
 export const addFriend = async (user, friend_id) => {
@@ -47,15 +33,3 @@ export const removeFriend = async (user, friend_id) => {
     { safe: true, upsert: true },
   ).exec();
 }
-
-// {'name': user.name, 'friends._id': friend._id},
-//     // {$push: {'friends': {user: friend._id, status: 1}},
-//     //   $setOnInsert: {'friends.$.status': 1}},
-//     {$set: {'friends': { 'user': friend._id, 'status': 1 }}},
-//     //{$addToSet: {'friends': {user: friend._id, status: 0}}},
-//     options
-
-// db.users.findAndModify({query: {'name': 'Sean', 'friends': {$elemMatch: {'user': '649a1a053387451d53444305'}}}, update: {$set: {'friends.$': {'user': '649a1a053387451d53444305', 'status': 1}}}})
-
-// db.users.initializeUnorderedBulkOp().find({'name': 'Sean', 'friends': {$elemMatch: {'user': '649a1a053387451d53444305'}}})
-// .upsert().update({$push: {'friends': {'user': '649a1a053387451d53444305', 'status': 0}}})
