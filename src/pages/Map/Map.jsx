@@ -7,42 +7,10 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import { testData } from './testData';
-
-
+import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
 
 const API = import.meta.env.VITE_MAP_API_KEY;
-
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-// export function Map(){
-//   const defaultProps = {
-//     center: {
-//       lat: 34.04604480787482, 
-//       lng: -117.046246505867
-//     },
-//     zoom: 11
-//   };
-
-//   return (
-//     // Important! Always set the container height explicitly
-//     <div style={{ height: '40vh', width: '90%' }}>
-//       <GoogleMapReact
-//         bootstrapURLKeys={{ key: API }}
-//         defaultCenter={defaultProps.center}
-//         defaultZoom={defaultProps.zoom}
-//       >
-//         <AnyReactComponent
-//           // lat={10.99835602}
-//           // lng={30.337844}
-//           text="My Marker"
-//         />
-//       </GoogleMapReact>
-//     </div>
-//   );
-// }
-
 
 export class Map extends React.Component {
   constructor(props) {
@@ -50,7 +18,8 @@ export class Map extends React.Component {
     this.state = {
       lat: 34.046, 
       lng: -117.045,
-      shops: []
+      shops: [],
+      selectedShopId: null
     }
   }
   
@@ -61,7 +30,9 @@ export class Map extends React.Component {
         this.setState({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          shops: testData.businesses
+          shops: testData.businesses,
+          selectedShopId: null,
+          markerClicked: false
         })
       },
       (error) => {
@@ -117,8 +88,18 @@ export class Map extends React.Component {
         lat: 34.046, 
         lng: -117.04
       },
-      zoom: 11
+      zoom: 13
     };
+    const clickedOutside = (x, y, lat, lng, event) => {
+      if (this.state.markerClicked == true) {
+        this.setState({
+          selectedShopId: null,
+          markerClicked: false
+        })
+      } else {
+        console.log("map clicked")
+      }
+    }
     return (
       <div style={{ height: '40vh', width: '100%', display: "flex", alignItems: "center"}}>
         <GoogleMapReact
@@ -129,23 +110,44 @@ export class Map extends React.Component {
             lat: this.state.lat,
             lng: this.state.lng
           }}
+          onClick={() => {clickedOutside()}}
         >
           {
             this.state.shops.map((shop) => {
               return (
-                <LocalCafeIcon 
+                <LocalCafeTwoToneIcon 
                   key={shop.id}
                   color={"brown"}
                   lat={shop.coordinates.latitude}
                   lng={shop.coordinates.longitude}
+                  onClick={() => {
+                    this.setState({ 
+                      selectedShopId: shop.id,
+                      markerClicked: true
+                    })}}
                 />
               )
             })
           }
-          <LocalCafeIcon color={"brown"}
-            lat={this.state.lat}
-            lng={this.state.lng}
-          />
+          {
+            this.state.shops.map((shop) => {
+              if (this.state.selectedShopId === shop.id) {
+                return (
+                  <div 
+                    key={shop.id}
+                    lat={shop.coordinates.latitude}
+                    lng={shop.coordinates.longitude}
+                  >
+                    <Typography >
+                      {shop.name}
+                    </Typography>
+                  </div>
+                )
+              } else {
+                return null
+              }
+            })
+          }
       </GoogleMapReact>
       </div>
     )
