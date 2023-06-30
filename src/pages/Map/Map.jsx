@@ -52,7 +52,13 @@ export class Map extends React.Component {
           variant="outlined"
           style={{ width: "100%" }}
         />
-        <div style={{ display: "flex", flexDirection: "row", justifyContect: "space-between", alignItems: "center" }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContect: "space-between",
+          alignItems: "center"
+          }}
+        >
           <Typography>
             Distance: 
           </Typography>
@@ -61,14 +67,21 @@ export class Map extends React.Component {
         <div>
           <Button 
             variant="outlined"
-            style={{ width: "50%" }}
+            style={{ 
+              width: "50%",
+              color: "#542a1b"
+            }}
           >
             <RestartAltIcon />
             Reset
           </Button>
           <Button
             variant="contained"
-            style={{ width: "50%" }}
+            style={{ 
+              width: "50%",
+              color: "#542a1b",
+              backgroundColor: "#e6b17e"
+            }}
           >
             <SearchIcon />
             Search
@@ -101,7 +114,13 @@ export class Map extends React.Component {
       }
     }
     return (
-      <div style={{ height: '40vh', width: '100%', display: "flex", alignItems: "center"}}>
+      <div 
+      style={{ 
+        height: '40vh',
+        width: '100%',
+        display: "flex",
+        alignItems: "center"
+      }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: API }}
           defaultCenter={defaultProps.center}
@@ -137,8 +156,13 @@ export class Map extends React.Component {
                     key={shop.id}
                     lat={shop.coordinates.latitude}
                     lng={shop.coordinates.longitude}
+                    style={{
+                      backgroundColor: '#f1e6d0',
+                      display: "inline-block",
+                      padding: 2 
+                    }}
                   >
-                    <Typography >
+                    <Typography style={{ color: "#542a1b" }}>
                       {shop.name}
                     </Typography>
                   </div>
