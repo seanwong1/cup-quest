@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Reactions, Like, Dislike } from './ReactionButtons.jsx';
 /* eslint-disable react/prop-types */
 
 export const ReviewEntry = (props) => {
+  // const [likes, setLikes] = useState(props.likes);
+  // const [dislikes, setDislikes] = useState(props.dislikes);
   const drink = 'reviewed ' + props.drink;
   const rating = () => {
     if (props.rating === 1) {
@@ -57,6 +60,16 @@ export const ReviewEntry = (props) => {
     }
   }
 
+  const chooseComments = () => {
+    if (props.comments === 'n/a') {
+      return;
+    } else {
+      return (
+        <h3 className='reviewsComment'>{props.comments}</h3>
+      )
+    }
+  }
+
   return (
     <div className='reviewsEntry'>
       <div className='entryContainer'>
@@ -65,7 +78,10 @@ export const ReviewEntry = (props) => {
         <h3 className='reviewsUsername'>{props.username}</h3>
         <h3 className='reviewsDrink'>{drink}</h3>
       </div>
-      <h3 className='reviewsComment'>{props.comments}</h3>
+      {chooseComments()}
+      <div className='reactionButtons'>
+        <Reactions toggle={props.toggle} setToggle={props.setToggle} reviewId={props.reviewId} likes={props.likes} dislikes={props.dislikes} />
+      </div>
     </div>
   )
 }

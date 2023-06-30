@@ -133,6 +133,38 @@
   width: 328px;
 }
 
+.reactionButtons {
+  left: 5px;
+  position: relative;
+  top: 37px;
+}
+
+.likeButton {
+  height: 37px;
+  width: 48px;
+}
+
+.dislikeButton {
+  height: 37px;
+  width: 48px;
+}
+
+.likeButtonContainer {
+  float: left;
+}
+
+.dislikeCount {
+  left: 20px;
+  position: relative;
+  top: -18px;
+}
+
+.likeCount {
+  left: 19px;
+  position: relative;
+  top: -18px;
+}
+
 @media only screen and (min-width: 500px) {
   .reviewsEntry {
     display: inline-block;
