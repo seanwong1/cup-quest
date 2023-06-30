@@ -12,8 +12,10 @@ import compression from 'compression';
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
 import { User } from '../database/models/user.js'
+import { Review } from '../database/models/review.js'
 // EXPRESS ROUTES
 import user from './routes/user.js';
+import overview from './routes/overview.js';
 
 // DATABASE
 import '../database/index.js';
@@ -47,6 +49,7 @@ app.get("/", function (req, res) {
 // routes go here
 
 app.use('/user', user);
+app.use('/shops', overview);
 
 app.post('/register', async function(req, res) {
   const { username, email, phone, picture } = req.body;
@@ -112,6 +115,14 @@ app.post('/reviews', (req, res) => {
     })
   // Review.create({})
 })
+
+// app.get('/ratings', (req, res) => {
+//   getDrinkRatings(req, res);
+// });
+
+// app.get('/shops/pictures/:id', (req, res) => {
+//   getShopPictures(req, res);
+// })
 
 // eslint-disable-next-line no-undef
 const port = process.env.PORT;

@@ -1,5 +1,6 @@
 @import url('./css/colors.css');
 @import url('./css/friends.css');
+@import url('./css/overview.css');
 @import url('./css/profile.css');
 
 :root {
@@ -177,46 +178,6 @@
 
 .overview_address {
   padding: 10px;
-}
-
-.overview_menu {
-  float: center;
-  max-height: 25vh;
-  overflow-y: scroll;
-}
-
-.overview_menu--title {
-  float: center;
-}
-
-.overview_menuItem--rating {
-  float: right;
-}
-
-.overview_pictures--pic {
-  height: 200px;
-  flex-shrink: 0;
-  padding-right: 10px;
-}
-
-.overview_pictures--pic :is(picture, figure, img) {
-  height: 100%;
-}
-
-.overview_pictures-pic img {
-  display: block;
-  width: auto;
-}
-
-.overview_picturesCarousel {
-  display: flex;
-  list-style: none;
-}
-
-.overview_pictures--container {
-  overflow-x: auto;
-  padding: 0;
-  margin: 0;
 }
 
 .logo {
