@@ -195,7 +195,7 @@ export const ReviewPost = (props) => {
           <span id='star5' style={styleSettings} className='star5 off' onClick={() => star5()}>&#9734;</span>
          </div>
          <input id='comments' type='text' placeholder='Any additional thoughts?' onChange={() => setComments(document.getElementById('comments').value.replace(/[^\w\s!?.,']/gi, ''))}></input>
-         <input type="reset" value="Post" onClick={(e) => submitPost(e)}/>
+         <input id='postButton' type="reset" value="Post" onClick={(e) => submitPost(e)}/>
       </form>
     </div>
   )
