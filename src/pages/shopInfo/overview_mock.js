@@ -1,16 +1,61 @@
-export const shop = {
+export const testShop = {
   name: 'Atmalogy',
-  address: '1410 Franklin Ave, Suite 3',
-  city: 'Nashville',
-  state: 'TN',
-  zip: '37206',
-  hours: {
-    "Monday":"0:0-0:0",
-    "Tuesday":"6:0-22:0",
-    "Wednesday":"6:0-22:0",
-    "Thursday":"6:0-22:0",
-    "Friday":"9:0-0:0",
-    "Saturday":"9:0-22:0",
-    "Sunday":"8:0-22:0"
-  }
+  location: {
+    display_address: [
+      "935 Race St",
+      "Philadelphia, PA 19107"
+    ],
+  },
+  rating: 5.0,
+  display_phone: '(123) 456-7890',
+  hours: [
+    {
+      "open": [
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2000",
+          "day": 0
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2000",
+          "day": 1
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2000",
+          "day": 2
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2000",
+          "day": 3
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2100",
+          "day": 4
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2100",
+          "day": 5
+        },
+        {
+          "is_overnight": false,
+          "start": "0700",
+          "end": "2100",
+          "day": 6
+        }
+      ],
+      "hours_type": "REGULAR",
+      "is_open_now": true
+    }
+  ],
 }

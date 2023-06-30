@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, rating }) => {
 
   // grab info for average rating for that specific drink of the shop in database
+  const totalStars = [5, 4, 3, 2, 1];
 
   let [isClicked, setClicked] = useState(false)
   const handleClick = (e) => {
@@ -25,11 +26,15 @@ const MenuItem = ({ item }) => {
   return (
     <div onClick={handleClick} style={clickStyle} className="overview_menuItem">
       <b>{item}</b>
-      <span className="overview_menuItem--rating">&#9734;</span>
-      <span className="overview_menuItem--rating">&#9734;</span>
-      <span className="overview_menuItem--rating">&#9734;</span>
-      <span className="overview_menuItem--rating">&#9734;</span>
-      <span className="overview_menuItem--rating">&#9734;</span>
+      {totalStars.map((starNo) => {
+        if (starNo <= rating) {
+          return <span key={starNo} className="overview_menuItem--rating">&#9733;</span>
+        } else if (!Number.isInteger(rating)) {
+          return <span key={starNo} className="overview_menuItem--rating">&#x2bea;</span>
+        } else {
+          return <span key={starNo} className="overview_menuItem--rating">&#9734;</span>
+        }
+      })}
     </div>
   )
 }

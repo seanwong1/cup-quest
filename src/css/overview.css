@@ -2,14 +2,25 @@
   margin: 20px;
 }
 
-.overview_address {
-  padding: 10px;
+.overview_contact {
+  margin-bottom: 10px;
+}
+
+.overview_contact--phone {
+  float: right;
+}
+
+.overview_contact--address {
+  float: left;
+  padding-bottom: 10px;
 }
 
 .overview_menu {
   float: center;
   max-height: 25vh;
   overflow-y: scroll;
+  display: block;
+  padding-top: 10px;
 }
 
 .overview_menu--title {
@@ -18,6 +29,7 @@
 
 .overview_menuItem--rating {
   float: right;
+  color: #c97107;
 }
 
 .overview_pictures--pic {
@@ -44,4 +56,10 @@
   overflow-x: auto;
   padding: 0;
   margin: 0;
+}
+
+
+.overview_hours {
+  display: inline-block;
+  /* float: left; */
 }
