@@ -12,7 +12,7 @@ const FriendsList = (props) => {
 
   useEffect(() => {
     requestHandler(`/user/${name}/friends`, null, 'get', (response) => {
-      setFriends(response.data[0].friends);
+      setFriends(response.data);
     });
   }, []);
 
