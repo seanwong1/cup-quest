@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GoogleSignIn from './firebase/GoogleSignIn';
 
 import lightDarkToggle from '../lib/lightDarkToggle.js';
 
 import { signIn } from './firebase/firebaseAuth';
 
 export function SplashPage() {
+
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState(0);
@@ -45,7 +47,7 @@ export function SplashPage() {
   return (
     <>
       <div className="splash-center">
-        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => {setTheme(!theme)}} />
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => { setTheme(!theme) }} />
         <div className="splash-container">
           <form onSubmit={handleLoginFormSubmit} className="splash-form">
             <input className="splash-input-fields"
@@ -77,6 +79,7 @@ export function SplashPage() {
             </div>
           </form>
         </div>
+        <GoogleSignIn />
         <br />
         <Link to={{
           pathname: '/home',
