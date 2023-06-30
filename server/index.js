@@ -12,6 +12,7 @@ import compression from 'compression';
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
 import { User } from '../database/models/user.js'
+import { Review } from '../database/models/review.js'
 // EXPRESS ROUTES
 import user from './routes/user.js';
 import overview from './routes/overview.js';

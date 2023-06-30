@@ -2,7 +2,6 @@ export const testShop = {
   name: 'Atmalogy',
   location: {
     display_address: [
-      "935 Race St",
       "Philadelphia, PA 19107"
     ],
   },

@@ -30,6 +30,7 @@
 .overview_menuItem--rating {
   float: right;
   color: #c97107;
+  position: relative;
 }
 
 .overview_pictures--pic {
