@@ -34,16 +34,16 @@ const MenuItem = ({ item, rating }) => {
       <span className="overview_menuItem--rating">
         {totalStars.map((starNo) => {
           if (starNo <= rating) {
-            return <FontAwesomeIcon key={starNo} icon={solidStar} style={{ float: 'right' }} />
+            return <FontAwesomeIcon key={starNo} icon={solidStar} style={{ float: 'right' }} name="fa-star" />
           } else if (!Number.isInteger(rating)) {
             return (
               <>
-                <FontAwesomeIcon key={starNo} icon={solidStar} style={{ clipPath: 'inset(0 8px 0 0)', float: 'right' }}/>
-                <FontAwesomeIcon key={starNo} icon={regularStar} style={{ position: 'absolute', zIndex: 99, right: 0, top: 0,}} />
+                <FontAwesomeIcon key={starNo} icon={solidStar} style={{ clipPath: 'inset(0 9px 0 0)', float: 'right' }} name="fa-star" />
+                <FontAwesomeIcon key={starNo} icon={regularStar} style={{ position: 'absolute', zIndex: 99, right: 0, top: 0,}} name="fa-star" />
               </>
             )
           } else {
-            return <FontAwesomeIcon key={starNo} icon={regularStar} style={{ float: 'right'}} />
+            return <FontAwesomeIcon key={starNo} icon={regularStar} style={{ float: 'right'}} name="fa-star" />
           }
         })}
       </span>
