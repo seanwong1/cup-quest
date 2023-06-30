@@ -17,12 +17,13 @@ export function Home() {
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
-      <Link to='/friends'>
+      <Link to='/user/Sean/friends'>
         <button>Friends</button>
       </Link>
       <Link to='/user'>
         <button>User Profile</button>
       </Link>
+      <Map />
     </>
   )
 }

@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const getHandler = async (url, params, callback) => {
+const requestHandler = async (url, params, method, callback) => {
   let options = {
     'url': url,
     'params': params,
-    'method': 'get'
+    'method': method
   }
 
   try {
     const response = await axios.request(options);
     callback(response);
   } catch (err) {
-    console.log('get' + url + 'Err', err);
+    console.log(method, url, 'Err', err);
   }
 };
 
-export default getHandler;
+export default requestHandler;

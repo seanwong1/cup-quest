@@ -1,17 +1,27 @@
+/* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import FriendElement from './FriendElement.jsx';
 
-import getHandler from '../lib/getHandler.js';
+import requestHandler from '../lib/requestHandler.js';
 
 const FriendsList = (props) => {
-  const [friends, setFriends] = useState([{'name': 'John Doe'}, {'name': 'James Doe'}, {'name': 'Jane Doe'}]);
+  const [friends, setFriends] = useState([]);
+  // TESTING
+  const [users, setUsers] = useState([]);
+  const { name } = useParams();
 
-  // useEffect(() => {
-  //   // use getHandler to get user friends
-  //   // getHandler('/users', PARAMETERS, (response) => {
-  //     // setFriends
-  //   // });
-  // }, [friends]);
+  useEffect(() => {
+    requestHandler(`/user/${name}/friends`, null, 'get', (response) => {
+      setFriends(response.data);
+    });
+  }, [name]);
+
+  useEffect(() => {
+    requestHandler('/user/all', null, 'get', (response) => {
+      setUsers(response.data);
+    });
+  }, []);
 
   return (
     <div className="friends">
@@ -21,6 +31,12 @@ const FriendsList = (props) => {
             <FriendElement friend={friend} />
           )
         })}
+      <h2>All Users</h2>
+      {users.map((user) => {
+        return (
+          <FriendElement friend={user} />
+        )
+      })}
     </div>
   )
 }

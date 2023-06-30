@@ -1,0 +1,66 @@
+.overview_info {
+  margin: 20px;
+}
+
+.overview_contact {
+  margin-bottom: 10px;
+}
+
+.overview_contact--phone {
+  float: right;
+}
+
+.overview_contact--address {
+  float: left;
+  padding-bottom: 10px;
+}
+
+.overview_menu {
+  float: center;
+  max-height: 25vh;
+  overflow-y: scroll;
+  display: block;
+  padding-top: 10px;
+}
+
+.overview_menu--title {
+  float: center;
+}
+
+.overview_menuItem--rating {
+  float: right;
+  color: #c97107;
+  position: relative;
+}
+
+.overview_pictures--pic {
+  height: 200px;
+  flex-shrink: 0;
+  padding-right: 10px;
+}
+
+.overview_pictures--pic :is(picture, figure, img) {
+  height: 100%;
+}
+
+.overview_pictures-pic img {
+  display: block;
+  width: auto;
+}
+
+.overview_picturesCarousel {
+  display: flex;
+  list-style: none;
+}
+
+.overview_pictures--container {
+  overflow-x: auto;
+  padding: 0;
+  margin: 0;
+}
+
+
+.overview_hours {
+  display: inline-block;
+  /* float: left; */
+}
