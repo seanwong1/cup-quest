@@ -22,7 +22,6 @@ const ShopInformation = ({ shopID }) => {
     }
     axios(options)
       .then((info) => {
-        console.log(info.data);
         setPhotos(info.data.photos);
         setShop(info.data);
       })
@@ -75,7 +74,6 @@ const ShopInformation = ({ shopID }) => {
       <div className="overview_contact">
         <span className="overview_contact--address">
           {shop.location.display_address.map((addressLine) => {
-            console.log(shop.location.display_address)
             return (<div key={dayKey}>{addressLine}</div>)
           })}
         </span>
