@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import FriendElement from './FriendElement.jsx';
@@ -14,7 +15,7 @@ const FriendsList = (props) => {
     requestHandler(`/user/${name}/friends`, null, 'get', (response) => {
       setFriends(response.data);
     });
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     requestHandler('/user/all', null, 'get', (response) => {
