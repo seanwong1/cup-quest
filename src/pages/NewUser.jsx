@@ -25,57 +25,71 @@ export function NewUser() {
     }
     e.preventDefault();
 
-    createUser(email, password)
-      .then((data) => {
-        if (profilePicture) {
-          saveProfilePicture(email, profilePicture.name, profilePicture)
-            .then((picture) => {
-              console.log('Profile picture saved successfully', picture);
+    // Validate username and email
+    axios.post('/validate', {
+      username,
+      email
+    })
+      .then((response) => {
+        // Create the user if username and email don't exist
+        createUser(email, password)
+          .then((data) => {
+            if (profilePicture) {
+              saveProfilePicture(email, profilePicture.name, profilePicture)
+                .then((picture) => {
+                  axios.post('/register', {
+                    username,
+                    email,
+                    phone,
+                    picture
+                  })
+                    .then((response) => {
+                      if (response.status === 200) {
+                        navigate('/home');
+                      }
+                    })
+                    .catch((err) => {
+                      console.error(err.response ? err.response.data : err);
+                      if (err.response.data.message) {
+                        alert(err.response.data.message);
+                      }
+                    });
+                })
+                .catch((err) => {
+                  console.error('Error saving profile picture:', err);
+                });
+            } else {
+              // If there is no profile picture
               axios.post('/register', {
                 username,
                 email,
-                phone,
-                picture
+                phone
               })
                 .then((response) => {
                   if (response.status === 200) {
                     navigate('/home');
-                  } else {
-                    navigate('/');
                   }
                 })
                 .catch((err) => {
-                  console.log(err);
+                  console.error(err.response);
+                  if (err.response.data.message) {
+                    alert(err.response.data.message);
+                  }
                 });
-            })
-            .catch((err) => {
-              console.log('Error saving profile picture:', err);
-            });
-        } else {
-
-          // If there is no profile picture
-          axios.post('/register', {
-            username,
-            email,
-            phone
+            }
           })
-            .then((response) => {
-              if (response.status === 200) {
-                navigate('/home');
-              } else {
-                navigate('/');
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
+          .catch((err) => {
+            console.error(err);
+            alert('CreateUser rejected');
+          });
       })
       .catch((err) => {
-        console.log(err);
+        console.error('axios catch: ', err.response);
+        if (err.response.data.message) {
+          alert(err.response.data.message);
+        }
       });
   };
-
 
   const newUsername = (e) => {
     setUsername(e.target.value);
@@ -108,7 +122,7 @@ export function NewUser() {
               type="text"
               value={username}
               onChange={newUsername}
-              placeholder="Name"
+              placeholder="Username"
             />
 
             <input

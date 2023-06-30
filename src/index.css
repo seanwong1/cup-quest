@@ -1,5 +1,6 @@
 @import url('./css/colors.css');
 @import url('./css/friends.css');
+@import url('./css/profile.css');
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -326,7 +327,6 @@
   height: 100%;
   border: #99592a solid 3px;
 }
-/* ======= */
 .splash-container {
   display: flex;
   justify-content: center;

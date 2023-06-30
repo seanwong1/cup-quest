@@ -42,8 +42,8 @@ const reviewSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, unique: true, required: true, index: true },
-  email: { type: String, unique: true, required: true },
+  username: { type: String, required: true },
+  email: { type: String, required: true },
   phone: { type: String },
   picture: { type: String },
   friends: [{ type: mongoose.ObjectId, ref: 'User' }],
@@ -54,9 +54,3 @@ const userSchema = new mongoose.Schema({
 const Shop = mongoose.model('Shop', shopSchema);
 const Review = mongoose.model('Review', reviewSchema);
 const User = mongoose.model('User', userSchema);
-
-export {
-  Shop,
-  Review,
-  User,
-}

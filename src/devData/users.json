@@ -1,85 +1,156 @@
-{
-  "_id": "jaewgfkuigi237f",
-  "user":"",
-  "email":"123@123.com",
-  "phone":"1238124182",
-  "picture":"yep",
-  "friends":
-}
-{
-  "user":"2",
-  "email":"81724tqjb@efb.com",
-  "phone":"",
-  "picture":"maybe",
-  "friends":
-}
-{
-  "user":"3",
-  "email":"aiufba@gueiwf.com",
-  "phone":"1243141",
-  "picture":"nope",
-  "friends": []
-}
-{
-  "user": "Jane_Doe",
-  "email": "002@123.com",
-  "phone": "0000000002",
-  "picture": false,
-  "friends": []
-}
-{
-  "user": "John_Doe",
-  "email": "003@123.com",
-  "phone": "0000000003",
-  "picture": false,
-  "friends": []
-}
-{
-  "user": "James_Doe",
-  "email": "004@123.com",
-  "phone": "0000000004",
-  "picture": false,
-  "friends": []
-}
-{
-  "user":"David",
-  "email":"David@123.com",
-  "phone":"7139418226",
-  "picture":"yep",
-  "friends": ["Sean", "Addie", "Sarah"]
-}
-{
-  "user":"Sean",
-  "email":"Sean@123.com",
-  "phone":"1238124182",
-  "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
-}
-{
-  "user":"Matt",
-  "email":"Matt@123.com",
-  "phone":"1238124183",
-  "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
-}
-{
-  "user":"Addie",
-  "email":"George@123.com",
-  "phone":"1238124184",
-  "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
-}
-{
-  "user":"George",
-  "email":"George@123.com",
-  "phone":"1238124184",
-  "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
-}
-{
-  "user":"Sarah",
-  "email":"Sarah@123.com",
-  "phone":"1238124185",
-  "picture":"yep",
-  "friends": ["David", "Matt", "Addie"]
-}
+[
+  {
+    "name":"2",
+    "email":"81724tqjb@efb.com",
+    "phone":"",
+    "picture":"maybe",
+    "friends": []
+  },
+  {
+    "name":"3",
+    "email":"aiufba@gueiwf.com",
+    "phone":"1243141",
+    "picture":"nope",
+    "friends": []
+  },
+  {
+    "name": "Jane_Doe",
+    "email": "002@123.com",
+    "phone": "0000000002",
+    "picture": false,
+    "friends": []
+  },
+  {
+    "name": "John_Doe",
+    "email": "003@123.com",
+    "phone": "0000000003",
+    "picture": false,
+    "friends": []
+  },
+  {
+    "name": "James_Doe",
+    "email": "004@123.com",
+    "phone": "0000000004",
+    "picture": false,
+    "friends": []
+  },
+  {
+    "name":"David",
+    "email":"David@123.com",
+    "phone":"7139418226",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"Sean",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      },
+      {
+        "user":"Sarah",
+        "status": 1
+      }
+    ]
+  },
+  {
+    "name":"Sean",
+    "email":"Sean@123.com",
+    "phone":"1238124182",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"David",
+        "status": 1
+      },
+      {
+        "user":"Matt",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      }
+    ]
+  },
+  {
+    "name":"Matt",
+    "email":"Matt@123.com",
+    "phone":"1238124183",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"David",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      },
+      {
+        "user":"Sarah",
+        "status": 1
+      }
+    ]
+  },
+  {
+    "name":"Addie",
+    "email":"Addie@123.com",
+    "phone":"1238124184",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"David",
+        "status": 1
+      },
+      {
+        "user":"Matt",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      }
+    ]
+  },
+  {
+    "name":"George",
+    "email":"George@123.com",
+    "phone":"1238124184",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"Sean",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      },
+      {
+        "user":"Sarah",
+        "status": 1
+      }
+    ]
+  },
+  {
+    "name":"Sarah",
+    "email":"Sarah@123.com",
+    "phone":"1238124185",
+    "picture":"yep",
+    "friends": [
+      {
+        "user":"Sean",
+        "status": 1
+      },
+      {
+        "user":"Addie",
+        "status": 1
+      },
+      {
+        "user":"Sarah",
+        "status": 1
+      }
+    ]
+  }]

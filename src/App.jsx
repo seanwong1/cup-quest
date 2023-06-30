@@ -36,8 +36,8 @@ function App() {
       <Route path="/newUser" element={<NewUser />}/>
       <Route path="/home" element={<Home />}/>
       <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId}/>}/>
-      <Route path="/user" element={<UserProfile isUser={true} />}/>
-      <Route path="/friends" element={<FriendsList />}/>
+      <Route path="/user/:name" element={<UserProfile isUser={true} />}/>
+      <Route path="/user/:name/friends" element={<FriendsList />}/>
     </Routes>
     </>
   )

@@ -4,7 +4,7 @@ import UserProfile from "../lib/UserProfile.jsx";
 import FriendsList from "./FriendsList.jsx";
 
 import { logout } from './firebase/firebaseAuth';
-import {Map} from './Map/Map'
+import { Map } from './Map/Map'
 
 export function Home() {
   const handleLogoutClick = (e) => {
@@ -17,7 +17,7 @@ export function Home() {
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
-      <Link to='/friends'>
+      <Link to='/user/Sean/friends'>
         <button>Friends</button>
       </Link>
       <Link to='/user'>
