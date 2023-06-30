@@ -7,6 +7,9 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import LocalCafeIcon from '@mui/icons-material/LocalCafe';
+import { testData } from './testData';
+
 
 
 const API = import.meta.env.VITE_MAP_API_KEY;
@@ -46,17 +49,19 @@ export class Map extends React.Component {
     super();
     this.state = {
       lat: 34.046, 
-      lng: -117.045
+      lng: -117.045,
+      shops: []
     }
   }
   
   componentDidMount = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log("position.coords===> ", position.coords)
+        // console.log("position.coords===> ", position.coords)
         this.setState({
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
+          shops: testData.businesses
         })
       },
       (error) => {
@@ -106,6 +111,7 @@ export class Map extends React.Component {
   
   
   map = () => {
+    console.log(testData)
     const defaultProps = {
       center: {
         lat: 34.046, 
@@ -124,6 +130,22 @@ export class Map extends React.Component {
             lng: this.state.lng
           }}
         >
+          {
+            this.state.shops.map((shop) => {
+              return (
+                <LocalCafeIcon 
+                  key={shop.id}
+                  color={"brown"}
+                  lat={shop.coordinates.latitude}
+                  lng={shop.coordinates.longitude}
+                />
+              )
+            })
+          }
+          <LocalCafeIcon color={"brown"}
+            lat={this.state.lat}
+            lng={this.state.lng}
+          />
       </GoogleMapReact>
       </div>
     )
