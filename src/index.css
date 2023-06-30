@@ -23,6 +23,12 @@
   margin: 1% 0% 0% 0%;
 }
 
+.noReviewsYet {
+  left: 107px;
+  font-weight: bolder;
+  position: relative;
+}
+
 .reviewsPic {
   float: left;
   width: 80px;
@@ -409,6 +415,12 @@
   background-color: #e6b17e;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.google-sign-in-button {
+  padding: 0px;
+  contain: none;
+  /* margin-top: 50px; */
 }
 
 .newUser-center {

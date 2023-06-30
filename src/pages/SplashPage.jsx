@@ -1,16 +1,18 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GoogleSignIn from './firebase/googleSignIn';
 
 import lightDarkToggle from '../lib/lightDarkToggle.js';
 
 import { signIn } from './firebase/firebaseAuth';
 
-export function SplashPage() {
+export function SplashPage({ email, setEmail, setName}) {
+
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState(0);
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [theme, setTheme] = useState(false);
 
@@ -45,7 +47,7 @@ export function SplashPage() {
   return (
     <>
       <div className="splash-center">
-        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => {setTheme(!theme)}} />
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => { setTheme(!theme) }} />
         <div className="splash-container">
           <form onSubmit={handleLoginFormSubmit} className="splash-form">
             <input className="splash-input-fields"
@@ -78,6 +80,7 @@ export function SplashPage() {
           </form>
         </div>
         <br />
+        <GoogleSignIn setEmail={setEmail} setName={setName} />
         <Link to={{
           pathname: '/home',
           state: { userId: userId, setUserId: setUserId }

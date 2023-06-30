@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useLocation  } from 'react-router-dom'
 
 import UserHistoryList from './UserHistoryList.jsx';
 import FriendToggle from './FriendToggle.jsx';
@@ -10,6 +10,10 @@ const UserProfile = (props) => {
   const [isUser, setIsUser] = useState(false);
   const [profile, setProfile] = useState({});
   const { name } = useParams();
+
+  const location = useLocation();
+  console.log('Use Location Hook: ', location);
+  console.log('Use Location State: ', location.state?.currentUser);
 
   useEffect(() => {
     requestHandler(`/user/${name}`, null, 'get', (response) => {
