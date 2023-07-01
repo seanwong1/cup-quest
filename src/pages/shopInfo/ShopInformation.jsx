@@ -9,16 +9,17 @@ import latte2 from '../../assets/latte2.jpg';
 import latte3 from '../../assets/latte3.jpg';
 import latte4 from '../../assets/latte4.jpg';
 
-const ShopInformation = ({ shopID }) => {
+const ShopInformation = ({ shopId }) => {
 
   const [ photos, setPhotos ] = useState([]);
   const [ shop, setShop ] = useState(testShop);
 
   // grab pictures on load
   useEffect(() => {
+    console.log('shopID', shopId)
     const options = {
       method: 'GET',
-      url: `/shops/G2okUNH-Jeks8hqJvSilcw`
+      url: `/shops/${shopId}`
     }
     axios(options)
       .then((info) => {

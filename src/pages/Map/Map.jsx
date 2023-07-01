@@ -26,7 +26,6 @@ const Map = () => {
 
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
 
-  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -115,12 +114,12 @@ const Map = () => {
       },
       zoom: 13
     };
-    
+
     // const handleShopButtonClick = (shopId) => {
     //   setSelectedShopId(shopId);
     //   setMarkerClicked(true);
     // };
-    
+
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
 
@@ -155,7 +154,7 @@ const Map = () => {
               />
             ))
           }
-          
+
           {
             shops.map((shop) => {
               if (selectedShopId === shop.id) {
@@ -214,17 +213,14 @@ const Map = () => {
               >
                 Click
               </Button> */}
-              
-              <Link 
-                to={{
-                pathname: '/overview',
-                state: { userId: userId, setUserId: setUserId }
-              }}>
+
+              <Link
+                to='/overview' state={{ shopId: selectedShopId, userId: userId }}>
                 <Button>
                   Click
                 </Button>
               </Link>
-              
+
             </li>
           ))}
         </ul>

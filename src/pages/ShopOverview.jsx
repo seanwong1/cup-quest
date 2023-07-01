@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
 import React, { useState } from 'react';
 import { Review } from './reviews/Review.jsx';
 import ShopInformation from './shopInfo/ShopInformation';
 /* eslint-disable react/prop-types */
 
-export const ShopOverview = ({ shopId, userId }) => {
+export const ShopOverview = (props) => {
+  const location = useLocation()
+  console.log('SHOPID FROM MAP', location.state)
   return (
     <div>
       <Link to='/home'>
@@ -18,8 +20,8 @@ export const ShopOverview = ({ shopId, userId }) => {
       <Link to='/'>
         <button className='button_logout'>Logout</button>
       </Link>
-      <ShopInformation shopId={shopId} />
-      <Review shop={shopId} userId={userId}/>
+      <ShopInformation shopId="ReX09lhufLTAx19krkltDA" />
+      {/* <Review shop={shopId} userId={props.userId}/> */}
     </div>
   )
 }
