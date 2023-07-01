@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import { Link, Routes, Route } from 'react-router-dom'
+import Typography from '@mui/material/Typography';
 import react, { useState, useEffect } from 'react'
 
 import UserProfile from "../lib/UserProfile.jsx";
 import FriendsList from "./FriendsList.jsx";
+import { logout } from './firebase/firebaseAuth';
+import Map from './Map/Map.jsx'
+
+export function Home() {
 
 import { logout, getCurrentUser } from './firebase/firebaseAuth';
-import { Map } from './Map'
 
 export function Home({ loggedEmail, loggedName, setEmail, setName }) {
   const [currentUser, setCurrentUser] = useState({ email: '', name:'' })
@@ -34,7 +38,10 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
 
   return (
     <>
-      <h1>Welcome!</h1>
+      {/* <h1>Home</h1> */}
+      <Typography variant="h3">
+        C u p Q u e s t
+      </Typography>
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>

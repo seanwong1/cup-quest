@@ -212,8 +212,17 @@
   }
 
 }
+
 .button_logout {
   float: right;
+}
+
+.button_home {
+  position: center;
+}
+
+.button_back {
+  float: left;
 }
 
 .overview_info {
@@ -228,6 +237,18 @@
   width: 90%;
   max-width: 800px;
   margin-top: 5%;
+}
+
+.logo_home {
+  width: 20%;
+  height: 20%;
+  position: center;
+}
+
+.logo_home--container {
+  justify-content: center;
+  position: center;
+  align-items: center;
 }
 
 .splash-center {
@@ -332,7 +353,6 @@
   height: 100%;
   border: #99592a solid 3px;
 }
-
 .splash-container {
   display: flex;
   justify-content: center;

@@ -80,7 +80,10 @@ const ShopInformation = ({ shopID }) => {
         <span className="overview_contact--phone">
           {shop.display_phone}
         </span>
-      </div>
+        <div>
+          MiniMap
+        </div>
+        </div>
       <div className="overview_hours">
         {shop.hours[0].open.map((day) => {
           return (<div key={day.day}>
@@ -95,35 +98,3 @@ const ShopInformation = ({ shopID }) => {
 }
 
 export default ShopInformation;
-
-        // const parseTotalHours = (hoursStr) => {
-        //   let totalHours = [];
-        //   let hours = hoursStr.split('-');
-        //   for (var i = 0; i < hours.length; i++) {
-        //     var currentHour = hours[i];
-        //     var breakdown = currentHour.split(':');
-        //     if (parseInt(breakdown[0]) > 12) {
-        //       var converted = parseInt(breakdown[0]) - 12;
-        //       if (breakdown[1] === '0') {
-        //         totalHours.push(converted.toString() + ':00PM');
-        //       } else {
-        //         totalHours.push(`${converted.toString()}:${breakdown[1]}PM`);
-        //       }
-        //     } else if (breakdown[0] === '0') {
-        //       if (breakdown[1] === '0') {
-        //         totalHours.push('12:00AM');
-        //       } else {
-        //         totalHours.push(`${converted.toString()}:${breakdown[1]}`);
-        //       }
-        //     } else {
-        //       if (breakdown[1] === '0') {
-        //         totalHours.push(`${breakdown[0]}:00AM`)
-        //       } else {
-        //         totalHours.push(`${breakdown[0]}:${breakdown[1]}AM`);
-        //       }
-        //     }
-        //   }
-        //   return totalHours;
-        // }
-
-        // const daysOpen = Object.keys(shop.hours);
