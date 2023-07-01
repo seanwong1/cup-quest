@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, Routes, Route } from 'react-router-dom'
 import react, { useState, useEffect } from 'react'
 
@@ -7,25 +8,33 @@ import FriendsList from "./FriendsList.jsx";
 import { logout, getCurrentUser } from './firebase/firebaseAuth';
 import { Map } from './Map'
 
-export function Home() {
-  const [currentUser, setCurrentUser] = useState({ email: '' })
+export function Home({ loggedEmail, loggedName, setEmail, setName }) {
+  const [currentUser, setCurrentUser] = useState({ email: '', name:'' })
 
   useEffect(() => {
     async function fetchUser() {
       const user = getCurrentUser();
-      await setCurrentUser({ email: user.email });
+      await setCurrentUser(user.email);
     }
-    fetchUser();
+
+    if (loggedEmail || loggedName) {
+      setCurrentUser({ email: loggedEmail, name: loggedName })
+    } else {
+      fetchUser();
+    }
   }, [])
   console.log('current user useEffect: ', currentUser)
 
   const handleLogoutClick = (e) => {
+    setEmail(null)
+    setName(null)
+    setCurrentUser({ })
     logout();
   }
 
   return (
     <>
-      <h1>Home!</h1>
+      <h1>Welcome!</h1>
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>

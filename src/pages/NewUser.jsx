@@ -46,7 +46,7 @@ export function NewUser() {
                   })
                     .then((response) => {
                       if (response.status === 200) {
-                        // getCurrentUser();
+                        getCurrentUser();
                         navigate('/home');
                       }
                     })

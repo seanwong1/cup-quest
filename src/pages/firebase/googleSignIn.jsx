@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
 import jwt_decode from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function GoogleSignIn() {
+import { getCurrentUser } from './firebaseAuth';
+
+function GoogleSignIn({ setEmail, setName }) {
   const navigate = useNavigate();
   const signInDiv = useRef(null);
 
@@ -15,12 +18,11 @@ function GoogleSignIn() {
           callback: handleCallbackResponse
         });
 
-        google.accounts.id.renderButton(
-          signInDiv.current,
-          { theme: "filled", size: "medium", padding: "0px"}
-        );
+        // google.accounts.id.renderButton(
+        //   signInDiv.current,
+        //   { theme: "filled", size: "medium" }
+        // );
         google.accounts.id.prompt(); // also display the One Tap dialog
-
       }
     }
 
@@ -37,20 +39,54 @@ function GoogleSignIn() {
     };
   }, []);
 
-
   function handleCallbackResponse(response) {
-    console.log("encoded jwt id token: " + response.credential);
     var userObject = jwt_decode(response.credential);
-    console.log(userObject.email);
-    navigate('/home');
+    const username = userObject.given_name;
+    const picture = userObject.picture;
+    const email = userObject.email;
+
+    axios.post('/validateOnClick', {
+      username,
+      email
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          // User doesn't exist, register a new user
+          axios.post('/register', {
+            username,
+            email,
+            picture
+          })
+            .then((response) => {
+              if (response.status === 200) {
+                setEmail(email);
+                setName(username);
+                navigate('/home');
+              }
+            })
+            .catch((err) => {
+              console.log(err.response);
+              if (err.response.data.message) {
+                alert(err.response.data.message);
+              }
+            });
+        } else if (response.status === 201) {
+          // User exists, log in the existing user
+          console.log(email, username)
+          setEmail(email);
+          setName(username);
+          navigate('/home');
+        }
+      })
+      .catch((err) => {
+        console.log(err.response);
+        if (err.response.data.message) {
+          alert(err.response.data.message);
+        }
+      });
   }
 
-  return (
-    <div className="google-sign-in-button">
-
-      <div ref={signInDiv}></div>
-    </div>
-  );
+  return <div ref={signInDiv}></div>;
 }
 
 export default GoogleSignIn;

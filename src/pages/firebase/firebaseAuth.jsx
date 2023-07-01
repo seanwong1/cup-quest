@@ -22,7 +22,7 @@ const auth = getAuth(app);
 
 export async function logout() {
   await signOut(auth);
-  console.log('Logged out')
+  // console.log('Logged out')
 }
 
 export async function signIn(email, password) {

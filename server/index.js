@@ -72,7 +72,7 @@ app.post('/register', async function(req, res) {
 
 app.post('/validate', async function (req, res) {
   const { username, email } = req.body;
-  const existingUsername = await User.findOne({ user: username });
+  const existingUsername = await User.findOne({ name: username });
 
   if (existingUsername) {
     return res.status(400).json({ message: 'Username already exists' });
@@ -83,6 +83,17 @@ app.post('/validate', async function (req, res) {
 
   if (existingEmail) {
     return res.status(400).json({ message: 'Email already exists' });
+  }
+
+  res.status(200).send();
+});
+
+app.post('/validateOnClick', async function (req, res) {
+  const { email } = req.body;
+  const existingEmail = await User.findOne({ email });
+
+  if (existingEmail) {
+    return res.status(201).json({ message: 'Email already exists' });
   }
 
   res.status(200).send();
