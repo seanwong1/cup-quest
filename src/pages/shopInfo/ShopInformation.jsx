@@ -9,7 +9,7 @@ import latte2 from '../../assets/latte2.jpg';
 import latte3 from '../../assets/latte3.jpg';
 import latte4 from '../../assets/latte4.jpg';
 
-const ShopInformation = ({ shopID }) => {
+const ShopInformation = ({ shopId }) => {
 
   const [ photos, setPhotos ] = useState([]);
   const [ shop, setShop ] = useState(testShop);
@@ -18,7 +18,7 @@ const ShopInformation = ({ shopID }) => {
   useEffect(() => {
     const options = {
       method: 'GET',
-      url: `/shops/G2okUNH-Jeks8hqJvSilcw`
+      url: `/shops/${shopId}`
     }
     axios(options)
       .then((info) => {
@@ -83,7 +83,7 @@ const ShopInformation = ({ shopID }) => {
         <div>
           MiniMap
         </div>
-        </div>
+      </div>
       <div className="overview_hours">
         {shop.hours[0].open.map((day) => {
           return (<div key={day.day}>

@@ -390,6 +390,12 @@
   border-radius: 5px;
 }
 
+.google-sign-in-button {
+  padding: 0px;
+  contain: none;
+  /* margin-top: 50px; */
+}
+
 .newUser-center {
   display: flex;
   flex-direction: column;
