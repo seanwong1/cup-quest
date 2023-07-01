@@ -16,7 +16,6 @@ const ShopInformation = ({ shopId }) => {
 
   // grab pictures on load
   useEffect(() => {
-    console.log('shopID', shopId)
     const options = {
       method: 'GET',
       url: `/shops/${shopId}`

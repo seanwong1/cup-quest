@@ -6,7 +6,6 @@ import ShopInformation from './shopInfo/ShopInformation';
 
 export const ShopOverview = (props) => {
   const location = useLocation()
-  console.log('SHOPID FROM MAP', location.state)
   return (
     <div>
       <Link to='/home'>
@@ -20,8 +19,8 @@ export const ShopOverview = (props) => {
       <Link to='/'>
         <button className='button_logout'>Logout</button>
       </Link>
-      <ShopInformation shopId="ReX09lhufLTAx19krkltDA" />
-      {/* <Review shop={shopId} userId={props.userId}/> */}
+      <ShopInformation shopId={location.state.shopId} />
+      <Review shop={location.state.shopId} userId={props.userId}/>
     </div>
   )
 }
