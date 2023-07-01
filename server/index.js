@@ -53,7 +53,7 @@ app.post('/register', async function(req, res) {
 
   try {
     const newUser = new User({
-      user: username,
+      name: username,
       email,
       phone,
       picture,

@@ -91,8 +91,8 @@ export function SplashPage() {
           <button>Shop Overview</button>
         </Link>
         <Link to={{
-          pathname: '/user',
-          state: { userId: userId, setUserId: setUserId }
+          pathname: `/user/${email}`,
+          state: { email: email, setEmail: setEmail }
         }}>
           <button>User</button>
         </Link>
