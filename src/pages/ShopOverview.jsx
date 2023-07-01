@@ -4,7 +4,7 @@ import { Review } from './reviews/Review.jsx';
 import ShopInformation from './shopInfo/ShopInformation';
 /* eslint-disable react/prop-types */
 
-export const ShopOverview = ({ shopID, userId }) => {
+export const ShopOverview = ({ shopId, userId }) => {
   return (
     <div>
       <Link to='/home'>
@@ -18,8 +18,8 @@ export const ShopOverview = ({ shopID, userId }) => {
       <Link to='/'>
         <button className='button_logout'>Logout</button>
       </Link>
-      <ShopInformation shopID={shopID} />
-      <Review shop={shopID} userId={userId}/>
+      <ShopInformation shopId={shopId} />
+      <Review shop={shopId} userId={userId}/>
     </div>
   )
 }
