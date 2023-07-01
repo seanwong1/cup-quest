@@ -28,7 +28,7 @@ const ShopInformation = ({ shopId }) => {
       .catch((err) => {
         console.log('error getting pictures', err);
       })
-  }, []);
+  }, [shopId]);
 
   // hours look like "9:0-17:0" --> if not 00, it says the whole minutes
   let dayKey = 100;
