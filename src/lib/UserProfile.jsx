@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import UserHistoryList from './UserHistoryList.jsx';
 import FriendToggle from './FriendToggle.jsx';
-import ChatRoom from './ChatRoom.jsx';
 
 import requestHandler from './requestHandler.js';
 
@@ -42,10 +41,7 @@ const UserProfile = (props) => {
           <button className="friends-button" >Friends</button>
         </Link>
         {isUser ? <div className='edit-button' onClick={() => {console.log('hi')}}>Edit User</div> :
-          <div>
-            <FriendToggle id={profile._id} />
-            <ChatRoom id={profile._id} />
-          </div>
+          <FriendToggle id={profile._id} />
         }
       </div>
       <div className='profile-history'>
