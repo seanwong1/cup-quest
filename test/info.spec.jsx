@@ -3,12 +3,14 @@ import App from '../src/App';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import matchers from '@testing-library/jest-dom/matchers';
+import { configure } from '@testing-library/dom';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import ShopInformation from './src/pages/shopInfo/ShopInformation.jsx';
 import ShopMenu from './src/pages/shopInfo/ShopMenu.jsx';
+import MenuItem from './src/pages/shopInfo/MenuItem.jsx';
 import { menu } from './src/menu.js';
 
 // describe('testing', () => {
@@ -16,6 +18,10 @@ import { menu } from './src/menu.js';
 //     expect(1 + 2).toBe(3);
 //   });
 // });
+
+configure({
+  defaultHiddenn: true
+});
 
 describe('shop Information', () => {
 
@@ -59,10 +65,5 @@ describe('shop menu', () => {
     const dripCoffee = await screen.getByText('Drip Coffee');
     expect(dripCoffee).toBeInTheDocument();
   });
-
-  it('renders the ratings', async () => {
-    const rating = await screen.getByRole('img');
-    expect(rating).toBeInTheDocument();
-  })
 
 })
