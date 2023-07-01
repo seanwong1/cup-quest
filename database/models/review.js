@@ -7,7 +7,9 @@ const reviewSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
   drink: { type: String, required: true },
   comments: { type: String },
-  reported: { type: Boolean, default: false }
+  reported: { type: Boolean, default: false },
+  likes: {type: Number, default: 0},
+  dislikes: {type: Number, default: 0}
 }, { timestamps: true });
 
 const Review = mongoose.model('Review', reviewSchema);
