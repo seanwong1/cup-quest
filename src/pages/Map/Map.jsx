@@ -8,21 +8,30 @@ import SearchIcon from '@mui/icons-material/Search';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { testData } from './testData';
 import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
+import { Link, Routes, Route } from 'react-router-dom';
+import { ShopOverview } from "../ShopOverview";
+
+
 
 const API = import.meta.env.VITE_MAP_API_KEY;
 
+
+
 const Map = () => {
-  const [lat, setLat] = useState(34.046);
-  const [lng, setLng] = useState(-117.045);
+  const [lat, setLat] = useState(34.03534719240222);
+  const [lng, setLng] = useState(-117.04408209652723);
   const [shops, setShops] = useState([]);
   const [selectedShopId, setSelectedShopId] = useState(null);
   const [markerClicked, setMarkerClicked] = useState(false);
 
+  const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
+
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
+        // setLat(position.coords.latitude);
+        // setLng(position.coords.longitude);
         setShops(testData.businesses);
         setSelectedShopId(null);
         setMarkerClicked(false);
@@ -116,7 +125,7 @@ const Map = () => {
       <div style={{ display: 'flex', flexDirection: 'column' }}>
 
       <div
-           style={{
+          style={{
             height: '40vh',
             width: '100%',
             marginBottom: '10px'
@@ -195,7 +204,7 @@ const Map = () => {
               <Typography style={{ color: "#542a1b" }}>
                 {shop.name}
               </Typography>
-              <Button
+              {/* <Button
                 variant="outlined"
                 style={{
                   color: "#542a1b",
@@ -204,7 +213,18 @@ const Map = () => {
                 // onClick={() => handleShopButtonClick(shop.id)}
               >
                 Click
-              </Button>
+              </Button> */}
+              
+              <Link 
+                to={{
+                pathname: '/overview',
+                state: { userId: userId, setUserId: setUserId }
+              }}>
+                <Button>
+                  Click
+                </Button>
+              </Link>
+              
             </li>
           ))}
         </ul>
