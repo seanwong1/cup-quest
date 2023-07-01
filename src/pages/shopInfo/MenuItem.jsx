@@ -34,7 +34,7 @@ const MenuItem = ({ item, rating }) => {
       <span className="overview_menuItem--rating">
         {totalStars.map((starNo) => {
           if (starNo <= rating) {
-            return <FontAwesomeIcon key={starNo} icon={solidStar} style={{ float: 'right' }} name="fa-star" />
+            return <FontAwesomeIcon key={starNo} icon={solidStar} style={{ float: 'right' }} name="fa-star" alt="solid star"/>
           } else if (!Number.isInteger(rating)) {
             return (
               <>
