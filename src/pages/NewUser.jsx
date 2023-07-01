@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { createUser } from './firebase/firebaseAuth';
+import { createUser, getCurrentUser } from './firebase/firebaseAuth';
 import { saveProfilePicture } from './firebase/firebaseStorage';
+import GoogleSignIn from './firebase/GoogleSignIn';
 
 export function NewUser() {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ export function NewUser() {
                   })
                     .then((response) => {
                       if (response.status === 200) {
+                        getCurrentUser();
                         navigate('/home');
                       }
                     })
