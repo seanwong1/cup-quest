@@ -80,7 +80,9 @@ const ShopInformation = ({ shopID }) => {
         <span className="overview_contact--phone">
           {shop.display_phone}
         </span>
-      </div>
+        <div>
+          MiniMap
+        </div>
       <div className="overview_hours">
         {shop.hours[0].open.map((day) => {
           return (<div key={day.day}>
