@@ -15,7 +15,8 @@
 
 .reviewsEntry {
   display: inline-block;
-  border: 1px solid black;
+  border: 1px solid #542a1b;
+  border-radius: 10px;
   min-width: 101%;
   max-width: 101%;
   min-height: 184px;
@@ -67,6 +68,9 @@
   position: relative;
   float: right;
   font-size: 30px;
+  background-color:#e6b17e;
+  border-color: #99592a;
+  color: #99592a;
 }
 
 #reviewListBack {
@@ -76,6 +80,9 @@
   position: relative;
   float: left;
   font-size: 30px;
+  background-color:#e6b17e;
+  border-color: #99592a;
+  color: #99592a;
 }
 
 .arrowButtons {
@@ -120,11 +127,44 @@
 }
 
 #reviewForm {
-  border: 1px solid black;
+  border: 1px solid #542a1b;
+  border-radius: 10px;
   margin: 16px 4% 30px 0;
   float: right;
   position: relative;
   width: 328px;
+}
+
+.reactionButtons {
+  left: 5px;
+  position: relative;
+  top: 37px;
+}
+
+.likeButton {
+  height: 37px;
+  width: 48px;
+}
+
+.dislikeButton {
+  height: 37px;
+  width: 48px;
+}
+
+.likeButtonContainer {
+  float: left;
+}
+
+.dislikeCount {
+  left: 20px;
+  position: relative;
+  top: -18px;
+}
+
+.likeCount {
+  left: 19px;
+  position: relative;
+  top: -18px;
 }
 
 @media only screen and (min-width: 500px) {
@@ -157,6 +197,10 @@
     margin: 136px 8% 0 0;
     float: left;
     left: 85%;
+    height: 20px;
+    min-width: 102px;
+    max-width: 6%;
+    position: relative;
   }
 
     #reviewForm {
@@ -309,7 +353,6 @@
   height: 100%;
   border: #99592a solid 3px;
 }
-
 .splash-container {
   display: flex;
   justify-content: center;

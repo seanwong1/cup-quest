@@ -13,6 +13,12 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.6",
+    "@react-google-maps/api": "^2.18.1",
+    "api": "^6.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
@@ -27,9 +33,11 @@
     "google-map-react": "^2.2.1",
     "jsdom": "^22.1.0",
     "nodemon": "^2.0.22",
+    "reach": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
+    "use-places-autocomplete": "^4.0.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
