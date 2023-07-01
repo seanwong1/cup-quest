@@ -5,10 +5,7 @@ import react, { useState, useEffect } from 'react'
 
 import UserProfile from "../lib/UserProfile.jsx";
 import FriendsList from "./FriendsList.jsx";
-import { logout } from './firebase/firebaseAuth';
 import Map from './Map/Map.jsx'
-
-export function Home() {
 
 import { logout, getCurrentUser } from './firebase/firebaseAuth';
 
