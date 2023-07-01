@@ -89,11 +89,11 @@ app.post('/validate', async function (req, res) {
 });
 
 app.get('/reviews', (req, res) => {
-  const shop = req.body.shop;
-  Review.find({ shop: 0 }).sort({ createdAt: 'desc' })
-    .then((results) => {
-      res.status(200).send(results);
-    })
+  const shop = req.body.shop === undefined ? 0 : req.body.shop;
+  Review.find({shop: shop}).sort({createdAt: 'desc'})
+  .then((results) => {
+    res.status(200).send(results);
+  })
 })
 
 app.post('/reviews', (req, res) => {
@@ -116,6 +116,28 @@ app.post('/reviews', (req, res) => {
   // Review.create({})
 })
 
+app.put('/reviews', (req, res) => {
+  const reviewId = new mongoose.Types.ObjectId(req.body.reviewId);
+  const add = req.body.add;
+  const remove = req.body.remove;
+  const addAmount = req.body.addAmount + 1;
+  const removeAmount = req.body.removeAmount - 1;
+  const query = {};
+  if (typeof add === 'string') {
+    query[add] = addAmount;
+  }
+  if (typeof remove === 'string') {
+    query[remove] = removeAmount;
+  }
+
+  Review.updateOne({_id: reviewId}, {$set: query})
+  .then((results) => {
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    res.status(500).send(err)
+  })
+})
 // app.get('/ratings', (req, res) => {
 //   getDrinkRatings(req, res);
 // });
