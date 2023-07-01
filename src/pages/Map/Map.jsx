@@ -106,14 +106,21 @@ const Map = () => {
       },
       zoom: 13
     };
+    
+    // const handleShopButtonClick = (shopId) => {
+    //   setSelectedShopId(shopId);
+    //   setMarkerClicked(true);
+    // };
+    
     return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+
       <div
-        style={{
-          height: '40vh',
-          width: '100%',
-          display: "flex",
-          alignItems: "center"
-        }}
+           style={{
+            height: '40vh',
+            width: '100%',
+            marginBottom: '10px'
+          }}
       >
         <GoogleMapReact
           bootstrapURLKeys={{ key: API }}
@@ -139,6 +146,7 @@ const Map = () => {
               />
             ))
           }
+          
           {
             shops.map((shop) => {
               if (selectedShopId === shop.id) {
@@ -164,6 +172,44 @@ const Map = () => {
             })
           }
         </GoogleMapReact>
+        <div
+        style={{
+          height: '40vh',
+          width: '100%',
+          overflowY: 'auto'
+        }}
+      >
+        <ul>
+          {shops.map((shop) => (
+            <li
+              key={shop.id}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '5px',
+                marginBottom: '5px',
+                backgroundColor: selectedShopId === shop.id ? '#f1e6d0' : 'inherit'
+              }}
+            >
+              <Typography style={{ color: "#542a1b" }}>
+                {shop.name}
+              </Typography>
+              <Button
+                variant="outlined"
+                style={{
+                  color: "#542a1b",
+                  marginLeft: '10px'
+                }}
+                // onClick={() => handleShopButtonClick(shop.id)}
+              >
+                Click
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      </div>
       </div>
     )
   };
