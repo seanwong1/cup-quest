@@ -24,7 +24,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 //all this work just for __dirname in es6
 const app = express();
 
-
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
 
