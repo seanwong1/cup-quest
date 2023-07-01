@@ -11,11 +11,12 @@ export const Review = (props) => {
   const [reviewContent, setReviewContent] = useState([]);
   const [filtered, setFiltered] = useState(false);
   const [starting, setStarting] = useState(0);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     getReviews();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [toggle])
 
   const getReviews = () => {
     axios.get('/reviews', {
@@ -26,13 +27,12 @@ export const Review = (props) => {
         return results.data.map((review) => {
           return (
             // eslint-disable-next-line react/jsx-key
-            <ReviewEntry drink={review.drink} comments={review.comments} rating={review.rating} profilePic={review.profilePic} username={review.username}/>
+            <ReviewEntry toggle={toggle} setToggle={setToggle} likes={review.likes} dislikes={review.dislikes} reviewId={review._id} drink={review.drink} comments={review.comments} rating={review.rating} profilePic={review.profilePic} username={review.username}/>
           )
         })
       })
       .then((results) => {
         setFiltered(false);
-        setStarting(0);
         setReviewList(results);
       })
       .catch((err) => {
