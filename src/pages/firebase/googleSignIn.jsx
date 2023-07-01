@@ -17,8 +17,10 @@ function GoogleSignIn() {
 
         google.accounts.id.renderButton(
           signInDiv.current,
-          { theme: "outline", size: "large" }
+          { theme: "filled", size: "medium", padding: "0px"}
         );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+
       }
     }
 
@@ -43,7 +45,12 @@ function GoogleSignIn() {
     navigate('/home');
   }
 
-  return <div ref={signInDiv}></div>
+  return (
+    <div className="google-sign-in-button">
+
+      <div ref={signInDiv}></div>
+    </div>
+  );
 }
 
 export default GoogleSignIn;

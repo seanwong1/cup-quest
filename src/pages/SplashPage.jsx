@@ -79,8 +79,8 @@ export function SplashPage() {
             </div>
           </form>
         </div>
-        <GoogleSignIn />
         <br />
+        <GoogleSignIn />
         <Link to={{
           pathname: '/home',
           state: { userId: userId, setUserId: setUserId }
