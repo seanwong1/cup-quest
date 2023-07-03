@@ -6,10 +6,6 @@ export const getUser = async (user_name) => {
   return await User.findOne(user_name).exec();
 };
 
-export const getUserByEmail = async (email) => {
-  return await User.findOne(email).exec();
-};
-
 export const getAllUsers = async () => {
   return await User.find().exec();
 };
