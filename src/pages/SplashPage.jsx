@@ -2,16 +2,40 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import GoogleSignIn from './firebase/GoogleSignIn';
+import GoogleSignIn from './firebase/googleSignIn';
+import Typography from '@mui/material/Typography';
 
 import lightDarkToggle from '../lib/lightDarkToggle.js';
 
 import { signIn } from './firebase/firebaseAuth';
 
-export function SplashPage({ email, setEmail, setName}) {
+export function SplashPage({ email, setEmail, setName }) {
 
   const navigate = useNavigate();
 
+  const slogans = [
+    "Your guide to caffeine happiness",
+    "Discover a brew near you",
+    "Finding your perfect cup, one shop at a time",
+    "Uncover the best brews in town",
+    "Savor the flavor of local coffee spots",
+    "Coffee shops found in a snap",
+    "One stop for the top coffee spots",
+    "Tailoring your coffee trail",
+    "Navigate the coffee landscape with ease",
+    "Turning coffee dreams into reality",
+    "Finding your coffee haven, one tap at a time",
+    "Coffee discovery, simplified",
+    "Where every search leads to a great cup",
+    "Meet your matcha... and latte, and more",
+    "Roam the city, sip the best",
+    "Craft your coffee experience",
+    "Explore. Sip. Enjoy",
+    "Your companion in coffee exploration",
+    "Find the buzz you'll love"
+  ];
+
+  const [randomSlogan, setRandomSlogan] = useState('');
   const [userId, setUserId] = useState(0);
   const [password, setPassword] = useState('');
   const [theme, setTheme] = useState(false);
@@ -44,10 +68,19 @@ export function SplashPage({ email, setEmail, setName}) {
     lightDarkToggle(theme);
   }, [theme]);
 
+  useEffect(() => {
+    const slogan = slogans[Math.floor(Math.random() * slogans.length)];
+    setRandomSlogan(slogan);
+  })
+
   return (
     <>
       <div className="splash-center">
         <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => { setTheme(!theme) }} />
+        <br />
+        <Typography variant="subtitle1">
+          {randomSlogan}
+        </Typography>
         <div className="splash-container">
           <form onSubmit={handleLoginFormSubmit} className="splash-form">
             <input className="splash-input-fields"

@@ -18,10 +18,10 @@ function GoogleSignIn({ setEmail, setName }) {
           callback: handleCallbackResponse
         });
 
-        // google.accounts.id.renderButton(
-        //   signInDiv.current,
-        //   { theme: "filled", size: "medium" }
-        // );
+        google.accounts.id.renderButton(
+          signInDiv.current,
+          { theme: "filled", size: "medium" }
+        );
         google.accounts.id.prompt(); // also display the One Tap dialog
       }
     }
@@ -65,21 +65,20 @@ function GoogleSignIn({ setEmail, setName }) {
               }
             })
             .catch((err) => {
-              console.log(err.response);
+              console.error(err.response);
               if (err.response.data.message) {
                 alert(err.response.data.message);
               }
             });
         } else if (response.status === 201) {
           // User exists, log in the existing user
-          console.log(email, username)
           setEmail(email);
           setName(username);
           navigate('/home');
         }
       })
       .catch((err) => {
-        console.log(err.response);
+        console.error(err.response);
         if (err.response.data.message) {
           alert(err.response.data.message);
         }
