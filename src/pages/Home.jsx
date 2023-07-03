@@ -11,6 +11,8 @@ import Map from './Map/Map.jsx'
 import { logout, getCurrentUser } from './firebase/firebaseAuth';
 
 export function Home({ loggedEmail, loggedName, setEmail, setName }) {
+
+
   const [currentUser, setCurrentUser] = useState({ email: '', name:'' })
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
       fetchUser();
     }
   }, [])
-  console.log('current user useEffect: ', currentUser)
+  // console.log('current user useEffect: ', currentUser)
 
   const handleLogoutClick = (e) => {
     setEmail(null)
