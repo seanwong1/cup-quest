@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { getUser, getAllUsers, addFriend, removeFriend, getFriends } from '../../database/controllers/user.js';
+import { getUser, getUserByEmail, getAllUsers, addFriend, removeFriend, getFriends } from '../../database/controllers/user.js';
 
 router.get('/all', async (req, res) => {
   return await getAllUsers()

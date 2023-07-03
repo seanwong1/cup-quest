@@ -51,7 +51,7 @@ app.get("/", function (req, res) {
 app.use('/user', user);
 app.use('/shops', overview);
 
-app.post('/register', async function(req, res) {
+app.post('/register', async function (req, res) {
   const { username, email, phone, picture } = req.body;
 
   try {
@@ -99,12 +99,26 @@ app.post('/validateOnClick', async function (req, res) {
   res.status(200).send();
 });
 
+app.get('/userLogin/:email', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (user) {
+      let firstName = user.name.split(' ')[0];
+      res.json({ email: user.email, name: firstName });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.get('/reviews', (req, res) => {
   const shop = req.body.shop === undefined ? 0 : req.body.shop;
-  Review.find({shop: shop}).sort({createdAt: 'desc'})
-  .then((results) => {
-    res.status(200).send(results);
-  })
+  Review.find({ shop: shop }).sort({ createdAt: 'desc' })
+    .then((results) => {
+      res.status(200).send(results);
+    })
 })
 
 app.post('/reviews', (req, res) => {
@@ -141,13 +155,13 @@ app.put('/reviews', (req, res) => {
     query[remove] = removeAmount;
   }
 
-  Review.updateOne({_id: reviewId}, {$set: query})
-  .then((results) => {
-    res.sendStatus(204);
-  })
-  .catch((err) => {
-    res.status(500).send(err)
-  })
+  Review.updateOne({ _id: reviewId }, { $set: query })
+    .then((results) => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      res.status(500).send(err)
+    })
 })
 // app.get('/ratings', (req, res) => {
 //   getDrinkRatings(req, res);
