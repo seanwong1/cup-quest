@@ -12,7 +12,6 @@ import { logout, getCurrentUser } from './firebase/firebaseAuth';
 
 export function Home({ loggedEmail, loggedName, setEmail, setName }) {
 
-
   const [currentUser, setCurrentUser] = useState({ email: '', name:'' })
 
   useEffect(() => {

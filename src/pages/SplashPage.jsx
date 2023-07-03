@@ -27,7 +27,7 @@ export function SplashPage({ email, setEmail, setName }) {
     "Finding your coffee haven, one tap at a time",
     "Coffee discovery, simplified",
     "Where every search leads to a great cup",
-    "Meet your matcha... and latte, espresso, and more",
+    "Meet your matcha... and latte, and more",
     "Roam the city, sip the best",
     "Craft your coffee experience",
     "Explore. Sip. Enjoy",
