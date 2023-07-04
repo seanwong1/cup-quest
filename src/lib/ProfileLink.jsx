@@ -6,6 +6,7 @@ const ProfileLink = (props) => {
   return (
     <Link to={{
       pathname: `/user/${props.name}`,
+      state: {nanme: props.name}
     }}>
       <div className="profile-name" >{props.name}</div>
     </Link>
