@@ -102,9 +102,15 @@ app.post('/validateOnClick', async function (req, res) {
 app.get('/userLogin/:email', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.email });
+    console.log('------>', user)
     if (user) {
       let firstName = user.name.split(' ')[0];
-      res.json({ email: user.email, name: firstName });
+      res.json({
+        email: user.email,
+        name: firstName,
+        picture: user.picture,
+        bio: user.bio
+      });
     } else {
       res.status(404).json({ message: 'User not found' });
     }

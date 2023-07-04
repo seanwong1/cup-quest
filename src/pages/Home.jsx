@@ -10,9 +10,9 @@ import Map from './Map/Map.jsx'
 
 import { logout, getCurrentUser } from './firebase/firebaseAuth';
 
-export function Home({ loggedEmail, loggedName, setEmail, setName }) {
+export function Home({ loggedEmail, loggedName, loggedPicture, setEmail, setName }) {
 
-  const [currentUser, setCurrentUser] = useState({ email: '', name:'' })
+  const [currentUser, setCurrentUser] = useState({ email: '', name:'', picture:'' })
 
   useEffect(() => {
     async function fetchUser() {
@@ -22,7 +22,7 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
     }
 
     if (loggedEmail && loggedName) {
-      setCurrentUser({ email: loggedEmail, name: loggedName })
+      setCurrentUser({ email: loggedEmail, name: loggedName, picture: loggedPicture })
     } else {
       fetchUser();
     }
