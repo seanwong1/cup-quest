@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   phone: { type: String },
   picture: { type: String },
+  bio: {type: String },
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId,

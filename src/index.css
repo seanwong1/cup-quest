@@ -15,7 +15,7 @@
 
 .reviewsEntry {
   display: inline-block;
-  border: 1px solid #542a1b;
+  border: 2px solid #542a1b;
   border-radius: 10px;
   min-width: 101%;
   max-width: 101%;
@@ -30,7 +30,7 @@
   margin: -10px 0 0 13px;
 }
 
-.reviewsUsername {
+.profile-name {
   margin: 23px 0% 0% 106px;
 }
 
@@ -94,12 +94,21 @@
 
 #reviewList {
   margin: 0 4px 0 0;
-  left: 7.5%;
+  left: 0px;
   position: relative;
 }
 
 #postReviewDrinkOptions {
   margin: 0 5px 0 5px;
+  color: #542a1b;
+  border-radius: 5px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+}
+
+.postReview {
+  border: 1px solid #542a1b;
+  border-radius: 10px;
 }
 
 .rate {
@@ -124,6 +133,10 @@
   min-width: 75px;
   max-width: 6%;
   position: relative;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
+  border-radius: 5px;
 }
 
 #reviewForm {
@@ -144,11 +157,17 @@
 .likeButton {
   height: 37px;
   width: 48px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+  border-radius: 5px;
 }
 
 .dislikeButton {
   height: 37px;
   width: 48px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+  border-radius: 5px;
 }
 
 .likeButtonContainer {
@@ -357,7 +376,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .splash-form {
@@ -385,7 +404,9 @@
   padding: 10px 15px;
   font-size: 14px;
   border: none;
-  color: #fff;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -447,7 +468,9 @@
   padding: 10px 15px;
   font-size: 14px;
   border: none;
-  color: #fff;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
   cursor: pointer;
   border-radius: 5px;
 }

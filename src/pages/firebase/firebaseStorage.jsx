@@ -26,10 +26,9 @@ export async function saveProfilePicture(email, fileName, file) {
     const snapshot = await uploadBytes(storageRef, file);
     const downloadUrl = await getDownloadURL(snapshot.ref);
 
-    console.log('Profile picture saved');
     return downloadUrl;
   } catch (err) {
-    console.log('Error saving profile picture', err);
+    console.error('Error saving profile picture', err);
     return null;
   }
 }
