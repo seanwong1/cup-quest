@@ -98,6 +98,7 @@ app.post('/validateOnClick', async function (req, res) {
 
   res.status(200).send();
 });
+//~~~~~~~~~~~~~~~~~~~~~~~~~~ DAVID C. NEEDS THIS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 app.get('/userLogin/:email', async (req, res) => {
   try {
