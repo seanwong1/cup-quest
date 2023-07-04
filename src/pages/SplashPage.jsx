@@ -9,8 +9,7 @@ import lightDarkToggle from '../lib/lightDarkToggle.js';
 
 import { signIn } from './firebase/firebaseAuth';
 
-export function SplashPage({ email, setEmail, setName }) {
-
+export function SplashPage({ email, setEmail, setName, setPicture }) {
   const navigate = useNavigate();
 
   const slogans = [
@@ -71,7 +70,7 @@ export function SplashPage({ email, setEmail, setName }) {
   useEffect(() => {
     const slogan = slogans[Math.floor(Math.random() * slogans.length)];
     setRandomSlogan(slogan);
-  })
+  }, [])
 
   return (
     <>
@@ -113,7 +112,7 @@ export function SplashPage({ email, setEmail, setName }) {
           </form>
         </div>
         <br />
-        <GoogleSignIn setEmail={setEmail} setName={setName} />
+        <GoogleSignIn setEmail={setEmail} setName={setName} setPicture={setPicture}/>
         <Link to={{
           pathname: '/home',
           state: { userId: userId, setUserId: setUserId }
