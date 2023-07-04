@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { getCurrentUser } from './firebaseAuth';
 
-function GoogleSignIn({ setEmail, setName }) {
+function GoogleSignIn({ setEmail, setName, setPicture }) {
   const navigate = useNavigate();
   const signInDiv = useRef(null);
 
@@ -61,25 +61,27 @@ function GoogleSignIn({ setEmail, setName }) {
               if (response.status === 200) {
                 setEmail(email);
                 setName(username);
+                setPicture(picture);
                 navigate('/home');
               }
             })
             .catch((err) => {
-              console.log(err.response);
+              console.error(err.response);
               if (err.response.data.message) {
                 alert(err.response.data.message);
               }
             });
         } else if (response.status === 201) {
           // User exists, log in the existing user
-          console.log(email, username)
+          console.log(email, username, picture)
           setEmail(email);
           setName(username);
+          setPicture(picture);
           navigate('/home');
         }
       })
       .catch((err) => {
-        console.log(err.response);
+        console.error(err.response);
         if (err.response.data.message) {
           alert(err.response.data.message);
         }

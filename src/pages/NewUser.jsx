@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { createUser, getCurrentUser } from './firebase/firebaseAuth';
 import { saveProfilePicture } from './firebase/firebaseStorage';
-import GoogleSignIn from './firebase/GoogleSignIn';
+import GoogleSignIn from './firebase/googleSignIn';
 
 export function NewUser() {
   const navigate = useNavigate();
