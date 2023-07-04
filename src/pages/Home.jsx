@@ -47,7 +47,7 @@ export function Home({ loggedEmail, loggedName, loggedPicture, setEmail, setName
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
-      <Link to={`/user/${currentUser.name}/friends`}>
+      <Link to={`/user/${currentUser.name}/friends` } state={{ currentUser: currentUser }}>
         <button>Friends</button>
       </Link>
       <Link to='/user' state={{ currentUser: currentUser }}>
