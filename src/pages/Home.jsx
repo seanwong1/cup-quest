@@ -50,7 +50,7 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
       <Link to='/user/Sean/friends' state={{ currentUser: currentUser }}>
         <button>Friends</button>
       </Link>
-      <Link to='/user' state={{ currentUser: currentUser }}>
+      <Link to={`/user/${currentUser.name}`} state={{ currentUser: currentUser }}>
         <button>User Profile</button>
       </Link>
     </>
