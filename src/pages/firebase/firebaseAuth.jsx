@@ -22,15 +22,26 @@ const auth = getAuth(app);
 
 export async function logout() {
   await signOut(auth);
-  console.log('Logged out')
+  // console.log('Logged out')
 }
 
 export async function signIn(email, password) {
   await signInWithEmailAndPassword(auth, email, password);
-  console.log('Logged in: ', email)
+  // console.log('Logged in: ', email)
 }
 
 export async function createUser(email, password) {
   await createUserWithEmailAndPassword(auth, email, password)
-  console.log('User created: ', email)
+  // console.log('User created: ', email)
+}
+
+export function getCurrentUser() {
+  const user = auth.currentUser;
+  if (user) {
+    // console.log('Currently logged in user: ', user.email);
+    return user;
+  } else {
+    console.error('No user is currently logged in');
+    return null;
+  }
 }
