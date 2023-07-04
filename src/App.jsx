@@ -4,9 +4,12 @@ import { NewUser } from "./pages/NewUser";
 import { Home } from "./pages/Home";
 import { SplashPage } from "./pages/SplashPage";
 import { ShopOverview } from "./pages/ShopOverview";
+import ChatMain from "./pages/ChatMain.jsx";
 import UserProfile from "./lib/UserProfile.jsx";
 import FriendsList from "./pages/FriendsList.jsx";
+import socketIO from 'socket.io-client';
 
+const socket = socketIO.connect('http://localhost:3000');
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
   const [email, setEmail] = useState('');
@@ -21,6 +24,7 @@ function App() {
         <Route path="/overview" element={<ShopOverview userId={userId} setUserId={setUserId} />} />
         <Route path="/user/:name" element={<UserProfile isUser={true} />} />
         <Route path="/user/:name/friends" element={<FriendsList />} />
+        <Route path="chat" element={<ChatMain socket={socket} />} />
       </Routes>
     </>
   )

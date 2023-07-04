@@ -8,12 +8,15 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 import compression from 'compression';
+import http from 'http';
+import { Server } from 'socket.io';
 
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
 import { User } from '../database/models/user.js'
 import { Review } from '../database/models/review.js'
 // EXPRESS ROUTES
+import chat from './routes/chat.js';
 import user from './routes/user.js';
 import overview from './routes/overview.js';
 
@@ -21,7 +24,6 @@ import overview from './routes/overview.js';
 import '../database/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-//all this work just for __dirname in es6
 const app = express();
 
 app.use(compression());
@@ -46,7 +48,7 @@ app.get("/", function (req, res) {
 })
 
 // routes go here
-
+app.use('/chat', chat);
 app.use('/user', user);
 app.use('/shops', overview);
 
@@ -158,8 +160,20 @@ app.put('/reviews', (req, res) => {
 
 // eslint-disable-next-line no-undef
 const port = process.env.PORT;
-app.listen(port, () => {
+const server = http.createServer(app).listen(port, () => {
   console.log('listening on port', port);
   console.log(`Go to http://localhost:${port} for more details`)
 });
 
+const io = new Server(server);
+io.on('connection', (socket) => {
+  console.log(`user connected ${socket.id}`);
+  socket.on('send_message', (data) => {
+    const { message, messageSentAt } = data;
+    console.log(data)
+    io.emit('receive_message', data);
+  });
+  socket.on('disconnect', (socket) => {
+    console.log(`user disconnected ${socket.id}`);
+  })
+});

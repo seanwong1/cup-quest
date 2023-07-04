@@ -23,8 +23,7 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
     } else {
       fetchUser();
     }
-  }, [])
-  console.log('current user useEffect: ', currentUser)
+  }, []);
 
   const handleLogoutClick = (e) => {
     setEmail(null)
@@ -42,11 +41,14 @@ export function Home({ loggedEmail, loggedName, setEmail, setName }) {
       <Link to='/'>
         <button onClick={handleLogoutClick}>Logout</button>
       </Link>
-      <Link to='/user/Sean/friends'>
+      <Link to={`/user/${currentUser.name}/friends`}>
         <button>Friends</button>
       </Link>
       <Link to='/user' state={{ currentUser: currentUser }}>
         <button>User Profile</button>
+      </Link>
+      <Link to='/chat' state={{ currentUser: currentUser }}>
+        <button>Chat</button>
       </Link>
       <Map />
     </>
