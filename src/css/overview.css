@@ -13,6 +13,7 @@
 .overview_contact--address {
   float: left;
   padding-bottom: 10px;
+  justify-content: center;
 }
 
 .overview_menu {
@@ -59,8 +60,13 @@
   margin: 0;
 }
 
-
 .overview_hours {
   display: inline-block;
   /* float: left; */
+}
+
+.overview_map {
+  height: '30vh';
+  width: '50%';
+  margin-bottom: '10px';
 }
