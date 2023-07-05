@@ -7,15 +7,16 @@ import { ShopOverview } from "./pages/ShopOverview";
 import ChatMain from "./pages/ChatMain.jsx";
 import UserProfile from "./lib/UserProfile.jsx";
 import FriendsList from "./pages/FriendsList.jsx";
-import socketIO from 'socket.io-client';
+import io from 'socket.io-client';
 
-const socket = socketIO.connect('http://localhost:3000');
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('')
   const [picture, setPicture] = useState('');
   const [bio, setBio] = useState('I love Coffee');
+
+  const socket = io.connect('http://localhost:3000');
 
   return (
     <>

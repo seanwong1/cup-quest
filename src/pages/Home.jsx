@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { Link, Routes, Route } from 'react-router-dom'
 import Typography from '@mui/material/Typography';

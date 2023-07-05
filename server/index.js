@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config'
@@ -186,14 +185,32 @@ const server = http.createServer(app).listen(port, () => {
 });
 
 const io = new Server(server);
+
+const USER_LIST = {};
+
 io.on('connection', (socket) => {
-  console.log(`user connected ${socket.id}`);
-  socket.on('send_message', (data) => {
-    const { message, messageSentAt } = data;
-    console.log(data)
-    io.emit('receive_message', data);
+  socket.on('register', (username) => {
+    socket.username = username;
+    USER_LIST[username] = socket;
   });
+
+  socket.on('private_message', (data) => {
+    const to = data.to;
+    const text = data.text;
+    const timeStamp = data.timeStamp;
+    const username = data.username;
+
+    if (USER_LIST[to]) {
+      USER_LIST[to].emit('private_message', {
+        to, text, timeStamp, username, self: false
+      });
+      USER_LIST[username].emit('private_message', {
+        to, text, timeStamp, username, self: true
+      });
+    }
+  });
+
   socket.on('disconnect', (socket) => {
     console.log(`user disconnected ${socket.id}`);
-  })
+  });
 });
