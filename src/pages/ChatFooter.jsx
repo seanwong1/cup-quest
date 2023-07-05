@@ -1,14 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const ChatFooter = ({ socket }) => {
+const ChatFooter = ({ socket, currentUser, currentChat }) => {
   const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     if (text !== '') {
       const timeStamp = Date.now();
+      const username = currentUser.name;
       e.preventDefault();
-      socket.emit('send_message', { text, timeStamp });
+      socket.emit('private_message', {
+        to : currentChat,
+        username, text, timeStamp
+      });
       setText('');
     }
   }
