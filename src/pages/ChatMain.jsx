@@ -18,17 +18,22 @@ const ChatMain = ({ socket }) => {
     socket.emit('register', location.state.currentUser.name);
 
     socket.on('private_message', (data) => {
-      if (!chats[data.username]) {
-        chats[data.username] = [];
-      }
       var currentMessages;
       if (data.self) {
+        if (!chats[data.to]) {
+          chats[data.to] = [];
+        }
         currentMessages = chats[data.to];
+        currentMessages.push(data);
+        setChats({...chats, [data.to]: currentMessages});
       } else {
+        if (!chats[data.username]) {
+          chats[data.username] = [];
+        }
         currentMessages = chats[data.username];
+        currentMessages.push(data);
+        setChats({...chats, [data.username]: currentMessages});
       }
-      currentMessages.push(data);
-      setChats({...chats, [data.username]: currentMessages});
     });
   }, [socket]);
 
