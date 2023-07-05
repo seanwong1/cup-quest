@@ -8,6 +8,7 @@ import ChatMain from "./pages/ChatMain.jsx";
 import UserProfile from "./lib/UserProfile.jsx";
 import FriendsList from "./pages/FriendsList.jsx";
 import io from 'socket.io-client';
+const APP_URL = import.meta.env.VITE_APP_URL;
 
 function App() {
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
@@ -16,7 +17,8 @@ function App() {
   const [picture, setPicture] = useState('');
   const [bio, setBio] = useState('I love Coffee');
 
-  const socket = io.connect('http://localhost:3000');
+  // eslint-disable-next-line no-undef
+  const socket = io.connect(APP_URL);
 
   return (
     <>
