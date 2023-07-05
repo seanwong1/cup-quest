@@ -27,7 +27,6 @@ export function Home({ loggedEmail, loggedName, loggedPicture, setEmail, setName
       fetchUser();
     }
   }, [])
-  // console.log('current user useEffect: ', currentUser)
 
   const handleLogoutClick = (e) => {
     setEmail(null)
