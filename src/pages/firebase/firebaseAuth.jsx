@@ -41,7 +41,7 @@ export function getCurrentUser() {
     // console.log('Currently logged in user: ', user.email);
     return user;
   } else {
-    console.log('No user is currently logged in');
+    console.error('No user is currently logged in');
     return null;
   }
 }
