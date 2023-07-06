@@ -44,7 +44,7 @@ export const Review = ({ shopId, userId}) => {
   }
   return (
     <div id='reviewsSection'>
-      <ReviewPost getReviews={getReviews} filtered={filtered} setFiltered={setFiltered} shop={shopId} reviewList={reviewList} setReviewList={setReviewList} userId={userId}/>
+      <ReviewPost getReviews={getReviews} filtered={filtered} setFiltered={setFiltered} shop={props.shop} reviewList={reviewList} setReviewList={setReviewList} userId={props.userId} getAverages={props.getAverages}/>
       <ReviewList reviewList={reviewList}  filtered={filtered} setFiltered={setFiltered} setReviewList={setReviewList} reviewContent={reviewContent} setReviewContent={setReviewContent} starting={starting} setStarting={setStarting}/>
     </div>
   )
