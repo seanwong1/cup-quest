@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone as phone } from '@fortawesome/free-solid-svg-icons';
 
 import ShopMenu from './ShopMenu.jsx';
 import { testShop } from './overview_mock';
@@ -13,7 +15,7 @@ const API = import.meta.env.VITE_MAP_API_KEY;
 // import latte3 from '../../assets/latte3.jpg';
 // import latte4 from '../../assets/latte4.jpg';
 
-const ShopInformation = ({ shopId }) => {
+const ShopInformation = ({ shopId, ratingsByDrink }) => {
 
   const [ photos, setPhotos ] = useState([]);
   const [ shop, setShop ] = useState(testShop);
@@ -38,13 +40,13 @@ const ShopInformation = ({ shopId }) => {
   let dayKey = 100;
   const parseDay = (dayAsNumber) => {
     var daysAsWords = {
-      0: 'Monday',
-      1: 'Tuesday',
-      2: 'Wednesday',
-      3: 'Thursday',
-      4: 'Friday',
-      5: 'Saturday',
-      6: 'Sunday'
+      0: 'Mon:',
+      1: 'Tues:',
+      2: 'Wed:',
+      3: 'Thurs:',
+      4: 'Fri:',
+      5: 'Sat:',
+      6: 'Sun:'
     };
     return daysAsWords[dayAsNumber];
   }
@@ -88,18 +90,20 @@ const ShopInformation = ({ shopId }) => {
               return (<div key={dayKey}>{addressLine}</div>)
             })}
           </span>
-          <span className="overview_contact--phone">
+          <div className="overview_contact--phone">
+            <FontAwesomeIcon icon={phone} />
+            {' '}
             {shop.display_phone}
-          </span>
+          </div>
           <div className="overview_map" style={{
-            height: '20vh',
-            width: '50%',
+            height: '15vh',
+            width: '45%',
             marginBottom: '10px',
             float: 'right',
           }}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: API }}
-              defaultZoom={15}
+              defaultZoom={13}
               center={{
                 lat: shop.coordinates.latitude,
                 lng: shop.coordinates.longitude
@@ -117,12 +121,23 @@ const ShopInformation = ({ shopId }) => {
         <div className="overview_hours">
           {shop.hours[0].open.map((day) => {
             return (<div key={day.day}>
-              {`${parseDay(day.day)}: ${parseHours(day.start)} to ${parseHours(day.end)}`}
+              <span className="overview_hours--day">
+                {`${parseDay(day.day)}`}
+              </span>
+              <span className="overview_hours--times">
+                {`${parseHours(day.start)} to ${parseHours(day.end)}`}
+              </span>
+              {/* {`${parseDay(day.day)}: ${parseHours(day.start)} to ${parseHours(day.end)}`} */}
             </div>)
           })}
         </div>
         <h3 className="overview_menu--title">Menu Items & Ratings</h3>
-        <ShopMenu menu={menu} rating={shop.rating}/>
+        <ShopMenu
+          menu={menu}
+          avgRating={shop.rating}
+          shopId={shopId}
+          ratingsByDrink={ratingsByDrink}
+        />
       </div>
     )
   }

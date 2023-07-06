@@ -1,19 +1,26 @@
-.overview_info {
-  margin: 20px;
+.overview_header {
+  margin: 2%;
+  position: relative;
 }
 
 .overview_contact {
   margin-bottom: 10px;
+  position: relative;
+  font-weight: bolder;
+  /* text-align: center; */
 }
 
 .overview_contact--phone {
-  float: right;
+  float: left;
+  position: absolute;
+  display: block;
 }
 
 .overview_contact--address {
   float: left;
-  padding-bottom: 10px;
-  justify-content: center;
+  padding-bottom: 5%;
+  /* justify-content: center; */
+  transform: translateY(50%);
 }
 
 .overview_menu {
@@ -22,10 +29,14 @@
   overflow-y: scroll;
   display: block;
   padding-top: 10px;
+  border: solid #95a2a5;
+  border-radius: 10px;
+  padding: 2%;
 }
 
 .overview_menu--title {
   float: center;
+  text-align: center;
 }
 
 .overview_menuItem--rating {
@@ -63,10 +74,31 @@
 .overview_hours {
   display: inline-block;
   /* float: left; */
+  font-weight: bolder;
+  width: 100%;
+  border-top: solid #95a2a5;
+  border-bottom: solid #95a2a5;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.overview_hours--day {
+  float: left;
+  display: block;
+  margin-right: 30%;
+}
+
+.overview_hours--times {
+  float: right;
 }
 
 .overview_map {
-  height: '30vh';
-  width: '50%';
+  height: '15vh';
+  width: '45%';
   margin-bottom: '10px';
+  float: right;
+}
+
+.overview_title {
+  border-bottom: solid #95a2a5;
 }
