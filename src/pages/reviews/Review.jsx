@@ -16,13 +16,13 @@ export const Review = ({ shopId, userId}) => {
   useEffect(() => {
     getReviews();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [shopId])
 
   const getReviews = () => {
     console.log('la shop: ', shopId);
     const options = {
       method: 'GET',
-      url: `/reviews/${shopId}`
+      url: `/reviews/:${shopId}`,
     }
     axios(options)
       .then((results) => {

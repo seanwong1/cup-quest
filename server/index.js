@@ -120,8 +120,10 @@ app.get('/userLogin/:email', async (req, res) => {
 });
 
 app.get('/reviews/:id', (req, res) => {
-  console.log(req.params);
-  const shop = req.params.id;
+  console.log('body: ', req.body);
+  console.log('params: ', req.params);
+  console.log('query: ', req.query)
+  const shop = req.params.id ? req.params.id : 0;
   Review.find({shop: shop}).sort({createdAt: 'desc'})
   .then((results) => {
     res.status(200).send(results);
