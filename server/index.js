@@ -99,8 +99,9 @@ app.post('/validateOnClick', async function (req, res) {
   res.status(200).send();
 });
 
-app.get('/reviews', (req, res) => {
-  const shop = req.body.shop === undefined ? 0 : req.body.shop;
+app.get('/reviews/:id', (req, res) => {
+  console.log(req.params);
+  const shop = req.params.id;
   Review.find({shop: shop}).sort({createdAt: 'desc'})
   .then((results) => {
     res.status(200).send(results);

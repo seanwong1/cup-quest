@@ -20,7 +20,7 @@ export const ShopOverview = (props) => {
         <button className='button_logout'>Logout</button>
       </Link>
       <ShopInformation shopId={location.state.shopId} />
-      <Review shop={location.state.shopId} userId={props.userId}/>
+      <Review shopId={location.state.shopId} userId={location.state.userId}/>
     </div>
   )
 }

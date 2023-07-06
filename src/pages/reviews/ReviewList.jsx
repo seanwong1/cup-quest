@@ -62,7 +62,7 @@ export const ReviewList = (props) => {
       )
     }
   }
-  if (filteredReviews.length === 0) {
+  if (props.reviewList.length === 0) {
     return (
       <div className='noReviewsYet'>No Reviews Yet!</div>
     )
