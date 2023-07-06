@@ -6,7 +6,7 @@ import { ReviewList } from './ReviewList.jsx';
 import { ReviewEntry } from './ReviewEntry.jsx';
 /* eslint-disable react/prop-types */
 
-export const Review = ({ shopId, userId}) => {
+export const Review = ({ shopId, userId, getAverages }) => {
   const [reviewList, setReviewList] = useState([]);
   const [reviewContent, setReviewContent] = useState([]);
   const [filtered, setFiltered] = useState(false);
@@ -22,7 +22,7 @@ export const Review = ({ shopId, userId}) => {
     console.log('la shop: ', shopId);
     const options = {
       method: 'GET',
-      url: `/reviews/:${shopId}`,
+      url: `/reviews/${shopId}`,
     }
     axios(options)
       .then((results) => {
@@ -44,7 +44,7 @@ export const Review = ({ shopId, userId}) => {
   }
   return (
     <div id='reviewsSection'>
-      <ReviewPost getReviews={getReviews} filtered={filtered} setFiltered={setFiltered} shop={props.shop} reviewList={reviewList} setReviewList={setReviewList} userId={props.userId} getAverages={props.getAverages}/>
+      <ReviewPost getReviews={getReviews} filtered={filtered} setFiltered={setFiltered} shop={shopId} reviewList={reviewList} setReviewList={setReviewList} userId={userId} getAverages={getAverages}/>
       <ReviewList reviewList={reviewList}  filtered={filtered} setFiltered={setFiltered} setReviewList={setReviewList} reviewContent={reviewContent} setReviewContent={setReviewContent} starting={starting} setStarting={setStarting}/>
     </div>
   )
