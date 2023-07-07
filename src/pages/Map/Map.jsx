@@ -24,7 +24,7 @@ const Map = () => {
   const [selectedShopId, setSelectedShopId] = useState(null);
   const [markerClicked, setMarkerClicked] = useState(false);
 
-  const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
+  const [userId, setUserId] = useState('64a5927b3665bd14af9fa491');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
