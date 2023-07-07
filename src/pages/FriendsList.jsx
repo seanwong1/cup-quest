@@ -29,6 +29,7 @@ const FriendsList = (props) => {
 
   return (
     <div className="friends">
+      <img src="../../logo-no-background.svg" alt="CupQuest Logo" className="profile-logo" ></img>
       <h1>Friends</h1>
         {friends.map((friend) => {
           return (

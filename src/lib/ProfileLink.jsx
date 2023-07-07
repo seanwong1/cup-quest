@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const ProfileLink = ({ name, currentUser }) => {
   return (
     <Link to={{pathname: `/user/${name}`}} state={{ currentUser: currentUser }}>
-      <div className="profile-name" >{name}</div>
+      <div className="friend-profile-name" >{name}</div>
     </Link>
   )
 }
