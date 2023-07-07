@@ -19,6 +19,8 @@ export function Home({ loggedEmail, loggedName, loggedPicture, setEmail, setName
       const user = getCurrentUser();
       const response = await axios.get(`/userLogin/${user.email}`)
       setCurrentUser(response.data);
+      localStorage.setItem('inUser', JSON.stringify(response.data));
+      console.log(window.localStorage.inUser)
     }
 
     if (loggedEmail && loggedName) {
@@ -50,7 +52,7 @@ export function Home({ loggedEmail, loggedName, loggedPicture, setEmail, setName
       <Link to='/user/Sean/friends' state={{ currentUser: currentUser }}>
         <button>Friends</button>
       </Link>
-      <Link to='/user' state={{ currentUser: currentUser }}>
+      <Link to= {`/user/${currentUser.name}`} state={{ currentUser: currentUser }}>
         <button>User Profile</button>
       </Link>
       <Map />

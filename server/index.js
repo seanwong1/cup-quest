@@ -107,10 +107,12 @@ app.get('/userLogin/:email', async (req, res) => {
     if (user) {
       let firstName = user.name.split(' ')[0];
       res.json({
+        _id: user._id,
         email: user.email,
         name: firstName,
         picture: user.picture,
-        bio: user.bio
+        bio: user.bio,
+        friends: user.friends
       });
     } else {
       res.status(404).json({ message: 'User not found' });

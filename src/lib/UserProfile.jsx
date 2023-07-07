@@ -10,17 +10,24 @@ const UserProfile = (props) => {
   const [isUser, setIsUser] = useState(false);
   const [profile, setProfile] = useState({});
   const { name } = useParams();
-  console.log('this name', name)
 
   const location = useLocation();
-  console.log('Use Location Hook: ', location);
-  console.log('Use Location State: ', location.state?.currentUser);
+  //console.log('Use Location Hook: ', location);
+  //console.log('Use Location State: ', location.state?.currentUser);
 
   useEffect(() => {
-    requestHandler(`/user/:${name}`, null, 'get', (response) => {
+    const user = JSON.parse(localStorage.getItem('inUser'));
+    if(name === user.name) {
+      setIsUser(true);
+      setProfile(user);
+    } else {
+    requestHandler(`/user/${name}`, null, 'get', (response) => {
       setProfile(response.data);
-      console.log(response.data)
+      setIsUser(false);
     });
+    }
+
+
   }, [name]);
 
   return (
@@ -29,14 +36,19 @@ const UserProfile = (props) => {
     // whereas friend profile has add/remove friend button
     // accepts props.isUser and conditionally renders button
     <div className="profile">
-      <img src="../logo-no-background.svg" alt="CupQuest Logo" className="profile-logo" ></img>
+      <div className='upperRibbon'>
+      <Link to='/home'> <button className='ribbonButton'>Home</button> </Link>
+        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="profile-logo" ></img>
+        <Link to='/'> <button className='ribbonButton'>Logout</button> </Link>
+      </div>
+
       <div className='profile-info'>
         <div className='profile-picture'>
-          <img className='profile-pic' src={profile.picture} alt=''></img>
+          <img className='profile-pic' src={profile.picture} alt={'UPLOAD'}></img>
         </div>
         <div className="profile-text">
           <div className='profile-username'><h4>{profile.name}</h4></div>
-          <div className='profile-biography'><p>I love coffee so much</p></div>
+          <div className='profile-biography'><p>{profile.bio}</p></div>
         </div>
       </div>
       <div className="buttons">

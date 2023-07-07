@@ -63,7 +63,7 @@ export const Dislike = (props) => {
   }
 }
 
-export const onClick = (reviewId, react1, react2, num1, num2, toggle, setToggle) => {
+ export const onClick = (reviewId, react1, react2, num1, num2, toggle, setToggle) => {
   var current = localStorage.getItem(reviewId);
   if (current === react1) {
     localStorage.removeItem(reviewId);
