@@ -1,0 +1,55 @@
+html {
+  background-color: var(--white);
+  max-width: 960px;
+}
+
+.chat {
+  display: flex;
+  flex: 1;
+  height: 720px;
+}
+
+.chat-main {
+  width: 70%;
+  height: 720px;
+}
+
+.chat-side {
+  height: 720px;
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  overflow-x: hidden;
+}
+
+.chat-body {
+  height: 95%;
+}
+
+.chat-footer {
+  height: 5%;
+  vertical-align: bottom;
+}
+
+.selected {
+  background-color: var(--orange);
+  color: var(--tan);
+}
+
+.not-selected {
+  background-color: var(--tan);
+}
+
+.chat-message-username {
+  color: var(--dark-brown);
+}
+
+.chat-message-timestamp {
+  color: var(--orange);
+}
+
+.chat-message-message {
+  color: var(--orange);
+}

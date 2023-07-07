@@ -49,7 +49,7 @@ const ChatMain = ({ socket }) => {
 
   return (
     <div className='chat'>
-      <ChatSide socket={socket} friends={friends} currentUser={location.state.currentUser} setCurrentChat={setCurrentChat} />
+      <ChatSide socket={socket} friends={friends} currentUser={location.state.currentUser} setCurrentChat={setCurrentChat} currentChat={currentChat} />
       <div className='chat-main'>
         <ChatBody socket={socket} currentUser={location.state.currentUser} messages={chats[currentChat]} />
         <ChatFooter socket={socket} currentUser={location.state.currentUser} currentChat={currentChat} />
