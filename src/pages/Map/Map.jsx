@@ -11,11 +11,7 @@ import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
 import { Link, Routes, Route } from 'react-router-dom';
 import { ShopOverview } from "../ShopOverview";
 
-
-
 const API = import.meta.env.VITE_MAP_API_KEY;
-
-
 
 const Map = () => {
   const [lat, setLat] = useState(34.03534719240222);
@@ -23,14 +19,16 @@ const Map = () => {
   const [shops, setShops] = useState([]);
   const [selectedShopId, setSelectedShopId] = useState(null);
   const [markerClicked, setMarkerClicked] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   const [userId, setUserId] = useState('64a5927b3665bd14af9fa491');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // setLat(position.coords.latitude);
-        // setLng(position.coords.longitude);
+        setLat(position.coords.latitude);
+        setLng(position.coords.longitude);
         setShops(testData.businesses);
         setSelectedShopId(null);
         setMarkerClicked(false);
@@ -42,19 +40,44 @@ const Map = () => {
   }, []);
 
   const handleAddressChange = (event) => {
-    // Handle address change here
+    setSearchQuery(event.target.value);
+  };
+  
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   const handleSearch = () => {
-    // Handle search button click here
+    // Use the searchQuery state to fetch the location data from the Geocoding API
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchQuery)}&key=${API}`)
+      .then(response => response.json())
+      .then(data => {
+        // Check if the API returned any results
+        if (data.status === 'OK' && data.results.length > 0) {
+          const { lat, lng } = data.results[0].geometry.location;
+          setLat(lat);
+          setLng(lng);
+          setShops(testData.businesses);
+          setSelectedShopId(null);
+          setMarkerClicked(false);
+        } else {
+          console.log('No results found');
+        }
+      })
+      .catch(error => {
+        console.log('Error fetching location data:', error);
+      });
   };
+  
 
   const clickedOutside = (x, y, lat, lng, event) => {
     if (markerClicked) {
       setSelectedShopId(null);
       setMarkerClicked(false);
-    } else {
-      console.log("map clicked");
+    // } else {
+    //   // console.log("map clicked");
     }
   };
 
@@ -65,71 +88,52 @@ const Map = () => {
           label="Show me coffee shops in..."
           variant="outlined"
           style={{ width: "100%" }}
+          value={searchQuery}
           onChange={handleAddressChange}
+          onKeyPress={handleKeyPress}
         />
-        <div style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContect: "space-between",
-          alignItems: "center"
-        }}>
-          <Typography>
-            Distance:
-          </Typography>
-          <Slider style={{ width: "75%" }} />
-        </div>
-        <div>
-          <Button
-            variant="outlined"
-            style={{
-              width: "50%",
-              color: "#542a1b"
-            }}
-          >
-            <RestartAltIcon />
-            Reset
-          </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "50%",
-              color: "#542a1b",
-              backgroundColor: "#e6b17e"
-            }}
-          >
-            <SearchIcon />
-            Search
-          </Button>
-        </div>
-      </div>
-    )
-  };
+        <Button
+          variant="contained"
+          style={{
+            width: "100%",
+            marginTop: 10,
+            color: "#542a1b",
+            backgroundColor: "#e6b17e"
+          }}
+          onClick={handleSearch}
+        >
+        <SearchIcon />
+          Search
+        </Button>
+    </div>
+  )
+};
 
   const map = () => {
-    console.log(testData)
+    // console.log(testData)
     const defaultProps = {
       center: {
-        lat: 34.046,
-        lng: -117.04
+        lat: lat,
+        lng: lng
       },
       zoom: 13
     };
 
-    // const handleShopButtonClick = (shopId) => {
-    //   setSelectedShopId(shopId);
-    //   setMarkerClicked(true);
-    // };
+    const handleShopButtonClick = (shopId) => {
+      setSelectedShopId(shopId);
+      setMarkerClicked(true);
+    };
+    
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-
-      <div
-          style={{
-            height: '40vh',
-            width: '100%',
-            marginBottom: '10px'
-          }}
-      >
+        <div
+            style={{
+              height: '40vh',
+              width: '100%',
+              marginBottom: '10px'
+            }}
+        >
         <GoogleMapReact
           bootstrapURLKeys={{ key: API }}
           defaultCenter={defaultProps.center}
@@ -140,105 +144,98 @@ const Map = () => {
           }}
           onClick={clickedOutside}
         >
-          {
-            shops.map((shop) => (
-              <LocalCafeTwoToneIcon
-                key={shop.id}
-                color={"brown"}
-                lat={shop.coordinates.latitude}
-                lng={shop.coordinates.longitude}
-                onClick={() => {
-                  setSelectedShopId(shop.id);
-                  setMarkerClicked(true);
-                }}
-              />
-            ))
-          }
+            {
+              shops.map((shop) => (
+                <LocalCafeTwoToneIcon
+                  key={shop.id}
+                  // color={"brown"}
+                  color={selectedShopId === shop.id ? "brown" : "inherit"}
+                  lat={shop.coordinates.latitude}
+                  lng={shop.coordinates.longitude}
+                  onClick={() => {
+                    setSelectedShopId(shop.id);
+                    setMarkerClicked(true);
+                  }}
+                  // onClick={() => {
+                  //   setSelectedShopId(shop.id);
+                  //   setMarkerClicked(true);
+                  // }}
+                  // onClick={() => handleShopButtonClick(shop.id)}
+                />
+              ))
+            }
 
-          {
-            shops.map((shop) => {
-              if (selectedShopId === shop.id) {
-                return (
-                  <div
-                    key={shop.id}
-                    lat={shop.coordinates.latitude}
-                    lng={shop.coordinates.longitude}
-                    style={{
-                      backgroundColor: '#f1e6d0',
-                      display: "inline-block",
-                      padding: 2
-                    }}
-                  >
-                    <Typography style={{ color: "#542a1b" }}>
-                      {shop.name}
-                    </Typography>
-                  </div>
-                )
-              } else {
-                return null
-              }
-            })
-          }
-        </GoogleMapReact>
-        <div
-        style={{
-          height: '40vh',
-          width: '100%',
-          overflowY: 'auto'
-        }}
-      >
-        <ul>
-          {shops.map((shop) => (
-            <li
-              key={shop.id}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '5px',
-                marginBottom: '5px',
-                backgroundColor: selectedShopId === shop.id ? '#f1e6d0' : 'inherit'
-              }}
-            >
-              <Typography style={{ color: "#542a1b" }}>
-                {shop.name}
-              </Typography>
-              {/* <Button
-                variant="outlined"
-                style={{
-                  color: "#542a1b",
-                  marginLeft: '10px'
-                }}
-                // onClick={() => handleShopButtonClick(shop.id)}
-              >
-                Click
-              </Button> */}
-<<<<<<< HEAD
-              
-              <Link 
-                to={{
-                pathname: '/overview',
-                state: { 
-                  userId: userId, 
-                  setUserId: setUserId,
-                  selectedShopId: selectedShopId //loading Link too fast before selectedShopId is loaded so therefore null
+            {
+              shops.map((shop) => {
+                if (selectedShopId === shop.id) {
+                  return (
+                    <div
+                      key={shop.id}
+                      lat={shop.coordinates.latitude}
+                      lng={shop.coordinates.longitude}
+                      style={{
+                        backgroundColor: '#f1e6d0',
+                        display: "inline-block",
+                        padding: 2
+                      }}
+                    >
+                      <Typography style={{ color: "#542a1b" }}>
+                        {shop.name}
+                      </Typography>
+                    </div>
+                  )
+                } else {
+                  return null
                 }
-              }}>
-=======
-
-              <Link
-                to='/overview' state={{ shopId: selectedShopId, userId: userId }}>
->>>>>>> main
-                <Button>
+              })
+            }
+          </GoogleMapReact>
+          <div
+          style={{
+            height: '40vh',
+            width: '100%',
+            overflowY: 'auto'
+          }}
+        >
+          <ul>
+            {shops.map((shop) => (
+              <li
+                key={shop.id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '5px',
+                  marginBottom: '5px',
+                  backgroundColor: selectedShopId === shop.id ? '#f1e6d0' : 'inherit'
+                }}
+              >
+                <Typography style={{ color: "#542a1b" }}>
+                  {shop.name}
+                </Typography>
+                {/* <Button
+                  variant="outlined"
+                  style={{
+                    color: "#542a1b",
+                    marginLeft: '10px'
+                  }}
+                  // onClick={() => handleShopButtonClick(shop.id)}
+                >
                   Click
-                </Button>
-              </Link>
+                </Button> */}
 
-            </li>
-          ))}
-        </ul>
-      </div>
-      </div>
+                <Link
+                  to='/overview' state={{ shopId: selectedShopId, userId: userId }}>
+                  <Button>
+                    Click
+                  </Button>
+                </Link>
+
+              </li>
+            ))}
+          </ul>
+        </div>
+        </div>
       </div>
     )
   };
