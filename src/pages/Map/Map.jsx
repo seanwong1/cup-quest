@@ -44,7 +44,7 @@ const Map = () => {
   const handleAddressChange = (event) => {
     setSearchQuery(event.target.value);
   };
-  
+
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
@@ -73,9 +73,9 @@ const Map = () => {
         console.log('Error fetching location data:', error);
       });
   };
-  
+
   const fetchShops = (lat, lng, api) => {
-  fetch(`/shops/${lat}/${lng}/${api}`)
+  fetch(`/map/${lat}/${lng}/${api}`)
     .then(response => response.json())
     .then(data => {
       setShops(data);
@@ -138,7 +138,7 @@ const Map = () => {
       setSelectedShopId(shopId);
       setMarkerClicked(true);
     };
-    
+
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
