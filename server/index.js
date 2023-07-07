@@ -119,12 +119,15 @@ app.get('/userLogin/:email', async (req, res) => {
   }
 });
 
-app.get('/reviews', (req, res) => {
-  const shop = req.body.shop === undefined ? 0 : req.body.shop;
-  Review.find({ shop: shop }).sort({ createdAt: 'desc' })
-    .then((results) => {
-      res.status(200).send(results);
-    })
+app.get('/reviews/:id', (req, res) => {
+  console.log('body: ', req.body);
+  console.log('params: ', req.params);
+  console.log('query: ', req.query)
+  const shop = req.params.id ? req.params.id : 0;
+  Review.find({shop: shop}).sort({createdAt: 'desc'})
+  .then((results) => {
+    res.status(200).send(results);
+  })
 })
 
 app.post('/reviews', (req, res) => {
