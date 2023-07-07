@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config'
@@ -8,12 +7,15 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 import compression from 'compression';
+import http from 'http';
+import { Server } from 'socket.io';
 
 // import '../database/models.js';
 // import { Review, User, Shop} from '../database/models.js';
 import { User } from '../database/models/user.js'
 import { Review } from '../database/models/review.js'
 // EXPRESS ROUTES
+import chat from './routes/chat.js';
 import user from './routes/user.js';
 import overview from './routes/overview.js';
 
@@ -21,9 +23,7 @@ import overview from './routes/overview.js';
 import '../database/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-//all this work just for __dirname in es6
 const app = express();
-
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -47,16 +47,16 @@ app.get("/", function (req, res) {
 })
 
 // routes go here
-
+app.use('/chat', chat);
 app.use('/user', user);
 app.use('/shops', overview);
 
-app.post('/register', async function(req, res) {
+app.post('/register', async function (req, res) {
   const { username, email, phone, picture } = req.body;
 
   try {
     const newUser = new User({
-      user: username,
+      name: username,
       email,
       phone,
       picture,
@@ -72,7 +72,7 @@ app.post('/register', async function(req, res) {
 
 app.post('/validate', async function (req, res) {
   const { username, email } = req.body;
-  const existingUsername = await User.findOne({ user: username });
+  const existingUsername = await User.findOne({ name: username });
 
   if (existingUsername) {
     return res.status(400).json({ message: 'Username already exists' });
@@ -88,8 +88,42 @@ app.post('/validate', async function (req, res) {
   res.status(200).send();
 });
 
-app.get('/reviews', (req, res) => {
-  const shop = req.body.shop === undefined ? 0 : req.body.shop;
+app.post('/validateOnClick', async function (req, res) {
+  const { email } = req.body;
+  const existingEmail = await User.findOne({ email });
+
+  if (existingEmail) {
+    return res.status(201).json({ message: 'Email already exists' });
+  }
+
+  res.status(200).send();
+});
+
+app.get('/userLogin/:email', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    console.log('------>', user)
+    if (user) {
+      let firstName = user.name.split(' ')[0];
+      res.json({
+        email: user.email,
+        name: firstName,
+        picture: user.picture,
+        bio: user.bio
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/reviews/:id', (req, res) => {
+  console.log('body: ', req.body);
+  console.log('params: ', req.params);
+  console.log('query: ', req.query)
+  const shop = req.params.id ? req.params.id : 0;
   Review.find({shop: shop}).sort({createdAt: 'desc'})
   .then((results) => {
     res.status(200).send(results);
@@ -130,13 +164,13 @@ app.put('/reviews', (req, res) => {
     query[remove] = removeAmount;
   }
 
-  Review.updateOne({_id: reviewId}, {$set: query})
-  .then((results) => {
-    res.sendStatus(204);
-  })
-  .catch((err) => {
-    res.status(500).send(err)
-  })
+  Review.updateOne({ _id: reviewId }, { $set: query })
+    .then((results) => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      res.status(500).send(err)
+    })
 })
 // app.get('/ratings', (req, res) => {
 //   getDrinkRatings(req, res);
@@ -148,8 +182,38 @@ app.put('/reviews', (req, res) => {
 
 // eslint-disable-next-line no-undef
 const port = process.env.PORT;
-app.listen(port, () => {
+const server = http.createServer(app).listen(port, () => {
   console.log('listening on port', port);
   console.log(`Go to http://localhost:${port} for more details`)
 });
 
+const io = new Server(server);
+
+const USER_LIST = {};
+
+io.on('connection', (socket) => {
+  socket.on('register', (username) => {
+    socket.username = username;
+    USER_LIST[username] = socket;
+  });
+
+  socket.on('private_message', (data) => {
+    const to = data.to;
+    const text = data.text;
+    const timeStamp = data.timeStamp;
+    const username = data.username;
+
+    if (USER_LIST[to]) {
+      USER_LIST[to].emit('private_message', {
+        to, text, timeStamp, username, self: false
+      });
+      USER_LIST[username].emit('private_message', {
+        to, text, timeStamp, username, self: true
+      });
+    }
+  });
+
+  socket.on('disconnect', (socket) => {
+    console.log(`user disconnected ${socket.id}`);
+  });
+});

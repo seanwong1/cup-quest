@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Reactions, Like, Dislike } from './ReactionButtons.jsx';
+import ProfileLink from '../../lib/ProfileLink.jsx';
 /* eslint-disable react/prop-types */
 
 export const ReviewEntry = (props) => {
@@ -75,12 +76,13 @@ export const ReviewEntry = (props) => {
       <div className='entryContainer'>
         {rating()}
         <img className='reviewsPic' src={props.profilePic}></img>
-        <h3 className='reviewsUsername'>{props.username}</h3>
+        <ProfileLink name={props.username} />
+        {/* <h3 className='reviewsUsername'>{props.username}</h3> */}
         <h3 className='reviewsDrink'>{drink}</h3>
       </div>
       {chooseComments()}
       <div className='reactionButtons'>
-        <Reactions toggle={props.toggle} setToggle={props.setToggle} reviewId={props.reviewId} likes={props.likes} dislikes={props.dislikes} />
+        <Reactions getReviews={props.getReviews} toggle={props.toggle} setToggle={props.setToggle} reviewId={props.reviewId} likes={props.likes} dislikes={props.dislikes} />
       </div>
     </div>
   )

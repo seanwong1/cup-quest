@@ -11,16 +11,23 @@
   color-scheme: light dark;
   color: #99592a;
   background-color: var(--white);
+  margin: 3%;
 }
 
 .reviewsEntry {
   display: inline-block;
-  border: 1px solid #542a1b;
+  border: 2px solid #542a1b;
   border-radius: 10px;
   min-width: 101%;
   max-width: 101%;
   min-height: 184px;
   margin: 1% 0% 0% 0%;
+}
+
+.noReviewsYet {
+  left: 107px;
+  font-weight: bolder;
+  position: relative;
 }
 
 .reviewsPic {
@@ -30,7 +37,7 @@
   margin: -10px 0 0 13px;
 }
 
-.reviewsUsername {
+.profile-name {
   margin: 23px 0% 0% 106px;
 }
 
@@ -94,12 +101,21 @@
 
 #reviewList {
   margin: 0 4px 0 0;
-  left: 7.5%;
+  left: 0px;
   position: relative;
 }
 
 #postReviewDrinkOptions {
   margin: 0 5px 0 5px;
+  color: #542a1b;
+  border-radius: 5px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+}
+
+.postReview {
+  border: 1px solid #542a1b;
+  border-radius: 10px;
 }
 
 .rate {
@@ -124,6 +140,10 @@
   min-width: 75px;
   max-width: 6%;
   position: relative;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
+  border-radius: 5px;
 }
 
 #reviewForm {
@@ -144,11 +164,17 @@
 .likeButton {
   height: 37px;
   width: 48px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+  border-radius: 5px;
 }
 
 .dislikeButton {
   height: 37px;
   width: 48px;
+  background-color: #e6b17e;
+  border-color: #e6b17e;
+  border-radius: 5px;
 }
 
 .likeButtonContainer {
@@ -215,6 +241,17 @@
 
 .button_logout {
   float: right;
+  display: inline-block;
+  margin-top: 5%;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .button_home {
@@ -222,15 +259,23 @@
 }
 
 .button_back {
-  float: left;
+  /* float: left; */
+  display: inline-block;
+  position: left;
+  margin-top: 5%;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .overview_info {
-  margin: 20px;
-}
-
-.overview_address {
-  padding: 10px;
+  margin: 2%;
 }
 
 .logo {
@@ -240,14 +285,22 @@
 }
 
 .logo_home {
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  height: 30%;
   position: center;
+  max-width: 30%;
+  top: 20%;
+  transform: translate(-17px, 10px);
 }
 
 .logo_home--container {
-  justify-content: center;
-  position: center;
+  /* justify-content: center; */
+  position: absolute;
+  align-items: center;
+  text-align: center;
+  display: inline-block;
+  max-width: 70%;
+  justify-content: stretch;
   align-items: center;
 }
 
@@ -357,7 +410,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .splash-form {
@@ -385,9 +438,17 @@
   padding: 10px 15px;
   font-size: 14px;
   border: none;
-  color: #fff;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.google-sign-in-button {
+  padding: 0px;
+  contain: none;
+  /* margin-top: 50px; */
 }
 
 .newUser-center {
@@ -441,7 +502,9 @@
   padding: 10px 15px;
   font-size: 14px;
   border: none;
-  color: #fff;
+  color: #542a1b;
+  border: #e6b17e;
+  background-color: #e6b17e;
   cursor: pointer;
   border-radius: 5px;
 }
