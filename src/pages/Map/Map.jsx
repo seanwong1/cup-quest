@@ -23,7 +23,7 @@ const Map = () => {
   const [shops, setShops] = useState([]);
   const [selectedShopId, setSelectedShopId] = useState(null);
   const [markerClicked, setMarkerClicked] = useState(false);
-
+  
   const [userId, setUserId] = useState('649512218eda7c4e347c61bf');
 
   
@@ -218,7 +218,11 @@ const Map = () => {
               <Link 
                 to={{
                 pathname: '/overview',
-                state: { userId: userId, setUserId: setUserId }
+                state: { 
+                  userId: userId, 
+                  setUserId: setUserId,
+                  selectedShopId: selectedShopId //loading Link too fast before selectedShopId is loaded so therefore null
+                }
               }}>
                 <Button>
                   Click
