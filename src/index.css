@@ -24,6 +24,12 @@
   margin: 1% 0% 0% 0%;
 }
 
+.noReviewsYet {
+  left: 107px;
+  font-weight: bolder;
+  position: relative;
+}
+
 .reviewsPic {
   float: left;
   width: 80px;

@@ -44,7 +44,7 @@ export const ShopOverview = (props) => {
         </Link>
       </div>
       <ShopInformation shopId={location.state.shopId} userId={location.state.userId} ratingsByDrink={ratingsByDrink} />
-      <Review shop={location.state.shopId} userId={location.state.userId} getAverages={getAverages} />
+      <Review shopId={location.state.shopId} userId={location.state.userId} getAverages={getAverages} />
     </div>
   )
 }
