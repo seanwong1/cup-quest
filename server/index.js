@@ -153,13 +153,13 @@ app.post('/reviews', (req, res) => {
   // Review.create({})
 })
 
-app.get('/shops/:lat/:lng/:api', (req, res) => {
+app.get('/map/:lat/:lng/:api', (req, res) => {
   const lat = req.params.lat;
   const lng = req.params.lng;
   const API = req.params.api;
 
   // console.log('lat,lng,auth===> ', lat, lng, API)
-  
+
   fetch(`https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&term=coffee&sort_by=best_match&limit=10`, {
     headers: {
       Authorization: API
