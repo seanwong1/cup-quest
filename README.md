@@ -22,6 +22,9 @@ CupQuest is a mobile-based application that serves as a comprehensive guide for 
 
 * **Coffee Shop Reviews**: When a coffee shop is selected, users can read reviews left by other users--their friends showing first. Users can react by liking or disliking individual reviews. Users can also submit their own reviews by drink using the review submission form above the list.
 
+<img src="http://g.recordit.co/fqivFV1sxo.gif" width="30%" height="30%">
+<img src="http://g.recordit.co/0XEs8EYbtR.gif" width="30%" height="30%">
+
 * **Friends and Chat**: CupQuest allows for connecting with friends and fellow coffee enthusiasts. Users can add and remove friends, see other users' review history, and message with friends. This feature encourages a sense of community and fosters engagement among users.
 
 ## Usage
