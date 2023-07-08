@@ -10,6 +10,7 @@ import { testData } from './testData';
 import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
 import { Link, Routes, Route } from 'react-router-dom';
 import { ShopOverview } from "../ShopOverview";
+import InputIcon from '@mui/icons-material/Input';
 
 const API = {
   geocode: import.meta.env.VITE_MAP_API_KEY,
@@ -194,16 +195,38 @@ const Map = () => {
                   backgroundColor: selectedShopId === shop.id ? '#f1e6d0' : 'inherit'
                 }}
               >
-                <Typography style={{ color: "#542a1b" }}>
-                  {shop.name}
-                </Typography>
                 <Link
-                  to='/overview' state={{ shopId: shop.id, userId: userId }}>
-                  <Button>
-                    Click
-                  </Button>
+                  to='/overview' 
+                  state={{ 
+                    shopId: shop.id,
+                    userId: userId
+                  }}
+                  style={{ 
+                    color: "#542a1b",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <LocalCafeTwoToneIcon>
+                  key={shop.id}
+                  color={"#542a1b"}
+                  lat={shop.coordinates.latitude}
+                  lng={shop.coordinates.longitude}
+                  onClick={() => {
+                    setSelectedShopId(shop.id);
+                    setMarkerClicked(true);
+                  }}
+                </LocalCafeTwoToneIcon>
+                
+                    <Typography 
+                    underline="hover"
+                    style={{ 
+                      color: "#542a1b"
+                      }}>
+                      {shop.name}
+                    </Typography>
                 </Link>
-
               </li>
             ))}
           </ul>
