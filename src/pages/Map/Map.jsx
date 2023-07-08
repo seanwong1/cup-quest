@@ -90,9 +90,10 @@ const Map = () => {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchQuery)}&key=${API.geocode}`)
       // .then(response => response.json())
       .then(data => {
+        console.log(data);
         // Check if the API returned any results
-        if (data.status === 'OK' && data.results.length > 0) {
-          const { lat, lng } = data.results[0].geometry.location;
+        if (data.data.status === 'OK' && data.data.results.length > 0) {
+          const { lat, lng } = data.data.results[0].geometry.location;
           setLat(lat);
           setLng(lng);
           // setShops([]);
