@@ -27,6 +27,13 @@ CupQuest is a mobile-based application that serves as a comprehensive guide for 
 
 * **Friends and Chat**: CupQuest allows for connecting with friends and fellow coffee enthusiasts. Users can add and remove friends, see other users' review history, and message with friends. This feature encourages a sense of community and fosters engagement among users.
 
+- ![adding and removing friends](./examples/add_removing_friend.gif)
+- ![private chat](./examples/chat_feature.gif)
+
+* **Dark/Light Mode**: Features a dark and light mode toggle to be easier on the eyes.
+
+- ![dark light mode](./examples/dark_light_mode.gif)
+
 ## Usage
 To get started with CupQuest, follow these steps:
 1. Navigate to [CUPQUEST DEPLOYED URL].
