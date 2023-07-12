@@ -15,6 +15,9 @@ CupQuest is a mobile-based application that serves as a comprehensive guide for 
 
 ## Features
 * **User Account and Authentication**: CupQuest provides users with the ability to create their own accounts. The app utilizes Google Authentication to ensure secure and easy login for users. User information is stored in Firebase, ensuring data security.
+
+<img src="http://g.recordit.co/qqakKLHBPe.gif" width="30%" height="30%"> <img src="http://g.recordit.co/CLSh3KmSi1.gif" width="30%" height="30%">
+
 * **Coffee Shop Search**: With the help of the <a href="https://developers.google.com/maps">Google Maps API</a> and the <a href="https://docs.developer.yelp.com/docs/fusion-intro">Yelp API</a>, CupQuest offers a powerful search feature that allows users to find coffee shops in their vicinity. User searches are based on location, though results can be filtered by drinks and ratings.
 * **Coffee Shop Information**: Once a coffee shop is selected, CupQuest gathers detailed information from Yelp, including hours, contact information, and photos. The menu is standardized across all coffee shops with basic drinks available anywhere, but there is an option for Specialty drinks to submit reviews for more creative beverages. These menu items are displayed with their average rating from the submitted reviews.
 
