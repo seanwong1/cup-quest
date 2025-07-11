@@ -85,39 +85,47 @@ npm run server
 
 ## Usage
 To get started with CupQuest, follow these steps:
-1. Navigate to [CUPQUEST DEPLOYED URL].
-2. Make a new account, log into your existing account, or sign in with Google.
+1. Navigate to `http://localhost:3000`.
+2. Make a new account, log into your existing account, or sign in with Google
 3. Grant the necessary location permissions to ensure accurate search results.
 4. Explore the various features of searching for coffee shops, reading reviews, and connecting with friends.
 5. Customize your profile, change your profile picture, and update your preferences.
 
-## External APIs
-Data is sourced from two external APIs:
-* Google Maps, through the google-maps-react package
-* Yelp Fusion endpoints:
-  * /businesses/search
-  * /businesses/matches
-  * /businesses/:id
+## Tech Stack & APIs
 
+**Frontend:**
 
-## Tech Stack
-![Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=323330)
-![ReactJS](https://img.shields.io/badge/React-808080?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Express](https://img.shields.io/badge/Express.js-808080?style=for-the-badge&logo=express&logoColor=00ff00)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![React](https://img.shields.io/badge/React-808080?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![Nodemon](https://img.shields.io/badge/NODEMON-808080.svg?style=for-the-badge&logo=nodemon&logoColor=008000)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge)
 ![MaterialUI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge)
+
+**Backend:**
+
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-808080?style=for-the-badge&logo=express&logoColor=00ff00)
+![Nodemon](https://img.shields.io/badge/NODEMON-808080.svg?style=for-the-badge&logo=nodemon&logoColor=008000)
+
+**Database & Realtime:**
+
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
-![React Testing Library](https://img.shields.io/badge/testing%20library-808080?style=for-the-badge&logo=testing-library&logoColor=#E33332)
+
+**Testing & Linting:**
+
+![React Testing Library](https://img.shields.io/badge/testing%20library-808080?style=for-the-badge&logo=testing-library&logoColor=%23E33332)
 ![ESLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 
+**APIs:**
+- Google Maps (via `google-maps-react`)
+- Yelp Fusion endpoints:
+  - `/businesses/search`
+  - `/businesses/:id`
+  - `/businesses/matches`
+
 ## Further Development
-Next steps for CupQuest will involve:
-* Adding comment functionality to reviews
-* Specified menu based on actual available items at coffee shops
+- Adding comment functionality to reviews
+- Specified menu based on actual available items at coffee shops
 
 ## Contributors
 - [Addie Lopshire-Bratt](https://github.com/addielb)
