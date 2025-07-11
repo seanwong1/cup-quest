@@ -49,7 +49,7 @@ To continue development for CupQuest, follow these steps:
 ```
 npm install
 ```
-4. Create a .env file with the following keys, sourced from the the listed places:
+4. Create a .env file with the following keys, sourced from the listed places:
 * Google Maps Dev
 ```
 VITE_MAP_API_KEY=<key>
