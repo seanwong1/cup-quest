@@ -1,13 +1,12 @@
 # CupQuest
-### By Chatterbox
 
 ## Overview
 CupQuest is a mobile-based application that serves as a comprehensive guide for coffee lovers. It functions as a platform exclusively for coffee shops, allowing users to search for coffee shops in their area, read reviews, and connect with friends. The app combines data from the Google Maps API and the Yelp API to provide accurate and up-to-date information about coffee shops.
 
 ## Table of Contents
 - [Features](#Features)
-- [Usage](#Usage)
 - [Installation](#Installation)
+- [Usage](#Usage)
 - [External APIs](#External-APIs)
 - [Tech Stack](#Tech-Stack)
 - [Further Development](#Further-Development)
@@ -32,14 +31,6 @@ CupQuest is a mobile-based application that serves as a comprehensive guide for 
 
 <img src="./examples/add_removing_friend.gif" width="30%" height="30%">
 <img src="./examples/chat_feature.gif" width="30%" height="30%">
-
-## Usage
-To get started with CupQuest, follow these steps:
-1. Navigate to [CUPQUEST DEPLOYED URL].
-2. Make a new account, log into your existing account, or sign in with Google.
-3. Grant the necessary location permissions to ensure accurate search results.
-4. Explore the various features of searching for coffee shops, reading reviews, and connecting with friends.
-5. Customize your profile, change your profile picture, and update your preferences.
 
 ## Installation
 To continue development for CupQuest, follow these steps:
@@ -91,6 +82,14 @@ npm run build
 npm run server
 ```
 * **Note:** You will have to use your own database for development purposes, but should changes be accepted your portion will integrate with the proprietary one.
+
+## Usage
+To get started with CupQuest, follow these steps:
+1. Navigate to [CUPQUEST DEPLOYED URL].
+2. Make a new account, log into your existing account, or sign in with Google.
+3. Grant the necessary location permissions to ensure accurate search results.
+4. Explore the various features of searching for coffee shops, reading reviews, and connecting with friends.
+5. Customize your profile, change your profile picture, and update your preferences.
 
 ## External APIs
 Data is sourced from two external APIs:
