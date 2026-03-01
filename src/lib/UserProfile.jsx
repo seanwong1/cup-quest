@@ -1,76 +1,81 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams, useLocation  } from 'react-router-dom'
+import React from 'react';
+import { Link, useParams } from 'react-router-dom'
+import { activityByUser, getFriendsForUser, getProfileByName, shops, staticNotice } from '../devData/staticSiteData.js';
 
-import UserHistoryList from './UserHistoryList.jsx';
-import FriendToggle from './FriendToggle.jsx';
-
-import requestHandler from './requestHandler.js';
-
-const UserProfile = (props) => {
-  const [isUser, setIsUser] = useState(false);
-  const [profile, setProfile] = useState({});
+const UserProfile = ({ currentUser }) => {
   const { name } = useParams();
-
-  const location = useLocation();
-  // console.log('Use Location Hook: ', location);
-  // console.log('Use Location State: ', location.state.currentUser);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('inUser'));
-    if(name === user.name) {
-      setIsUser(true);
-      setProfile(user);
-    } else {
-    requestHandler(`/user/${name}`, null, 'get', (response) => {
-      setProfile(response.data);
-      setIsUser(false);
-    });
-    }
-
-
-  }, [name]);
+  const profile = getProfileByName(name);
+  const isUser = profile.name === currentUser.name;
+  const recentActivity = activityByUser[profile.name] ?? activityByUser[currentUser.name] ?? [];
+  const suggestedShops = shops.slice(0, 3);
+  const friends = getFriendsForUser(profile.name);
 
   return (
-    // only thing that is different between friend and user
-    // profile is that user profile has edit profile button
-    // whereas friend profile has add/remove friend button
-    // accepts props.isUser and conditionally renders button
-    <div className="profile">
-      <div className="overview_header">
-        <Link to='/home'>
-          <button className="button_back">Back</button>
-        </Link>
-        <Link to='/home'>
-          <span className="logo_home--container">
-          <img src="../../logo-no-background.svg" alt="CupQuest Logo" className="logo logo_home"/>
-          </span>
-        </Link>
-        <Link to='/'>
-          <button className='button_logout'>Logout</button>
-        </Link>
-      </div>
+    <div className="page-shell narrow-shell">
+      <section className="card">
+        <div className="top-nav">
+          <div>
+            <p className="eyebrow-copy">{isUser ? 'Your profile' : 'Demo profile'}</p>
+            <h1>{profile.name}</h1>
+          </div>
+          <Link to="/home">
+            <button className="ghost-button">Back</button>
+          </Link>
+        </div>
+        <p className="notice-banner">{staticNotice}</p>
+        <div className="profile-header">
+          <img className='profile-pic' src={profile.picture} alt={profile.name} />
+          <div>
+            <p>{profile.bio}</p>
+            <p className="support-copy">{profile.city}</p>
+            <p><strong>Favorite order:</strong> {profile.favoriteOrder}</p>
+          </div>
+        </div>
+        <div className="chip-row">
+          {profile.badges.map((badge) => (
+            <span key={badge} className="feature-chip">{badge}</span>
+          ))}
+        </div>
+      </section>
 
-      <div className='profile-info'>
-        <div className='profile-picture'>
-          <img className='profile-pic' src={profile.picture} alt={'UPLOAD'}></img>
-        </div>
-        <div className="profile-text">
-          <div className='profile-username'><h4>{profile.name}</h4></div>
-          <div className='profile-biography'><p>{profile.bio}</p></div>
-        </div>
-      </div>
-      <div className="buttons">
-        <Link to={{pathname: `/user/${profile.name}/friends` }} state={{ currentUser: location.state.currentUser }}>
-          <button className="friends-button" >Friends</button>
+      <section className="card">
+        <h2>Recent activity</h2>
+        {recentActivity.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+      </section>
+
+      <section className="card">
+        <h2>Friends</h2>
+        {friends.map((friend) => (
+          <div key={friend.id} className="list-row">
+            <Link to={`/user/${friend.name}`}>{friend.name}</Link>
+            <span>{friend.favoriteOrder}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="card">
+        <h2>Suggested shops</h2>
+        {suggestedShops.map((shop) => (
+          <div key={shop.id} className="list-row">
+            <span>{shop.name}</span>
+            <Link to="/overview" state={{ shopId: shop.id }}>Open</Link>
+          </div>
+        ))}
+      </section>
+
+      <div className="button-row">
+        <Link to='/home'>
+          <button className="ghost-button">Home</button>
         </Link>
-        {isUser ? <div className='edit-button' onClick={() => {console.log('hi')}}>Edit User</div> :
-          <FriendToggle currentUser={location.state.currentUser} id={profile._id} name={profile.name} />
-        }
-      </div>
-      <div className='profile-history'>
-      <div><h4>User History</h4></div>
-        <UserHistoryList />
+        <Link to={`/user/${profile.name}/friends`}>
+          <button className="ghost-button">Friend List</button>
+        </Link>
+        <Link to='/chat'>
+          <button className="primary-button">Chat</button>
+        </Link>
       </div>
     </div>
   )

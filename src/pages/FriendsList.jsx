@@ -1,59 +1,55 @@
-/* eslint-disable react/jsx-key */
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
-import FriendElement from './FriendElement.jsx';
+import React from 'react';
+import { Link, useParams } from 'react-router-dom'
+import { getFriendsForUser, getProfileByName, profiles, staticNotice } from '../devData/staticSiteData.js';
 
-import requestHandler from '../lib/requestHandler.js';
-
-const FriendsList = (props) => {
-  const [friends, setFriends] = useState([]);
-  // TESTING
-  const [users, setUsers] = useState([]);
+const FriendsList = () => {
   const { name } = useParams();
-
-  const location = useLocation();
-  // console.log('Use Location Hook: ', location);
-  // console.log('Use Location State: ', location.state.currentUser);
-
-  useEffect(() => {
-    requestHandler(`/user/${name}/friends`, null, 'get', (response) => {
-      setFriends(response.data);
-    });
-  }, [name]);
-
-  useEffect(() => {
-    requestHandler('/user/all', null, 'get', (response) => {
-      setUsers(response.data);
-    });
-  }, []);
+  const currentProfile = getProfileByName(name);
+  const friends = getFriendsForUser(name);
 
   return (
-    <div className="friends">
-      <div className="overview_header">
+    <div className="page-shell narrow-shell">
+      <section className="card">
+        <div className="top-nav">
+          <div>
+            <p className="eyebrow-copy">Friends</p>
+            <h1>{currentProfile.name}</h1>
+          </div>
+          <Link to={`/user/${currentProfile.name}`}>
+            <button className="ghost-button">Back</button>
+          </Link>
+        </div>
+        <p className="notice-banner">{staticNotice}</p>
+        <h2>Connected profiles</h2>
+        {friends.map((friend) => (
+          <article key={friend.id} className="friend-card">
+            <img className="friend-avatar" src={friend.picture} alt={friend.name} />
+            <div>
+              <Link to={`/user/${friend.name}`}><strong>{friend.name}</strong></Link>
+              <p>{friend.bio}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="card">
+        <h2>All demo users</h2>
+        {profiles.map((profile) => (
+          <div key={profile.id} className="list-row">
+            <Link to={`/user/${profile.name}`}>{profile.name}</Link>
+            <span>{profile.favoriteOrder}</span>
+          </div>
+        ))}
+      </section>
+
+      <div className="button-row">
         <Link to='/home'>
-          <button className="button_back">Back</button>
+          <button className="ghost-button">Home</button>
         </Link>
-        <Link to='/home'>
-          <span className="logo_home--container">
-          <img src="../../logo-no-background.svg" alt="CupQuest Logo" className="logo logo_home"/>
-          </span>
-        </Link>
-        <Link to='/'>
-          <button className='button_logout'>Logout</button>
+        <Link to='/chat'>
+          <button className="primary-button">Chat</button>
         </Link>
       </div>
-      <h1>Friends</h1>
-        {friends.map((friend) => {
-          return (
-            <FriendElement friend={friend} currentUser={location.state.currentUser} />
-          )
-        })}
-      <h2>All Users</h2>
-        {users.map((user) => {
-          return (
-            <FriendElement friend={user} currentUser={location.state.currentUser} />
-          )
-        })}
     </div>
   )
 }

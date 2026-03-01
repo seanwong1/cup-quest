@@ -1,15 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import GoogleSignIn from './firebase/googleSignIn';
-import Typography from '@mui/material/Typography';
+import { demoUser, staticNotice } from '../devData/staticSiteData.js';
 
-import lightDarkToggle from '../lib/lightDarkToggle.js';
+const logoUrl = `${import.meta.env.BASE_URL}logo-no-background.svg`;
 
-import { signIn } from './firebase/firebaseAuth';
-
-export function SplashPage({ email, setEmail, setName, setPicture }) {
+export function SplashPage({ setCurrentUser }) {
   const navigate = useNavigate();
 
   const slogans = [
@@ -35,9 +31,8 @@ export function SplashPage({ email, setEmail, setName, setPicture }) {
   ];
 
   const [randomSlogan, setRandomSlogan] = useState('');
-  const [userId, setUserId] = useState(0);
+  const [email, setEmail] = useState(demoUser.email);
   const [password, setPassword] = useState('');
-  const [theme, setTheme] = useState(false);
 
   const loginEmail = (e) => {
     setEmail(e.target.value);
@@ -48,14 +43,11 @@ export function SplashPage({ email, setEmail, setName, setPicture }) {
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
-    signIn(email, password)
-      .then((data) => {
-        navigate('/home');
-      })
-      .catch((err) => {
-        setPassword('');
-        console.log(err);
-      });
+    setCurrentUser({
+      ...demoUser,
+      email: email || demoUser.email,
+    });
+    navigate('/home');
   };
 
   const handleNewUserClick = (e) => {
@@ -64,74 +56,65 @@ export function SplashPage({ email, setEmail, setName, setPicture }) {
   }
 
   useEffect(() => {
-    lightDarkToggle(theme);
-  }, [theme]);
-
-  useEffect(() => {
     const slogan = slogans[Math.floor(Math.random() * slogans.length)];
     setRandomSlogan(slogan);
   }, [])
 
   return (
-    <>
-      <div className="splash-center">
-        <img src="../logo-no-background.svg" alt="CupQuest Logo" className="logo" onClick={() => { setTheme(!theme) }} />
-        <br />
-        <Typography variant="subtitle1">
-          {randomSlogan}
-        </Typography>
-        <div className="splash-container">
-          <form onSubmit={handleLoginFormSubmit} className="splash-form">
-            <input className="splash-input-fields"
-              type="text"
-              value={email}
-              onChange={loginEmail}
-              placeholder="Email"
-            />
-            <br />
-
-            <input className="splash-input-fields"
-              type="password"
-              value={password}
-              onChange={loginPassword}
-              placeholder="Password"
-            />
-            <br />
-
-            <div className="splash-buttons-container">
-              <input type="submit" value="Login" className="splash-button" />
-              <div style={{ margin: '0 10px' }}>|</div>
-
-              <Link to={{
-                pathname: '/newUser',
-                state: { userId: userId, setUserId: setUserId }
-              }}>
-                <button onClick={handleNewUserClick} className="splash-button" >New User</button>
-              </Link>
-            </div>
-          </form>
+    <div className="page-shell splash-shell">
+      <section className="hero-panel">
+        <div className="eyebrow-row">
+          <span className="eyebrow-pill">Static Demo</span>
+          <span className="eyebrow-copy">{staticNotice}</span>
         </div>
-        <br />
-        <GoogleSignIn setEmail={setEmail} setName={setName} setPicture={setPicture}/>
-        <Link to={{
-          pathname: '/home',
-          state: { userId: userId, setUserId: setUserId }
-        }}>
-          <button>Home</button>
-        </Link>
-        <Link to={{
-          pathname: '/overview',
-          state: { userId: userId, setUserId: setUserId }
-        }}>
-          <button>Shop Overview</button>
-        </Link>
-        <Link to={{
-          pathname: '/user',
-          state: { userId: userId, setUserId: setUserId }
-        }}>
-          <button>User</button>
-        </Link>
-      </div>
-    </>
+        <img src={logoUrl} alt="CupQuest Logo" className="logo" />
+        <h1>CupQuest</h1>
+        <p className="hero-copy">{randomSlogan}</p>
+        <p className="support-copy">
+          This deploy-friendly version keeps the coffee discovery flow intact using local placeholder content only.
+        </p>
+        <form onSubmit={handleLoginFormSubmit} className="card form-card">
+          <label className="field-label" htmlFor="email">Demo email</label>
+          <input
+            id="email"
+            className="text-input"
+            type="text"
+            value={email}
+            onChange={loginEmail}
+            placeholder="Email"
+          />
+          <label className="field-label" htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="text-input"
+            type="password"
+            value={password}
+            onChange={loginPassword}
+            placeholder="Password"
+          />
+          <div className="button-row">
+            <button type="submit" className="primary-button">Enter Demo</button>
+            <Link to="/newUser">
+              <button onClick={handleNewUserClick} type="button" className="ghost-button">New User</button>
+            </Link>
+          </div>
+        </form>
+      </section>
+
+      <section className="card info-card">
+        <h2>What stays in this static cut</h2>
+        <ul className="feature-list">
+          <li>Curated coffee shop list and detail pages</li>
+          <li>Sample reviews, friends, and chat threads</li>
+          <li>Hash-based routing that works on GitHub Pages</li>
+        </ul>
+        <h2>What is intentionally mocked</h2>
+        <ul className="feature-list">
+          <li>Firebase sign-in and account creation</li>
+          <li>Maps, Yelp, MongoDB, and Socket.IO calls</li>
+          <li>Any persistent writes such as reactions or reviews</li>
+        </ul>
+      </section>
+    </div>
   )
 }
