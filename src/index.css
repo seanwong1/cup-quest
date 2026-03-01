@@ -16,6 +16,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -30,16 +31,62 @@ input {
 
 #root {
   width: 100%;
+  min-height: 100vh;
+}
+
+.mobile-preview-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+}
+
+.mobile-preview-device {
+  width: min(100%, 430px);
+  min-height: min(920px, calc(100vh - 24px));
+  background: linear-gradient(180deg, #201710, #3a271b);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow:
+    0 28px 80px rgba(45, 32, 24, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  position: relative;
+}
+
+.mobile-preview-device::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(8, 7, 6, 0.9);
+  z-index: 2;
+}
+
+.mobile-preview-screen {
+  min-height: calc(100vh - 48px);
+  max-height: calc(100vh - 48px);
+  background:
+    radial-gradient(circle at top, rgba(255, 241, 223, 0.95), rgba(249, 233, 213, 0.75) 30%, rgba(237, 217, 194, 0.88) 75%),
+    linear-gradient(135deg, #f7ecd8, #e3c9ac);
+  border-radius: 26px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
 }
 
 .page-shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(100%, calc(100% - 24px));
   margin: 0 auto;
-  padding: 32px 0 48px;
+  padding: 48px 0 32px;
 }
 
 .narrow-shell {
-  width: min(720px, calc(100% - 32px));
+  width: min(100%, calc(100% - 24px));
 }
 
 .splash-shell {
@@ -339,9 +386,31 @@ h2 {
 }
 
 @media (max-width: 720px) {
+  .mobile-preview-shell {
+    padding: 0;
+  }
+
+  .mobile-preview-device {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .mobile-preview-device::before {
+    display: none;
+  }
+
+  .mobile-preview-screen {
+    min-height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+
   .page-shell,
   .narrow-shell {
-    width: min(100%, calc(100% - 24px));
+    width: min(100%, calc(100% - 20px));
   }
 
   .eyebrow-row,

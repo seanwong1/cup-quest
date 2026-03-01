@@ -13,16 +13,22 @@ function App() {
   const [currentUser, setCurrentUser] = useState(demoUser);
 
   return (
-    <Routes>
-      <Route path="/" element={<SplashPage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/newUser" element={<NewUser setCurrentUser={setCurrentUser} />} />
-      <Route path="/home" element={<Home currentUser={currentUser} />} />
-      <Route path="/overview" element={<ShopOverview currentUser={currentUser} />} />
-      <Route path="/user/:name" element={<UserProfile currentUser={currentUser} />} />
-      <Route path="/user/:name/friends" element={<FriendsList currentUser={currentUser} />} />
-      <Route path="/chat" element={<ChatMain currentUser={currentUser} />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <div className="mobile-preview-shell">
+      <div className="mobile-preview-device">
+        <div className="mobile-preview-screen">
+          <Routes>
+            <Route path="/" element={<SplashPage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+            <Route path="/newUser" element={<NewUser setCurrentUser={setCurrentUser} />} />
+            <Route path="/home" element={<Home currentUser={currentUser} />} />
+            <Route path="/overview" element={<ShopOverview currentUser={currentUser} />} />
+            <Route path="/user/:name" element={<UserProfile currentUser={currentUser} />} />
+            <Route path="/user/:name/friends" element={<FriendsList currentUser={currentUser} />} />
+            <Route path="/chat" element={<ChatMain currentUser={currentUser} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
   )
 }
 
