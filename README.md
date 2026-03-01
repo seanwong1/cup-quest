@@ -4,6 +4,7 @@
 CupQuest is a mobile-based application that serves as a comprehensive guide for coffee lovers. It functions as a platform exclusively for coffee shops, allowing users to search for coffee shops in their area, read reviews, and connect with friends. The app combines data from the Google Maps API and the Yelp API to provide accurate and up-to-date information about coffee shops.
 
 ## Table of Contents
+- [My Contributions](#my-contributions)
 - [Features](#Features)
 - [Installation](#Installation)
 - [Usage](#Usage)
@@ -11,6 +12,12 @@ CupQuest is a mobile-based application that serves as a comprehensive guide for 
 - [Tech Stack](#Tech-Stack)
 - [Further Development](#Further-Development)
 - [Contributors](#Contributors)
+
+## My Contributions
+I owned the social layer of CupQuest:
+- Built **user profiles** (view/edit profile details)
+- Implemented the **friends** system (add/remove friends, view friend activity/review history)
+- Shipped **real-time chat** as a stretch goal (Socket.io)
 
 ## Features
 - **User Account and Authentication**: CupQuest provides users with the ability to create their own accounts. The app utilizes Google Authentication to ensure secure and easy login for users. User information is stored in Firebase, ensuring data security.
